@@ -7,7 +7,7 @@ class App
 
     protected $method = null;
 
-    protected $params        = array();
+    protected $params = array();
     // protected $subcontroller = null;
 
     public function __construct()
@@ -18,9 +18,13 @@ class App
         // check for controller: no controller given ? then load start-page
         if (!$this->controller) {
 
-            require APP . 'home.php';
+            require_once APP . 'home.php';
             $page = new Home();
             $page->index();
+
+            /*  require_once APP . 'home.php';
+        $page = new Home();
+        $page->index(); */
 
         } elseif (file_exists(APP . $this->controller . '.php')) {
             // here we did check for controller: does such a controller exist ?
@@ -53,19 +57,39 @@ class App
                 }
 
             }
-        }
-         else{
+        } else
+        // if(file_exists(APP . 'productslist')) {
+        {
             require_once APP . 'productlist.php';
-            array_push ( $this->params, $this->method);
-            $this->controller = new ProductList($this->controller,$this->params);
-            $this->controller->index();
-            // $this->controller = new $this->controller();
-
-
-            /* var_dump($this->controller);
-            var_dump($this->method);
-            var_dump($this->params); */
         }
+
+        array_push($this->params, $this->method);
+        $this->controller = new ProductList($this->controller, $this->params);
+        $this->controller->index();
+
+        /*   if (method_exists($this->controller, $this->method)) {
+        if (!empty($this->params)) {
+        call_user_func_array(array(
+        $this->controller,
+        $this->method,
+        ), $this->params);
+        } else {
+
+        $this->controller->{$this->method}();
+        }
+
+        }else{
+        if(strlen($this->method)==0){ */
+
+        // $this->controller->index();
+        /*     }
+        } */
+        // $this->controller = new $this->controller();
+
+        /* var_dump($this->controller);
+        var_dump($this->method);
+        var_dump($this->params); */
+        // }
 
     }
 
@@ -84,19 +108,18 @@ class App
 // split URL
             $url = rtrim($_GET['url'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
-			$url = explode('/', $url);
-			// 
-			// $url = array_slice($url, -4, 4); 
+            $url = explode('/', $url);
+            //
+            // $url = array_slice($url, -4, 4);
 
-			// var_dump($url);
-			
+            // var_dump($url);
 
 // Put URL parts into according properties
             // By the way, the syntax here is just a short form of if/else, called "Ternary
             // Operators"
             // @see http://davidwalsh.name/php-shorthand-if-else-ternary-operators
             $this->controller = isset($url[0]) ? $url[0] : null;
-            $this->method     = isset($url[1]) ? $url[1] : null;
+            $this->method = isset($url[1]) ? $url[1] : null;
 
 // Remove controller and action from the split URL
             unset($url[0], $url[1]);
