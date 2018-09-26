@@ -23,16 +23,16 @@ class Controller
     site wide related variables
      */
     public $m_project_name = "Wheelies Bikes";
-    public $m_base_url     = URL;
+    public $m_base_url = URL;
     protected $m_link;
-    public $m_image_directory    = IMAGES;
+    public $m_image_directory = IMAGES;
     protected $m_thumb_directory = THUMBS;
     protected $m_page_id;
 
     protected $m_underline;
     protected $m_large_spacer;
     protected $m_br_tag_no_css_class = BR;
-    protected $space                 = " ";
+    protected $space = " ";
     protected $m_divider_with_link;
     protected $m_link_name;
     protected $m_link_button;
@@ -64,9 +64,9 @@ class Controller
     protected $m_open_graph_keywords;
     protected $m_open_graph_description;
     protected $m_open_graph_url;
-    protected $m_open_graph_site_name   = "Wheelies Bikes";
-    protected $m_open_graph_type        = "Website";
-    protected $m_page_developed_by      = "Perfect Code Services. A Subsidary of Deewanstudios Limited";
+    protected $m_open_graph_site_name = "Wheelies Bikes";
+    protected $m_open_graph_type = "Website";
+    protected $m_page_developed_by = "Perfect Code Services. A Subsidary of Deewanstudios Limited";
     protected $m_page_developer_website = "http://deewanstudios.com/";
 
     /*
@@ -115,6 +115,7 @@ class Controller
     public function __construct()
     {
         $this->m_model = 'MasterModel';
+        // $this->m_debugger = $this->Dumper($this->m_model);
 
     }
 
@@ -242,15 +243,15 @@ class Controller
 
     public function UnderConstruction()
     {
-        $this->m_page_id         = 6;
-        $m_section_id            = 4;
-        $this->m_loaded_model    = $this->ModelLoader();
-        $this->m_pulled_content  = $this->m_loaded_model->GetAllPageContents($this->m_page_id, $m_section_id);
+        $this->m_page_id = 6;
+        $m_section_id = 4;
+        $this->m_loaded_model = $this->ModelLoader();
+        $this->m_pulled_content = $this->m_loaded_model->GetAllPageContents($this->m_page_id, $m_section_id);
         $this->m_section_heading = $this->m_pulled_content[0]["heading_name"];
-        $this->m_section_body    = $this->m_pulled_content[0]["context"];
-        $this->m_section_text    = array();
-        $this->m_section_text[]  = $this->m_section_heading;
-        $this->m_section_text[]  = $this->m_section_body;
+        $this->m_section_body = $this->m_pulled_content[0]["context"];
+        $this->m_section_text = array();
+        $this->m_section_text[] = $this->m_section_heading;
+        $this->m_section_text[] = $this->m_section_body;
         require_once '../application/views/templates/layout/underconstruction-section-layout.php';
         return $this->m_content_builder;
     }
@@ -260,30 +261,30 @@ class Controller
         echo "<pre>";
         // foreach ($datas as $data) {
 
-            // var_dump(wordwrap($data, 100));
-            var_dump($data);
-            // }
-            echo "</pre>";
-            return $data;
+        // var_dump(wordwrap($data, 100));
+        var_dump($data);
+        // }
+        echo "</pre>";
+        return $data;
     }
 
     public function AllPageMetaData($m_pages_id)
     {
 
-        $this->m_loaded_model   = $this->ModelLoader();
+        $this->m_loaded_model = $this->ModelLoader();
         $this->m_pulled_content = $this->m_loaded_model->GetAllPageMetaData($m_pages_id);
         $this->m_page_meta_data = $this->m_pulled_content;
         foreach ($this->m_page_meta_data as $this->m_page_meta_datum) {
-            $this->m_page_name        = $this->m_page_meta_datum["page_name"];
-            $this->m_page_title       = $this->m_page_meta_datum["page_title"];
-            $this->m_page_keywords    = $this->m_page_meta_datum["page_keywords"];
+            $this->m_page_name = $this->m_page_meta_datum["page_name"];
+            $this->m_page_title = $this->m_page_meta_datum["page_title"];
+            $this->m_page_keywords = $this->m_page_meta_datum["page_keywords"];
             $this->m_page_description = $this->m_page_meta_datum["page_description"];
-            $this->m_page_url         = URL . $this->m_page_meta_datum["page_url"];
+            $this->m_page_url = URL . $this->m_page_meta_datum["page_url"];
             $this->m_page_author;
-            $this->m_open_graph_title       = $this->m_page_title;
-            $this->m_open_graph_keywords    = $this->m_page_keywords;
+            $this->m_open_graph_title = $this->m_page_title;
+            $this->m_open_graph_keywords = $this->m_page_keywords;
             $this->m_open_graph_description = $this->m_page_description;
-            $this->m_open_graph_url         = $this->m_page_url;
+            $this->m_open_graph_url = $this->m_page_url;
             $this->m_open_graph_site_name;
             $this->m_open_graph_type;
 
@@ -306,16 +307,16 @@ class Controller
         // $this->m_debugger = $this->Dumper($this->m_top_banner);
 
         $main_page_name = $this->m_top_banner[0]["name"];
-        $main_page_url  = $this->m_top_banner[0]["url"];
+        $main_page_url = $this->m_top_banner[0]["url"];
         // $sub_page_name  =  $f_sub_page  [  0  ]  [  "name"  ];
         // $sub_page_url  =  $f_sub_page  [  0  ]  [  "subpage_url"  ];
 
         $f_breadcrumbs = array(array(
             "name" => $main_page_name,
-            "url"  => $main_page_url,
+            "url" => $main_page_url,
         ));
 
-        $purpose                       = "banner-image";
+        $purpose = "banner-image";
         $this->m_top_banner_page_image = $this->m_loaded_model->GetAllImagesByPageIdAndPurpose($page_id, $purpose);
 
         $i = 1;

@@ -5,39 +5,29 @@ class ProductList extends Controller
     protected $m_products;
     protected $m_product_category;
     protected $m_tags = array();
-   
+
     public function __construct($product_category, array $tags)
     {
         parent::__construct();
-        $this->m_model            = 'ProductsModel';
+        $this->m_model = 'ProductsModel';
         $this->m_product_category = $product_category;
-        $this->m_tags             = $tags;
-
+        $this->m_tags = $tags;
     }
     
-    public function LoadModel($model)
-    {
-        require_once MODELS . $model . '.php';
-
-        return new $model();
-
-    }
-
-
     protected function ModelLoader()
     {
         $m_data = $this->LoadModel($this->m_model);
         return $m_data;
     }
-
-
-/* Retrieve all products from database.
-Currently not sure if to pass a parameter of product category to this method
- */
+    
+    /* Retrieve all products from database.
+    Currently not sure if to pass a parameter of product category to this method
+    */
     private function AllProducts()
     {
+        // $this->m_debugger = $this->Dumper($this->m_model);
 
-        $this->m_all_products = $this->m_loaded_model->ProductsCount();
+        // $this->m_all_products = $this->m_loaded_model->ProductsCount();
 
         /*
         Pagination properties
@@ -45,8 +35,8 @@ Currently not sure if to pass a parameter of product category to this method
          * $this->m_data['records_per_page'] (Number of items to be displayed per page)
          * $this->m_data['pagination_url'] (URL to the current page.)
          */
-        
-         /* $this->m_data['total_records']    = ($this->m_all_products["counter"]);
+
+        /* $this->m_data['total_records']    = ($this->m_all_products["counter"]);
         $this->m_data['records_per_page'] = 6;
         $this->m_data['pagination_url']   = $this->m_base_url . "bikes";
 
@@ -59,10 +49,13 @@ Currently not sure if to pass a parameter of product category to this method
 
         $this->m_category_products = $this->m_loaded_model->GetAllProducts($this->m_start_record, $this->m_records_per_page); */
 
-       /*  require_once VIEWS . 'templates/layouts/products-layout.php'; */
+        /*  require_once VIEWS . 'templates/layouts/products-layout.php'; */
 
-        $this->m_debugger = $this->Dumper($this->m_model);
+        // $this->m_debugger = $this->Dumper($this->m_model);
         // $this->m_debugger = $this->Dumper($a);
+        // $this->m_debugger = $this->Dumper($this->m_all_products);
+
+        // $this->m_debugger = $this->Dumper($this->ModelLoader());
 
         return $this->m_content_builder;
     }
