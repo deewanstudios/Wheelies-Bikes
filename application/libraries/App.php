@@ -61,11 +61,11 @@ class App
         // if(file_exists(APP . 'productslist')) {
         {
             require_once APP . 'productlist.php';
+            array_push($this->params, $this->method);
+            $this->controller = new ProductList($this->controller, $this->params);
+            $this->controller->index();
         }
 
-        array_push($this->params, $this->method);
-        $this->controller = new ProductList($this->controller, $this->params);
-        $this->controller->index();
 
         /*   if (method_exists($this->controller, $this->method)) {
         if (!empty($this->params)) {
