@@ -38,11 +38,11 @@ class ProductList extends Controller
     */
     private function AllProducts()
     {
-        $this->m_all_products = $this->m_loaded_model->ProductsCount();
-        $this->m_debugger = $this->Dumper("I am currently pinging you from the all products method");
+         $this->m_all_products = $this->m_loaded_model->ProductsCount();
+        /*$this->m_debugger = $this->Dumper("I am currently pinging you from the all products method");
         $this->m_debugger = $this->Dumper($this->m_model);
         $this->m_debugger = $this->Dumper($this->m_all_products);
-
+ */
 
 
         /*
@@ -72,7 +72,7 @@ class ProductList extends Controller
 
         // $this->m_debugger = $this->Dumper($this->ModelLoader());
 
-        // return $this->m_content_builder;
+        return $this->m_content_builder;
     }
 
     private function PageContent()
