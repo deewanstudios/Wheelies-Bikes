@@ -178,8 +178,8 @@ class SelectQueries
         $this->m_query .= " WHERE p.product_visibility = $visibility";
         $this->m_query .= " LIMIT $start_record, $records_per_page";
 
-       /*  $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->
-                m_query, 100)); */
+        $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->
+                m_query, 100));
         // $this  ->  m_debugger  =  $this  ->  m_controller  ->  Dumper  (  $this  ->
         // m_db_product_main_image_view  );
         return $this->m_query;
