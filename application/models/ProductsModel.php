@@ -5,9 +5,7 @@
 class ProductsModel extends MasterModel
 {
 
-    // protected $m_product_category;
     private $m_is_best_seller = true;
-    // public $m_visibility = true;
 
     public function __construct()
     {
@@ -129,13 +127,13 @@ class ProductsModel extends MasterModel
 
     }
 
-    public function GetAllProducts($start_record, $records_per_page)
+    public function GetAllProducts($start_record, $records_per_page, $category)
     {
 
         try
         {
 
-            $this->m_statement = $this->ProductsQuery($start_record, $records_per_page, $this->m_page_visibility);
+            $this->m_statement = $this->ProductsQuery($start_record, $records_per_page, $this->m_page_visibility, $category);
 
             $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
             return $this->m_returned_object;

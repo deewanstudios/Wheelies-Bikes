@@ -10,12 +10,15 @@ $this->m_content_builder .= "<div class=\"range section-66\">";
 
 foreach ($this->m_category_products as $m_product) {
     /*  // $this->m_content_builder .= "<a href=\"{$this->m_bike_product_category}";
-    $this->m_content_builder .= "<a href=\"{$this->m_bike_product_category}/product/";
     // $this->m_content_builder .= "<a href=\"{$bike_product["gender_cat_name"]}/product/";
     // $this->m_content_builder .= "<a href=\"product/";
     // {$this->m_bike_product_category}/ */
     
-    $this->m_content_builder .= "<a href=\"/";
+    $this->m_content_builder .= "<a href=\"";
+    $this->m_content_builder .= $m_product["product_cat_name"];
+    $this->m_content_builder .= "/";
+    $this->m_content_builder .= $m_product["gender_cat_name"];
+    $this->m_content_builder .= "/";
     $this->m_content_builder .= strtolower(str_replace(" ", "-", $m_product["brand_cat_name"])) . "-";
     $this->m_content_builder .= str_replace(" ", "-", $m_product["gender_cat_name"]) . "-";
     $this->m_content_builder .= str_replace(" ", "-", $m_product["product_name"]);

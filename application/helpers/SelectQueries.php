@@ -156,12 +156,13 @@ class SelectQueries
         return $this->m_query;
     }
 
-    public function ProductsQuery($start_record, $records_per_page, $visibility)
+    public function ProductsQuery($start_record, $records_per_page, $visibility, $product_id)
     {
-        $this->m_query = "SELECT p.product_name, p.product_model, p.product_description,
+        $this->m_query = "SELECT p.product_name, p.product_model, p.product_description, pc.product_cat_name,
 			 m.model_year, b.brand_cat_name, c.bike_cat_name, g.gender_cat_name,
 			 f.frame_size_cat_name, f.frame_size_cat_symbol, pp.product_price_value, mpi.image_caption, mpi.image_path";
         $this->m_query .= " FROM products AS p";
+        $this->m_query .= " LEFT JOIN product_category AS pc ON p.product_category_product_cat_id = pc.product_cat_id";
         $this->m_query .= " LEFT JOIN model_year AS m ON p.model_year_id = m.id";
         $this->m_query .= " LEFT JOIN brands_categories AS b ON p.brands_categories_brand_cat_id
 			 = b.brand_cat_id";
@@ -175,11 +176,16 @@ class SelectQueries
 			 pp.product_price_id";
         $this->m_query .= " LEFT JOIN {$this->m_db_product_main_image_view} AS mpi";
         $this->m_query .= " ON p.product_id = mpi.bike_products_product_id";
-        $this->m_query .= " WHERE p.product_visibility = $visibility";
+        $this->m_query .= " WHERE";
+        $this->m_query .= "(";
+        $this->m_query .= " p.product_visibility = $visibility";
+        $this->m_query .= " AND";
+        $this->m_query .= " p.product_category_product_cat_id = $product_id";
+        $this->m_query .= ")";
         $this->m_query .= " LIMIT $start_record, $records_per_page";
 
-       /*  $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->
-                m_query, 100)); */
+        /*  $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->
+        m_query, 100)); */
         // $this  ->  m_debugger  =  $this  ->  m_controller  ->  Dumper  (  $this  ->
         // m_db_product_main_image_view  );
         return $this->m_query;
