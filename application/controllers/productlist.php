@@ -21,10 +21,9 @@ class ProductList extends Controller
         parent::__construct();
         $this->m_model = 'ProductsModel';
         $this->m_loaded_model = $this->ModelLoader();
-        // $this->m_all_products = $this->m_loaded_model->ProductsCount();
         $this->m_product_category = $product_category;
         $this->m_tags = $tags;
-        // $this->m_all_products = 53;
+
     }
     
     public function ModelLoader()
@@ -71,6 +70,7 @@ class ProductList extends Controller
         // $this->m_debugger = $this->Dumper($a);
 
         // $this->m_debugger = $this->Dumper($this->ModelLoader());
+        $this->m_debugger = $this->Dumper($this->m_category_products);
 
         return $this->m_content_builder;
     }

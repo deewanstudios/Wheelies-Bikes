@@ -259,9 +259,9 @@ class Controller
     public function Dumper($data)
     {
         echo "<pre>";
-        // foreach ($datas as $data) {
+        // foreach ($data as $datum) {
 
-        // var_dump(wordwrap($data, 100));
+        // var_dump(wordwrap($datum, 100));
         var_dump($data);
         // }
         echo "</pre>";
