@@ -13,20 +13,33 @@ foreach ($this->m_category_products as $m_product) {
     // $this->m_content_builder .= "<a href=\"{$bike_product["gender_cat_name"]}/product/";
     // $this->m_content_builder .= "<a href=\"product/";
     // {$this->m_bike_product_category}/ */
-    
+
     $this->m_content_builder .= "<a href=\"";
     $this->m_content_builder .= $m_product["product_cat_name"];
     $this->m_content_builder .= "/";
     $this->m_content_builder .= $m_product["gender_cat_name"];
     $this->m_content_builder .= "/";
-    $this->m_content_builder .= strtolower(str_replace(" ", "-", $m_product["brand_cat_name"])) . "-";
+    $this->m_content_builder .= $m_product["brand_cat_name"];
+    $this->m_content_builder .= "/";
+    $this->m_content_builder .= $m_product["bike_cat_name"];
+    $this->m_content_builder .= "/";
+    if ($m_product["product_name"] == trim($m_product["product_name"]) && strpos($m_product["product_name"], ' ') !== false) {
+        // echo 'has spaces, but not at beginning or end';
+        $this->m_content_builder .= str_replace(" ", "-", $m_product["product_name"]);
+    }else {
+        # code...
+        $this->m_content_builder .=  $m_product["product_name"];
+    }
+    $this->m_content_builder .= "/";
+    // $this->m_content_builder .= $m_product["product_model"];
+    /*  $this->m_content_builder .= strtolower(str_replace(" ", "-", $m_product["brand_cat_name"])) . "-";
     $this->m_content_builder .= str_replace(" ", "-", $m_product["gender_cat_name"]) . "-";
-    $this->m_content_builder .= str_replace(" ", "-", $m_product["product_name"]);
+    $this->m_content_builder .= str_replace(" ", "-", $m_product["product_name"]); */
     "\">";
 
     if (!empty($m_product["product_model"])) {
 
-        $this->m_content_builder .= "-";
+        // $this->m_content_builder .= "-";
         $this->m_content_builder .= str_replace(" ", "-", $m_product["product_model"]);
         // $this  ->  m_content_builder  .=  str_replace  (  " "  ,  "-"  ,  $m_product  [  "product_model"  ]  );
     }
@@ -76,7 +89,7 @@ $this->m_content_builder .= "\">"; */
     $this->m_content_builder .= "<!-- Product Brand-->";
     $this->m_content_builder .= "<p class=\"product-brand text-italic text-dark\">";
     // $this  ->  m_content_builder  .=  "Armani Brand";
-    $this->m_content_builder .= ucwords("{$m_product["gender_cat_name"]} " . "{$m_product["m_cat_name"]} bike");
+    $this->m_content_builder .= ucwords("{$m_product["gender_cat_name"]} " . "{$m_product["brand_cat_name"]} bike");
     $this->m_content_builder .= "</p>";
     $this->m_content_builder .= "<p class=\"product-brand text-italic text-dark\">";
     // $this  ->  m_content_builder  .=  "Armani Brand";
