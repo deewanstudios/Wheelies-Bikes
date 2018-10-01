@@ -17,11 +17,20 @@ foreach ($this->m_category_products as $m_product) {
     $this->m_content_builder .= "/";
     if ($m_product["bike_cat_name"] == trim($m_product["bike_cat_name"]) && strpos($m_product["bike_cat_name"], ' ') !== false) {
         # code...
-        $this->m_content_builder .= str_replace(" ", "-", strtolower($m_product["product_name"]));
+        $this->m_content_builder .= str_replace(" ", "-", strtolower($m_product["bike_cat_name"]));
+    } else {
+        # code...
+        $this->m_content_builder .= strtolower($m_product["bike_cat_name"]);
     }
-    $this->m_content_builder .= strtolower($m_product["bike_cat_name"]);
+    // $this->m_content_builder .= strtolower($m_product["bike_cat_name"]);
     $this->m_content_builder .= "/";
-    $this->m_content_builder .= strtolower($m_product["brand_cat_name"]);
+    if ($m_product["brand_cat_name"] == trim($m_product["brand_cat_name"]) && strpos($m_product["brand_cat_name"], ' ') !== false) {
+        # code...
+        $this->m_content_builder .= str_replace(" ", "-", strtolower($m_product["brand_cat_name"]));
+    } else {
+        # code...
+        $this->m_content_builder .= strtolower($m_product["brand_cat_name"]);
+    }
     $this->m_content_builder .= "/";
     if ($m_product["product_name"] == trim($m_product["product_name"]) && strpos($m_product["product_name"], ' ') !== false) {
 
@@ -79,7 +88,7 @@ foreach ($this->m_category_products as $m_product) {
     $this->m_content_builder .= "<!-- Product Add To cart-->";
     /* Replace Anchor with Button */
     $this->m_content_builder .= "<a class=\"btn btn-sm btn-danger btn-view-product btn-icon btn-icon-left product-btn offset-top-20\"";
-   
+
     /* href=\"{$this->m_m_product_category}/product/";
     $this->m_content_builder .= strtolower(str_replace(" ", "-", $m_product["brand_cat_name"])) . "-";
     $this->m_content_builder .= str_replace(" ", "-", $m_product["gender_cat_name"]) . "-";
