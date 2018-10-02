@@ -24,6 +24,7 @@ $this->m_all_products = 53;
         $this->m_product_category = $product_category;
         $this->m_tags = $tags;
         $this->m_product_category = 1;
+        $this->m_debugger=$this->Dumper($this->m_tags);
 
     }
 
