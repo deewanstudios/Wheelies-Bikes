@@ -160,6 +160,23 @@ class ProductsModel extends MasterModel
 
     }
 
+    public function GetProductsByCategory($start_record, $records_per_page, $category)
+    {
+
+        try
+        {
+
+            $this->m_statement = $this->NewProductQuery($start_record, $records_per_page, $category, $this->m_page_visibility);
+
+            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            // $this->m_debugger = $this->m_controller->Dumper($this->m_returned_object);
+            return $this->m_returned_object;
+        } catch (ErrorException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
     public function GetProductsByBikeCategory($start_record, $records_per_page, $category)
     {
 

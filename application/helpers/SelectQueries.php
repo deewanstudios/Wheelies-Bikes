@@ -303,7 +303,7 @@ class SelectQueries
 
     }
 
-    public function NewProductQuery($m_gender_cat)
+    public function NewProductQuery($start_record, $records_per_page, $m_gender_cat)
     {
         $this->m_query = "SELECT * ";
         $this->m_query .= "FROM ";
@@ -317,7 +317,9 @@ class SelectQueries
         $this->m_query .= "{$this->m_db_product_gender_category}";
         $this->m_query .= " WHERE {$this->m_db_product_gender_category}.gender_cat_name = {$m_gender_cat}";
         $this->m_query .= ")";
-        $this->m_debugger = $this->m_controller->Dumper($this->m_query);
+        $this->m_query .= " LIMIT $start_record, $records_per_page";
+        $this->m_debugger = $this->m_controller->Dumper(wordWrap($this->m_query));
+
         return $this->m_query;
     }
 

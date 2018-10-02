@@ -24,7 +24,7 @@ $this->m_all_products = 53;
         $this->m_product_category = $product_category;
         $this->m_tags = $tags;
         $this->m_product_category = 1;
-        $this->m_debugger=$this->Dumper($this->m_tags);
+        // $this->m_debugger=$this->Dumper($this->m_tags);
 
     }
 
@@ -37,7 +37,7 @@ $this->m_all_products = 53;
     /* Retrieve all products from database.
     Currently not sure if to pass a parameter of product category to this method
      */
-    private function AllProducts()
+    private function GetProducts()
     {
         $this->m_all_products = $this->m_loaded_model->ProductsCount();
         /*$this->m_debugger = $this->Dumper("I am currently pinging you from the all products method");
@@ -63,7 +63,8 @@ $this->m_all_products = 53;
         $this->m_start_record = $this->m_pagination->StartRecord($this->m_data);
         $this->m_records_per_page = $this->m_data['records_per_page'];
 
-        $this->m_category_products = $this->m_loaded_model->GetAllProducts($this->m_start_record, $this->m_records_per_page, $this->m_product_category);
+        $this->m_category_products = $this->m_loaded_model->GetProductsByCategory($this->m_start_record, $this->m_records_per_page, "mens");
+        // $this->m_category_products = $this->m_loaded_model->GetProductsByCategory($this->m_start_record, $this->m_records_per_page, $this->m_product_category);
 
         require_once VIEWS . 'templates/layouts/products-layout.php';
 
@@ -71,15 +72,15 @@ $this->m_all_products = 53;
         // $this->m_debugger = $this->Dumper($a);
 
         // $this->m_debugger = $this->Dumper($this->ModelLoader());
-       /*  $this->m_debugger = $this->Dumper($this->m_product_category);
-        $this->m_debugger = $this->Dumper($this->m_category_products); */
+       /*  $this->m_debugger = $this->Dumper($this->m_product_category);*/
+        $this->m_debugger = $this->Dumper($this->m_category_products); 
 
         return $this->m_content_builder;
     }
 
     private function PageContent()
     {
-        return array($this->AllProducts());
+        return array($this->GetProducts());
 
     }
 
