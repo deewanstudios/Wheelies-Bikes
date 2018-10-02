@@ -303,4 +303,22 @@ class SelectQueries
 
     }
 
+    public function NewProductQuery($m_gender_cat)
+    {
+        $this->m_query = "SELECT * ";
+        $this->m_query .= "FROM ";
+        $this->m_query .= "{$this->m_db_product_table}";
+        $this->m_query .= " WHERE ";
+        $this->m_query .= "{$this->m_db_product_table}.gender_categories_gender_cat_id = ";
+        $this->m_query .= "ANY ";
+        $this->m_query .= " (";
+        $this->m_query .= "SELECT {$this->m_db_product_gender_category}.gender_cat_id ";
+        $this->m_query .= "FROM ";
+        $this->m_query .= "{$this->m_db_product_gender_category}";
+        $this->m_query .= " WHERE {$this->m_db_product_gender_category}.gender_cat_name = {$m_gender_cat}";
+        $this->m_query .= ")";
+        $this->m_debugger = $this->m_controller->Dumper($this->m_query);
+        return $this->m_query;
+    }
+
 }
