@@ -315,7 +315,7 @@ class SelectQueries
         $this->m_query .= "SELECT {$this->m_db_product_gender_category}.gender_cat_id ";
         $this->m_query .= "FROM ";
         $this->m_query .= "{$this->m_db_product_gender_category}";
-        $this->m_query .= " WHERE {$this->m_db_product_gender_category}.gender_cat_name = {$m_gender_cat}";
+        $this->m_query .= " WHERE {$this->m_db_product_gender_category}.gender_cat_name = '{$m_gender_cat}'";
         $this->m_query .= ")";
         $this->m_query .= " LIMIT $start_record, $records_per_page";
         $this->m_debugger = $this->m_controller->Dumper(wordWrap($this->m_query));
