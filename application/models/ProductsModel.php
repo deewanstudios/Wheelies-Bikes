@@ -166,7 +166,7 @@ class ProductsModel extends MasterModel
         try
         {
 
-            $this->m_statement = $this->NewProductQuery($start_record, $records_per_page, $category, $this->m_page_visibility);
+            $this->m_statement = $this->NewProductQuery($start_record, $records_per_page, $this->m_page_visibility, $category);
 
             $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
             // $this->m_debugger = $this->m_controller->Dumper($this->m_returned_object);

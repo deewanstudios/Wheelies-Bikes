@@ -20,12 +20,12 @@ $this->m_all_products = 53;
     public function __construct($product_category, array $tags)
     {
         parent::__construct();
-        $this->m_model = 'ProductsModel';
-        $this->m_loaded_model = $this->ModelLoader();
+        $this->m_model                 = 'ProductsModel';
+        $this->m_loaded_model          = $this->ModelLoader();
         $this->m_product_category_name = $product_category;
-        $this->m_tags = $tags;
+        $this->m_tags                  = $tags;
         // $this->m_product_category_id = 1;
-        // $this->m_debugger=$this->Dumper($this->m_tags);
+        $this->m_debugger = $this->Dumper($this->m_tags);
         $this->m_debugger=$this->Dumper($this->m_product_category_name);
 
     }
@@ -41,8 +41,8 @@ $this->m_all_products = 53;
      */
     private function GetProducts()
     {
-        $this->m_product_category_id =1;
-        $this->m_all_products = $this->m_loaded_model->ProductsCount();
+        $this->m_product_category_id = 1;
+        $this->m_all_products        = $this->m_loaded_model->ProductsCount();
         /*$this->m_debugger = $this->Dumper("I am currently pinging you from the all products method");
         $this->m_debugger = $this->Dumper($this->m_model);
         $this->m_debugger = $this->Dumper($this->m_all_products);
@@ -55,15 +55,21 @@ $this->m_all_products = 53;
          * $this->m_data['pagination_url'] (URL to the current page.)
          */
 
-        $this->m_data['total_records'] = ($this->m_all_products["counter"]);
+        $this->m_data['total_records']    = ($this->m_all_products["counter"]);
         $this->m_data['records_per_page'] = 6;
-        $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
+        if (!$this->m_tags) {
+            # code...
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
+        } else {
+
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name . "/" . implode('/', $this->m_tags);
+        }
 
         $this->m_pagination = new Pagination($this->m_data);
 
         $this->m_pager = $this->m_pagination->PaginationDisplay($this->m_data);
 
-        $this->m_start_record = $this->m_pagination->StartRecord($this->m_data);
+        $this->m_start_record     = $this->m_pagination->StartRecord($this->m_data);
         $this->m_records_per_page = $this->m_data['records_per_page'];
 
         $this->m_category_products = $this->m_loaded_model->GetProductsByCategory($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]);
@@ -75,8 +81,8 @@ $this->m_all_products = 53;
         // $this->m_debugger = $this->Dumper($a);
 
         // $this->m_debugger = $this->Dumper($this->ModelLoader());
-       /*  $this->m_debugger = $this->Dumper($this->m_product_category);*/
-        $this->m_debugger = $this->Dumper($this->m_category_products); 
+        /*  $this->m_debugger = $this->Dumper($this->m_product_category);*/
+        $this->m_debugger = $this->Dumper($this->m_category_products);
 
         return $this->m_content_builder;
     }
@@ -127,6 +133,11 @@ $this->m_all_products = 53;
             return $this->m_main_content;
 
         }
+
+    }
+
+    private function getProductsByGenderCategory()
+    {
 
     }
 

@@ -21,6 +21,7 @@ class Bikes extends Controller
         $this->m_model                 = 'ProductsModel';
         $this->m_product_category      = 0;
         $this->m_page_id               = 2;
+        $this->m_page_ids               = 20;
         $this->m_bike_product_category = strtolower(get_class($this));
 
     }
