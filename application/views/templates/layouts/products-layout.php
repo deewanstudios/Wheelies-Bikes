@@ -11,8 +11,11 @@ $this->m_content_builder .= "<div class=\"range section-66\">";
 foreach ($this->m_category_products as $m_product) {
 
     $this->m_content_builder .= "<a href=\"";
-    $this->m_content_builder .= strtolower($m_product["product_cat_name"]);
-    $this->m_content_builder .= "/";
+    if (!$this->m_tags) {
+        # code...
+        $this->m_content_builder .= strtolower($m_product["product_cat_name"]);
+        $this->m_content_builder .= "/";
+    }
     $this->m_content_builder .= strtolower($m_product["gender_cat_name"]);
     $this->m_content_builder .= "/";
     if ($m_product["bike_cat_name"] == trim($m_product["bike_cat_name"]) && strpos($m_product["bike_cat_name"], ' ') !== false) {

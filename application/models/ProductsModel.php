@@ -95,17 +95,26 @@ class ProductsModel extends MasterModel
 
     }
 
-    public function CountProductsGenderByCategory($category)
+    public function countProductsByGenderCategory($category)
     {
 
-        $this->m_select_statement = " {$this->m_db_product_table}";
-        $this->m_select_statement .= " WHERE gender_categories_gender_cat_id = {$category}";
-        $this->m_select_statement .= " AND product_visibility ={$this->m_page_visibility}";
+        $this->m_select_statement = $this->countByGenderQuery($this->m_page_visibility, $category);
         $this->m_executed_statement = $this->CountQueryResult($this->m_select_statement);
         $this->m_returned_object = $this->m_executed_statement;
 
-        // $this  ->  m_debugger  =  $this  ->  m_controller  ->  Dumper  (  $this  ->
-        // m_returned_object  );
+        // $this->m_debugger = $this->m_controller->Dumper($this->m_returned_object);
+        // $this->m_debugger = $this->m_controller->Dumper($this->m_select_statement);
+
+        return $this->m_returned_object;
+
+    }
+
+    public function countProductsByBrandCategory($category)
+    {
+
+        $this->m_select_statement = $this->countByBrandQuery($this->m_page_visibility, $category);
+        $this->m_executed_statement = $this->CountQueryResult($this->m_select_statement);
+        $this->m_returned_object = $this->m_executed_statement;
 
         return $this->m_returned_object;
 
@@ -127,7 +136,7 @@ class ProductsModel extends MasterModel
 
     }
 
-    public function GetAllProducts($start_record, $records_per_page, $category)
+    public function getAllProducts($start_record, $records_per_page, $category)
     {
 
         try
@@ -143,13 +152,30 @@ class ProductsModel extends MasterModel
 
     }
 
-    public function GetProductsByGender($start_record, $records_per_page, $category)
+    public function getProductsByGender($start_record, $records_per_page, $category)
     {
 
         try
         {
 
-            $this->m_statement = $this->ProductsQueryByGenderCategory($start_record, $records_per_page, $category, $this->m_page_visibility);
+            $this->m_statement = $this->productsQueryByGenderCategory($start_record, $records_per_page, $category, $this->m_page_visibility);
+
+            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            // $this->m_debugger = $this->m_controller->Dumper($this->m_returned_object);
+            return $this->m_returned_object;
+        } catch (ErrorException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+    public function getProductsByBrand($start_record, $records_per_page, $category)
+    {
+
+        try
+        {
+
+            $this->m_statement = $this->productsQueryByBrandCategory($start_record, $records_per_page, $category, $this->m_page_visibility);
 
             $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
             // $this->m_debugger = $this->m_controller->Dumper($this->m_returned_object);
@@ -169,7 +195,7 @@ class ProductsModel extends MasterModel
             $this->m_statement = $this->NewProductQuery($start_record, $records_per_page, $this->m_page_visibility, $category);
 
             $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
-            // $this->m_debugger = $this->m_controller->Dumper($this->m_returned_object);
+            $this->m_debugger = $this->m_controller->Dumper($this->m_returned_object);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             echo $e->getMessage();

@@ -31,7 +31,7 @@
 	$this  ->  m_footer  .=  "<!-- Footer brand-->";
 	$this  ->  m_footer  .=  "<div class=\"footer-brand\">";
 	$this  ->  m_footer  .=  "<a href=\"{$this->m_base_url}\">";
-	$this  ->  m_footer  .=  "<img width=\"270\" height=\"44\" style=\"margin-left: -6px;\" src=\"images/logo/wheelies-logo.png\" alt=\"\" />";
+	$this  ->  m_footer  .=  "<img width=\"270\" height=\"44\" style=\"margin-left: -6px;\" src=\"{$this->m_image_directory}logo/wheelies-logo.png\" alt=\"\" />";
 	$this  ->  m_footer  .=  "</a>";
 	/*
 	$this  ->  m_footer  .=  "</div>";

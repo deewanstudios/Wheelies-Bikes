@@ -18,7 +18,7 @@ class MasterModel extends SelectQueries
 
     protected $m_content_puller;
 
-    protected $m_page_visibility = 1;
+    protected $m_page_visibility = TRUE;
     protected $m_order_by;
 
     public function __construct()

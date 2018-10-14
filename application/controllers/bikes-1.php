@@ -59,9 +59,9 @@ class Bikes extends Controller
         require_once VIEWS . 'templates/layouts/products-layout.php';
 
         
-        $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_category_products  );
+        // $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_category_products  );
         
-        $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_all_products  );
+        // $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_all_products  );
 
         return $this->m_content_builder;
     }
