@@ -231,7 +231,7 @@ $this->m_all_products = 53;
 
     public function index()
     {
-
+// phpinfo();
         require_once VIEWS . "templates/core/header.php";
         require_once VIEWS . "products/products-list.php";
         require_once VIEWS . "templates/core/footer.php";
