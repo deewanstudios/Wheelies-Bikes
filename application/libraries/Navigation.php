@@ -6,7 +6,7 @@ class Navigation
     protected $m_controller;
     protected $m_model = 'NavigationModel';
     protected $m_loaded_model;
-    protected $m_base_url        = URL;
+    protected $m_base_url = URL;
     protected $m_image_directory = IMAGES;
     protected $m_video_directory = VIDEO;
     protected $m_navigation;
@@ -21,36 +21,80 @@ class Navigation
     protected $m_left_sidebar_brand;
     protected $m_left_sidebar_size;
 
-    public function __construct()
-    {
-        $this->m_controller      = new Controller();
-        $this->m_large_spacer    = $this->m_controller->LargeSpacer();
-        $this->m_string_splitter = $this->m_controller->StringSplitter();
-        $this->m_project_name    = $this->m_controller->m_project_name;
-
-    }
-
     protected function ModelLoader()
     {
         $m_data = $this->m_controller->LoadModel($this->m_model);
         return $m_data;
     }
 
+    public function __construct()
+    {
+        $this->m_controller = new Controller();
+        $this->m_large_spacer = $this->m_controller->LargeSpacer();
+        $this->m_string_splitter = $this->m_controller->StringSplitter();
+        $this->m_project_name = $this->m_controller->m_project_name;
+        $this->m_loaded_model = $this->ModelLoader();
+    }
+
     public function PageLoader()
     {
         require_once VIEWS . 'templates/layouts/navigation/page-loader-layout.php';
         return $this->m_page_loader;
-	}
-	
-	public function bikesMegaMenu()
+    }
+
+    private function bikeCategoriesMegaMenu()
     {
-		require_once VIEWS. 'templates/layouts/navigation/mega-menu-navigation-layout.php';
-	}
+        $this->m_sub_navigation = $this->m_loaded_model->getCategoryMegaMenu();
+        require_once VIEWS . 'templates/layouts/navigation/mega-menus/categories-mega-menu-layout.php';
+
+    }
+    private function brandCategoriesMegaMenu()
+    {
+        $this->m_sub_navigation = $this->m_loaded_model->getBrandMegaMenu();
+        require_once VIEWS . 'templates/layouts/navigation/mega-menus/brands-mega-menu-layout.php';
+
+    }
+    private function genderCategoriesMegaMenu()
+    {
+        $this->m_sub_navigation = $this->m_loaded_model->getGenderMegaMenu();
+        require_once VIEWS . 'templates/layouts/navigation/mega-menus/gender-mega-menu-layout.php';
+
+    }
+
+    private function bikesMegaMenuIteration()
+    {
+        // $this->m_sub_navigation = $this->m_loaded_model->getBikesMegaMenus();
+
+        // $this->m_debugger= $this->m_controller->Dumper($this->m_sub_navigation);
+
+        /*  foreach ($this->m_sub_navigation as $m_sub_navigation) {
+        # code...
+        $this->m_navigation .= "<li class=\"\">";
+        $this->m_navigation .= "<a href=\"";
+        $this->m_navigation .= $this->m_base_url;
+        $this->m_navigation .= "bikes/";
+        $this->m_navigation .= strtolower($m_sub_navigation["bike_cat_name"]);
+        $this->m_navigation .= "\">";
+        $this->m_navigation .= "<span>";
+        $this->m_navigation .= ucwords($m_sub_navigation["bike_cat_name"]);
+        $this->m_navigation .= "</span>";
+        $this->m_navigation .= "</a>";
+        } */
+        // $this->bikeCategoriesMegaMenu();
+        $this->bikeCategoriesMegaMenu();
+        $this->brandCategoriesMegaMenu();
+        $this->genderCategoriesMegaMenu();
+    }
+
+    public function bikesMegaMenu()
+    {
+        require_once VIEWS . 'templates/layouts/navigation/mega-menus/mega-menu-navigation-wrapper-layout.php';
+        return $this->m_navigation;
+    }
 
     private function PageLinks()
     {
-        $this->m_loaded_model = $this->ModelLoader();
-        $m_links              = $this->m_loaded_model->GetLinks();
+        $m_links = $this->m_loaded_model->GetLinks();
 
         foreach ($m_links as $m_link) {
             $this->m_navigation .= "<li class=\"\">";
@@ -74,10 +118,9 @@ class Navigation
 
     }
 
-    private function FooterLinks()
+    private function footerLinks()
     {
-        $this->m_loaded_model = $this->ModelLoader();
-        $m_links              = $this->m_loaded_model->GetLinks();
+        $m_links = $this->m_loaded_model->GetLinks();
 
         foreach ($m_links as $m_link) {
             $this->m_footer .= "<li class=\"\">";
@@ -98,24 +141,15 @@ class Navigation
     public function Slider()
     {
 
-        $this->m_loaded_model = $this->ModelLoader();
-        $m_slider_images      = $this->m_loaded_model->GetSliderImages();
-        $m_slider_texts       = $this->m_loaded_model->GetSliderText();
-
-//
-        // $this  ->  m_controller  ->  m_debugger  =  $this  ->  m_controller  ->
-        // Dumper  (  $m_slider_images  );
-
+        $m_slider_images = $this->m_loaded_model->GetSliderImages();
+        $m_slider_texts = $this->m_loaded_model->GetSliderText();
         require_once '../application/views/templates/layouts/slider-layout.php';
         return $this->m_slider;
     }
 
     public function LandingPageHeader()
     {
-
         require_once '../application/views/templates/layouts/navigation/default-navigation-layout.php';
-        // require_once '../application/views/templates/layouts/navigation/landing-navigation-layout.php';
-        // require_once '../application/views/templates/layouts/navigation/landing-navigation-floated-layout.php';
         return $this->m_navigation;
     }
 
@@ -127,13 +161,10 @@ class Navigation
 
     public function SiteFooter()
     {
-        $this->m_loaded_model = $this->ModelLoader();
         // $m_business_information  =  $this  ->  m_loaded_model  ->  GetBusinessInfo  (
         // );
 
         $copy = date("Y");
-
-        // require '../application/views/templates/layouts/navigation/site-footer-layout-2.php';
         require '../application/views/templates/layouts/navigation/site-footer-layout.php';
         return $this->m_footer;
 

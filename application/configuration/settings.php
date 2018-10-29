@@ -69,6 +69,11 @@ ini_set  (  "error_reporting"  ,  E_ALL  );
 // these will need to be turned off when you publish your site
 
 
+ini_set('xdebug.var_display_max_depth', '10');
+ini_set('xdebug.var_display_max_children', '256');
+ini_set('xdebug.var_display_max_data', '1024');
+
+
 // Other Files Required to set up the application
 require_once ('paths.php');
 ?>

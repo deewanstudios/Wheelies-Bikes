@@ -4,8 +4,7 @@
  * This is the class that holds all the methods for retrieving data from the
  * database for the website linksS page
  *
- * @package com.K'sSpiceAfricanRestaurant.Navigation
- * @author  Deewanstudios Limited
+ * @author Adedayo Adedapo for  Deewanstudios Limited
  */
 class NavigationModel extends MasterModel
 {
@@ -42,10 +41,6 @@ class NavigationModel extends MasterModel
             $this->m_slider_images_getter = $this->GetAllImagesByPurpose($this->m_image_purpose, $this->m_page_id, $this->m_order_by);
             return $this->m_slider_images_getter;
 
-            // echo "<pre>";
-            // var_dump ( $this -> m_slider_images_getter );
-            // echo "</pre>";
-
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -54,22 +49,68 @@ class NavigationModel extends MasterModel
 
     public function GetSliderText()
     {
-
         try
         {
             $this->m_page_id        = 11;
             $this->m_content_puller = $this->GetAllContentsById($this->m_page_id);
             return $this->m_content_puller;
-
-            // echo "<pre>";
-            // var_dump ( $this -> m_slider_images_getter );
-            // echo "</pre>";
-
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
 
     }
 
+    
+
+    public function getCategoryMegaMenu()
+    {
+        try {
+
+            $this->m_link_getter = $this->getBikesCategoryMegaMenu();
+            return $this->m_link_getter;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+    
+
+    public function getBrandMegaMenu()
+    {
+        try {
+
+            $this->m_link_getter = $this->getBrandsCategoryMegaMenu();
+            return $this->m_link_getter;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+    public function getGenderMegaMenu()
+    {
+        try {
+
+            $this->m_link_getter = $this->getGenderCategoryMegaMenu();
+            return $this->m_link_getter;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+
+
+    public function getBikesMegaMenus()
+    {
+        try {
+
+            $this->m_link_getter = $this->getBrandsMegaMenu();
+            return $this->m_link_getter;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
 
 }

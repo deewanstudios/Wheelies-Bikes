@@ -7,6 +7,7 @@
 	require_once MODELS  .  ('MasterModel.php');
 	require_once MODELS  .  ('ProductsModel.php');
 	require_once LIBS  .  ('Controller.php');
+	require_once MODELS  .  ('NavigationModel.php');
 	require_once LIBS  .  ('Navigation.php');
 	// require_once HELPERS  .  ('GeoPlugin.php');
 	require_once APP  .  ('singleproduct.php');

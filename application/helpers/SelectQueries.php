@@ -158,7 +158,6 @@ class SelectQueries
 
     public function ProductsQuery($start_record, $records_per_page, $visibility, $product_type)
     {
-      
 
         $this->m_query = "SELECT";
         $this->m_query .= " p.product_name,";
@@ -267,16 +266,17 @@ class SelectQueries
         $this->m_query .= " LIMIT $start_record, $records_per_page";
 
         // $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->m_query));
+        //    var_dump($this->m_query);
         return $this->m_query;
     }
 
-    public function ProductsQueryByBikeCategory($start_record, $records_per_page, $category)
+    public function productsQueryByBikeCategory($start_record, $records_per_page, $category, $visibility)
     {
 
         $this->m_query = "SELECT p.product_name, p.product_model, p.product_description,
 			 m.model_year, b.brand_cat_name, c.bike_cat_name, g.gender_cat_name,
 			 f.frame_size_cat_name, f.frame_size_cat_symbol, pp.product_price_value, mpi.image_caption, mpi.image_path";
-        $this->m_query .= " FROM bike_products AS p";
+        $this->m_query .= " FROM {$this->m_db_product_table} AS p";
         $this->m_query .= " LEFT JOIN model_year AS m ON p.model_year_id = m.id";
         $this->m_query .= " LEFT JOIN brands_categories AS b ON p.brands_categories_brand_cat_id
 			 = b.brand_cat_id";
@@ -291,8 +291,8 @@ class SelectQueries
         $this->m_query .= " LEFT JOIN {$this->m_db_product_main_image_view} AS mpi";
         $this->m_query .= " ON p.product_id = mpi.bike_products_product_id";
         $this->m_query .= " Where c.bike_cat_name = '$category'";
+        $this->m_query .= " AND p.product_visibility = {$visibility}";
         $this->m_query .= " LIMIT $start_record, $records_per_page";
-        // $this  ->  m_debugger  =  $this  ->  m_controller  ->  Dumper  (  $this  -> m_query  );
         return $this->m_query;
     }
 
@@ -396,7 +396,7 @@ class SelectQueries
 
     public function countByGenderQuery($visibility, $category)
     {
-       
+
         // $this->m_query .= " products AS p";
         $this->m_query .= " {$this->m_db_product_table} AS p";
         $this->m_query .= " LEFT JOIN";
@@ -419,7 +419,7 @@ class SelectQueries
 
     public function countByBrandQuery($visibility, $category)
     {
-       
+
         // $this->m_query .= " products AS p";
         $this->m_query .= " {$this->m_db_product_table} AS p";
         $this->m_query .= " LEFT JOIN";
@@ -440,30 +440,76 @@ class SelectQueries
         return $this->m_query;
     }
 
-
-
-
-
-
     public function countByCategoryQuery($visibility, $category)
     {
-       
+
         $this->m_query .= " {$this->m_db_product_table} AS p";
         $this->m_query .= " LEFT JOIN";
-        $this->m_query .= " brands_categories AS b ON p.brands_categories_brand_cat_id = b.brand_cat_id";
+        $this->m_query .= " bike_categories AS b ON p.bike_categories_bike_cat_id = b.bike_cat_id";
         $this->m_query .= " WHERE";
         $this->m_query .= " p.product_visibility = {$visibility}";
-        $this->m_query .= " AND p.brands_categories_brand_cat_id =";
+        $this->m_query .= " AND p.bike_categories_bike_cat_id =";
         $this->m_query .= " ANY";
         $this->m_query .= " (";
         $this->m_query .= " SELECT";
-        $this->m_query .= " b.brand_cat_id";
+        $this->m_query .= " b.bike_cat_id";
         $this->m_query .= " FROM";
-        $this->m_query .= " brand_categories AS b";
+        $this->m_query .= " bike_categories AS b";
         $this->m_query .= " WHERE";
-        $this->m_query .= " b.brand_cat_name = '$category')";
+        $this->m_query .= " b.bike_cat_name = '$category')";
 
         // $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->m_query));
+        return $this->m_query;
+    }
+
+    public function bikeCategoryListQuery()
+    {
+        $this->m_query = "SELECT";
+        $this->m_query .= " bike_cat_name";
+        $this->m_query .= " FROM";
+        $this->m_query .= " bike_categories";
+        $this->m_query .= " WHERE";
+        $this->m_query .= " EXISTS( SELECT ";
+        $this->m_query .= " bike_categories_bike_cat_id";
+        $this->m_query .= " FROM";
+        $this->m_query .= " products";
+        $this->m_query .= " WHERE";
+        $this->m_query .= " bike_categories_bike_cat_id = bike_cat_id)";
+        $this->m_query .= " ORDER BY bike_cat_name ASC;";
+        return $this->m_query;
+    }
+
+    public function brandCategoryListQuery()
+    {
+        $this->m_query = "SELECT";
+        $this->m_query .= " brand_cat_name";
+        $this->m_query .= " FROM";
+        $this->m_query .= " brands_categories";
+        $this->m_query .= " WHERE";
+        $this->m_query .= " EXISTS( SELECT ";
+        $this->m_query .= " brands_categories_brand_cat_id";
+        $this->m_query .= " FROM";
+        $this->m_query .= " products";
+        $this->m_query .= " WHERE";
+        $this->m_query .= " brands_categories_brand_cat_id = brand_cat_id)";
+        $this->m_query .= " ORDER BY brand_cat_name ASC;";
+        return $this->m_query;
+    }
+
+    public function genderCategoryListQuery()
+    {
+        $this->m_query = "SELECT";
+        $this->m_query .= " gender_cat_name";
+        $this->m_query .= " FROM";
+        $this->m_query .= " gender_categories";
+        $this->m_query .= " WHERE";
+        $this->m_query .= " EXISTS( SELECT ";
+        $this->m_query .= " gender_categories_gender_cat_id";
+        $this->m_query .= " FROM";
+        $this->m_query .= " products";
+        $this->m_query .= " WHERE";
+        $this->m_query .= " gender_categories_gender_cat_id = gender_cat_id)";
+        $this->m_query .= " ORDER BY gender_cat_name ASC;";
         return $this->m_query;
     }
 
