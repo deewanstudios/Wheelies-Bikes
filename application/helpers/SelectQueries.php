@@ -202,6 +202,7 @@ class SelectQueries
         $this->m_query .= " WHERE";
         $this->m_query .= " pc.product_cat_name = '$product_type'";
         $this->m_query .= " )";
+        $this->m_query .= " ORDER BY pp.product_price_value asc";
         $this->m_query .= " LIMIT $start_record , $records_per_page";
 
         /* $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->
@@ -234,6 +235,7 @@ class SelectQueries
         $this->m_query .= " ON p.product_id = mpi.bike_products_product_id";
         $this->m_query .= " WHERE g.gender_cat_name = '$category'";
         $this->m_query .= " AND p.product_visibility = {$visibility}";
+        $this->m_query .= " ORDER BY pp.product_price_value asc";
         $this->m_query .= " LIMIT $start_record, $records_per_page";
 
         // $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->m_query));
@@ -263,6 +265,7 @@ class SelectQueries
         $this->m_query .= " ON p.product_id = mpi.bike_products_product_id";
         $this->m_query .= " WHERE b.brand_cat_name = '$category'";
         $this->m_query .= " AND p.product_visibility = {$visibility}";
+        $this->m_query .= " ORDER BY pp.product_price_value asc";
         $this->m_query .= " LIMIT $start_record, $records_per_page";
 
         // $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->m_query));
@@ -272,6 +275,11 @@ class SelectQueries
 
     public function productsQueryByBikeCategory($start_record, $records_per_page, $category, $visibility)
     {
+
+        /*  if (isset($category) && strpos($category, "-")) {
+        str_replace("-", " ", $category);
+        return $category;
+        } */
 
         $this->m_query = "SELECT p.product_name, p.product_model, p.product_description,
 			 m.model_year, b.brand_cat_name, c.bike_cat_name, g.gender_cat_name,
@@ -292,7 +300,10 @@ class SelectQueries
         $this->m_query .= " ON p.product_id = mpi.bike_products_product_id";
         $this->m_query .= " Where c.bike_cat_name = '$category'";
         $this->m_query .= " AND p.product_visibility = {$visibility}";
+        $this->m_query .= " ORDER BY pp.product_price_value asc";
         $this->m_query .= " LIMIT $start_record, $records_per_page";
+
+        // var_dump($category);
         return $this->m_query;
     }
 

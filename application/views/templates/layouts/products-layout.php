@@ -71,7 +71,16 @@ foreach ($this->m_category_products as $m_product) {
     $this->m_content_builder .= "<!-- Product Title-->";
     $this->m_content_builder .= "<h5 class=\"product-title offset-top-20\">";
 
-    $this->m_content_builder .= ucwords($m_product["brand_cat_name"]) . " " . ucwords($m_product["product_name"]) . " " . ucwords($m_product["product_model"]);
+    if ($m_product["brand_cat_name"] == trim($m_product["brand_cat_name"]) && strpos($m_product["brand_cat_name"], '-') !== false) {
+        # code...
+        $split = (explode("-", $m_product["brand_cat_name"]));
+        $this->m_content_builder .= strtoupper($split[0]);
+        $this->m_content_builder .= " ";
+        $this->m_content_builder .= ucwords($split[1]) . " " . ucwords($m_product["product_name"]) . " " . ucwords($m_product["product_model"]);
+    } else {
+        # code...
+        $this->m_content_builder .= ucwords(str_replace("-", " ", $m_product["brand_cat_name"])) . " " . ucwords($m_product["product_name"]) . " " . ucwords($m_product["product_model"]);
+    }
 
     $this->m_content_builder .= "</h5>";
     $this->m_content_builder .= "<!-- Product Brand-->";

@@ -181,7 +181,7 @@ $this->m_all_products = 53;
     public function getProductsByBikeCategory()
     {
         $this->m_all_products = $this->m_loaded_model->countProductsByBikeCategory($this->m_tags[0]);
-       
+
         /*
         Pagination properties
          * $this->m_data['total_records'] (Total number of items paginated)
@@ -206,7 +206,9 @@ $this->m_all_products = 53;
         $this->m_start_record     = $this->m_pagination->StartRecord($this->m_data);
         $this->m_records_per_page = $this->m_data['records_per_page'];
 
-        $this->m_category_products = $this->m_loaded_model->getProductsByBikeCategory($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]);
+        /* $this->m_category_products = $this->m_loaded_model->getProductsByBikeCategory($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]); */
+
+        $this->m_category_products = $this->m_loaded_model->getProductsByBikeCategory($this->m_start_record, $this->m_records_per_page, ($this->m_tags[0]));
 
         require_once VIEWS . 'templates/layouts/products-layout.php';
 
@@ -226,6 +228,14 @@ $this->m_all_products = 53;
 
     private function PageContent()
     {
+        // var_dump($this->m_tags[0]);
+
+        /* if (strpos($this->m_tags[0], "-")) {
+        $tag = str_replace("-", " ", $this->m_tags[0]);
+        var_dump($tag);
+        return $tag;
+        } */
+
         $m_available_product_categories = array();
 
         $m_available_product_categories[] = $this->nav->getCategoryMegaMenu();
@@ -249,15 +259,19 @@ $this->m_all_products = 53;
                 $products = $this->getProductsByBrandCategory();
                 // return array($products);
             } elseif (isset($this->m_tags[0]) && in_array($this->m_tags[0], $this->initArray($m_available_product_categories[0]))) {
-                # code...
+# code...
                 // Write method for getting products based on bike category selected.
                 $products = $this->getProductsByBikeCategory();
 
             } else {
+                // var_dump($this->m_tags[0]);
+                // var_dump($category);
                 echo "page does not exist";
             }
 
         }
+        // var_dump($this->m_tags[0]);
+        // var_dump($m_available_product_categories[0]);
         return array($products);
     }
 

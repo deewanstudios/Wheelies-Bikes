@@ -7,10 +7,10 @@ foreach ($this->m_sub_navigation as $m_sub_navigation) {
     $this->m_navigation .= "<a href=\"";
     $this->m_navigation .= $this->m_base_url;
     $this->m_navigation .= "bikes/";
-    $this->m_navigation .= strtolower($m_sub_navigation["bike_cat_name"]);
+    $this->m_navigation .= strtolower(str_replace(" ", "-", $m_sub_navigation["bike_cat_name"]));
     $this->m_navigation .= "\">";
     $this->m_navigation .= "<span>";
-    $this->m_navigation .= ucwords($m_sub_navigation["bike_cat_name"]);
+    $this->m_navigation .= ucwords(str_replace("-", " ", $m_sub_navigation["bike_cat_name"]));
     $this->m_navigation .= "</span>";
     $this->m_navigation .= "</a>";
 }
