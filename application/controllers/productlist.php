@@ -228,13 +228,7 @@ $this->m_all_products = 53;
 
     private function PageContent()
     {
-        // var_dump($this->m_tags[0]);
 
-        /* if (strpos($this->m_tags[0], "-")) {
-        $tag = str_replace("-", " ", $this->m_tags[0]);
-        var_dump($tag);
-        return $tag;
-        } */
 
         $m_available_product_categories = array();
 
@@ -264,14 +258,12 @@ $this->m_all_products = 53;
                 $products = $this->getProductsByBikeCategory();
 
             } else {
-                // var_dump($this->m_tags[0]);
-                // var_dump($category);
+                
                 echo "page does not exist";
             }
 
         }
-        // var_dump($this->m_tags[0]);
-        // var_dump($m_available_product_categories[0]);
+
         return array($products);
     }
 
