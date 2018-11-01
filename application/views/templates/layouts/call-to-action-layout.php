@@ -18,7 +18,7 @@ foreach ($this->m_call_to_action_tabs as $m_call_to_action_tab) {
         $this->m_content_builder .= "<a href=\"";
         $this->m_content_builder .= "bikes";
         $this->m_content_builder .= "/";
-        $this->m_content_builder .= str_replace(" ", "", $m_call_to_action_link["featured_categories"]);
+        $this->m_content_builder .= str_replace(" ", "-", $m_call_to_action_link["featured_categories"]);
         $this->m_content_builder .= "\"";
         $this->m_content_builder .= "class=\"reveal-block\">";
         $this->m_content_builder .= "<!-- Post Boxed-->";

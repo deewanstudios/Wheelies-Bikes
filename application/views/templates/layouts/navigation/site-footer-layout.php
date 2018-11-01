@@ -5,7 +5,7 @@ $this->m_footer .= "<div class=\"shell\">";
 $this->m_footer .= "<div class=\"range range-sm-center text-lg-left\">";
 $this->m_footer .= "<div class=\"cell-sm-12\">";
 $this->m_footer .= "<div class=\"range range-xs-center\">";
-$this->m_footer .= "<div class=\"cell-xs-12 cell-md-8 cell-md-push-2 text-md-right\">";
+$this->m_footer .= "<div class=\"cell-xs-12 cell-md-8 cell-md-push-2 text-md-right footer\">";
 
 $this->m_footer .= "<div>";
 $this->m_footer .= "<ul class=\"list-inline list-inline-dashed p text-darker list-inline-md list-inline-dashed-wide\">";

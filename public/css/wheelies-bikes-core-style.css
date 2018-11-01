@@ -61,9 +61,10 @@
 .call-to-action-cat-name {
     /* --font-colour-red:red;
 	--font-colour-blue:blue; */
-    font-family: "Lato" sans-serif;
-    /* font-weight : 900; */
-    font-weight: 800;
+    /*     font-family: "Lato" sans-serif; */
+    font-family: 'Raleway', sans-serif;
+    font-weight : 900;
+    /* font-weight: bold; */
     font-size: 5em;
     /* font-size : 8em; */
     color: rgb(255, 255, 255);
@@ -74,8 +75,9 @@
 }
 
 .btn-lg.btn-icon .icon, .btn-group-lg>.btn-icon.btn .icon {
-    font-size: 64px;
+    font-size: 32px;
     padding-right: 24px;
+    padding: 0px !important;
 }
 
 .call-to-action-cat-link {
@@ -85,9 +87,10 @@
 }
 
 .rd-navbar-default.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap, .rd-navbar-sidebar-toggle.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap, .rd-navbar-floated.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap, .rd-navbar-logo-center.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap {
-    color: #00003e;
-    background-color: #000000;
+        color: #ffffff;
+        background-color: #000000;
 }
+
 
 .rd-navbar-default.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a, .rd-navbar-sidebar-toggle.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a, .rd-navbar-sidebar-fixed.rd-navbar-light .rd-navbar-nav li:hover>a, .rd-navbar-floated.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a, .rd-navbar-logo-center.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a {
     color: #fff;
@@ -111,15 +114,16 @@
 }
 
 .btn-view-product {
-    color: #fff;
+    color: #ffffff;
     background-color: rgba(0, 0, 62, 0.95);
     border-color: rgba(0, 0, 62, 0.95);
 }
 
-.btn-view-product:hover {
+.btn-view-product:hover, .btn-view-product:active:focus, .btn-view-product:active.focus, .btn-view-product.active:hover, .btn-view-product.active:focus, .btn-view-product.active.focus, .open>.btn-view-product.dropdown-toggle:hover, .open>.btn-view-product.dropdown-toggle:focus, .open>.btn-view-product.dropdown-toggle.focus {
     color: #fff;
-    background-color: #00003e;
-    border-color: #00003e;
+    background-color: rgba(0, 0, 62, 0.95);
+    border-color: rgba(0, 0, 62, 0.95);
+    opacity:.5;
 }
 
 .btn-wheelies {
@@ -169,6 +173,10 @@ a:hover {
     border-color: #00003e !important;
 }
 
+.text-wheelies-blue {
+    color: #00003e !important;
+}
+
 .box-pricing-dots {
     left: 0px !important;
 }
@@ -190,5 +198,84 @@ a:hover {
 }
 
 .rd-navbar-logo-center.rd-navbar-static .rd-navbar-megamenu {
-    margin-top:0px !important;
+    margin-top: 0px !important;
+}
+
+
+/** 1.4  Type */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Bree Serif", serif;
+    font-weight: 700;
+    line-height: 1;
+    color: #00003e;
+}
+
+h1 small, h1 .small, h2 small, h2 .small, h3 small, h3 .small, h4 small, h4 .small, h5 small, h5 .small, h6 small, h6 .small, .h1 small, .h1 .small, .h2 small, .h2 .small, .h3 small, .h3 .small, .h4 small, .h4 .small, .h5 small, .h5 .small, .h6 small, .h6 .small {
+    font-weight: normal;
+    line-height: 1;
+    color: #f2f2f2;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+h1 small, h1 .small, .h1 small, .h1 .small, h2 small, h2 .small, .h2 small, .h2 .small, h3 small, h3 .small, .h3 small, .h3 .small {
+    font-size: 65%;
+}
+
+h4, .h4, h5, .h5, h6, .h6 {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+h4 small, h4 .small, .h4 small, .h4 .small, h5 small, h5 .small, .h5 small, .h5 .small, h6 small, h6 .small, .h6 small, .h6 .small {
+    font-size: 75%;
+}
+
+h1, .h1 {
+    /*     font-size: 45px; */
+    font-size: 2.8em
+}
+
+h2, .h2 {
+    /*     font-size: 38px; */
+    font-size: 2.4em
+}
+
+h3, .h3 {
+    font-size: 2em
+}
+
+h4, .h4 {
+    font-size: 1.6em;
+}
+
+h5, .h5 {
+    font-size: 1.2;
+}
+
+h6, .h6 {
+    font-size: 0.8em;
+}
+
+
+.text-extra-small {
+    font-size: 13px;
+}
+
+.text-extra-big {
+    font-size: 64px;
+    line-height: 1;
+}
+
+@media (min-width: 768px) {
+    .text-extra-big {
+        font-size: 4em;
+    }
+}
+
+.footer ul li{
+    color:#ffffff;
 }

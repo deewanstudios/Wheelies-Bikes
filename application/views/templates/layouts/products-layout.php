@@ -99,7 +99,7 @@ foreach ($this->m_category_products as $m_product) {
     $this->m_content_builder .= "<div class=\"product-block-hover\">";
     $this->m_content_builder .= "<!-- Product Add To cart-->";
     /* Replace Anchor with Button */
-    $this->m_content_builder .= "<a class=\"btn btn-sm btn-danger btn-view-product btn-icon btn-icon-left product-btn offset-top-20\"";
+    $this->m_content_builder .= "<a class=\"btn btn-sm btn-view-product product-btn offset-top-20\">";
 
     /* href=\"{$this->m_m_product_category}/product/";
     $this->m_content_builder .= strtolower(str_replace(" ", "-", $m_product["brand_cat_name"])) . "-";
@@ -109,7 +109,8 @@ foreach ($this->m_category_products as $m_product) {
     // >";
      */
 
-    $this->m_content_builder .= "\">";
+    
+    // $this->m_content_builder .= "\">";
     $this->m_content_builder .= "View Product";
     $this->m_content_builder .= "</a>";
     $this->m_content_builder .= "</div>";
