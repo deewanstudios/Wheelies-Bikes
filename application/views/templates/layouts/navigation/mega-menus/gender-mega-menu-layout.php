@@ -1,6 +1,8 @@
 <?php
 $this->m_navigation .= "<ul class=\"col-lg-3\">";
+$this->m_navigation .= "<span class=\"mega-menu-column-title text-wheelies-blue\">";
 $this->m_navigation .= "Shop By Gender";
+$this->m_navigation .= "</span>";
 foreach ($this->m_sub_navigation as $m_sub_navigation) {
     # code...
     $this->m_navigation .= "<li class=\"\">";

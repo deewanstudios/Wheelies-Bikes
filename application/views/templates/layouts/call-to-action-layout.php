@@ -9,7 +9,7 @@ $this->m_content_builder .= "<div class=\"\">";
 $this->m_content_builder .= "<div class=\"range range-xs-center range-sm-center range-md-center\">";
 
 foreach ($this->m_call_to_action_tabs as $m_call_to_action_tab) {
-    $this->m_content_builder .= "<div class=\"cell-xs-12 cell-sm-10 cell-md-6 padding-none\">";
+    $this->m_content_builder .= "<div class=\"cell-xs-12 cell-sm-12 cell-md-12 cell-lg-6 padding-none\">";
 
     // $this->m_debugger = $this->Dumper($m_call_to_action_tab);
 

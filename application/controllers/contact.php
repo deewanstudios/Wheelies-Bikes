@@ -123,7 +123,7 @@
 		{
 			if  (  method_exists  (  $this  ,  'PageContent'  )  )
 			{
-				$this  ->  m_main_content  =  $this  ->  PageBanners  (  $this  ->  m_page_id  );
+				// $this  ->  m_main_content  =  $this  ->  PageBanners  (  $this  ->  m_page_id  );
 				$this  ->  m_main_content  .=  $this  ->  BusinessInformationSection  (  );
 				$this  ->  m_main_content  .=  $this  ->  MapSection  (  );
 				$this  ->  m_main_content  .=  "<main class=\"page-content\">";

@@ -84,7 +84,7 @@ class About extends Controller
             foreach ($this->PageContent() as $m_page_element) {
                 $this->m_main_content .= $m_page_element;
             }
-			$this->m_main_content .= $this->ParallaxSectionMaker();
+			$this->m_main_content .= $this->ParallaxSectionMaker($this->m_page_id);
 			
             $this->m_main_content .= "</main>";
 
@@ -98,7 +98,7 @@ class About extends Controller
             $this->m_main_content .= "<div class=\"shell\">";
             $this->m_main_content .= "<div class=\"range range-xs-center text-extra-big\">";
 
-            $this->m_main_content .= "There is currently no body content to dispay";
+            $this->m_main_content .= "There is currently no body content to display";
 
             $this->m_main_content .= "</div>";
             $this->m_main_content .= "</div>";

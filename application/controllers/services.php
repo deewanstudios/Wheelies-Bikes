@@ -104,7 +104,7 @@ class Services extends Controller
             foreach ($this->PageContent() as $m_page_element) {
                 $this->m_main_content .= $m_page_element;
             }
-
+            $this->m_main_content .= $this->ParallaxSectionMaker($this->m_page_id);
             $this->m_main_content .= "</main>";
 
             return $this->m_main_content;

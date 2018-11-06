@@ -4,7 +4,8 @@
 	$this  ->  m_content_builder  .=  "<!-- RD Parallax-->";
 	$this  ->  m_content_builder  .=  "<div data-on=\"false\" data-md-on=\"true\" class=\"rd-parallax\">";
 
-	$this  ->  m_content_builder  .=  "<div data-speed=\"0.35\" data-type=\"media\" data-url=\"{$this->m_image_directory}bicycle-shop.jpg\" class=\"rd-parallax-layer\"></div>";
+	$this  ->  m_content_builder  .=  "<div data-speed=\"0.35\" data-type=\"media\" data-url=\"{$this->m_image_directory}{$this->m_page_banners[1]["image_path"]}.jpg\" class=\"rd-parallax-layer\"></div>";
+	// $this  ->  m_content_builder  .=  "<div data-speed=\"0.35\" data-type=\"media\" data-url=\"{$this->m_image_directory}{bicycle-shop}.jpg\" class=\"rd-parallax-layer\"></div>";
 	$this  ->  m_content_builder  .=  "<div data-speed=\"0\" data-type=\"html\" class=\"rd-parallax-layer\">";
 	$this  ->  m_content_builder  .=  "<div class=\"section-98 section-sm-124 bg-overlay-gray-darkest\">";
 	$this  ->  m_content_builder  .=  "<div class=\"shell\">";
