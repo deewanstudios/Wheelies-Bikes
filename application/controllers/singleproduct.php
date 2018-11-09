@@ -105,6 +105,7 @@ class SingleProduct
         }
 
         $this->m_product_array = $this->m_loaded_model->GetSingleProducts($this->m_product_brand, $this->m_product_name, $this->m_product_model, $this->m_product_gender);
+        
 
         // $this->m_debugger = $this->m_controller->Dumper($param_length);
         // $this->m_debugger = $this->m_controller->Dumper($params);

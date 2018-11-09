@@ -132,7 +132,6 @@ $this->m_all_products = 53;
         $this->m_records_per_page = $this->m_data['records_per_page'];
 
         $this->m_category_products = $this->m_loaded_model->getProductsByGender($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]);
-// $this->m_debugger= $this->Dumper($this->m_category_products);
 
         require_once VIEWS . 'templates/layouts/products-layout.php';
 
@@ -246,6 +245,7 @@ $this->m_all_products = 53;
             if (isset($this->m_tags[0]) && in_array($this->m_tags[0], $this->initArray($m_available_product_categories[2]))) {
                 # code...
                 $products = $this->getProductsByGenderCategory();
+                // var_dump($products);
             }
             // elseif (isset($this->m_tags[0]) && in_array($this->m_tags[0], $brand_list))
             elseif (isset($this->m_tags[0]) && in_array($this->m_tags[0], $this->initArray($m_available_product_categories[1]))) {
