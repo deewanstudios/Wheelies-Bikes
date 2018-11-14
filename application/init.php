@@ -10,7 +10,7 @@
 	require_once MODELS  .  ('NavigationModel.php');
 	require_once LIBS  .  ('Navigation.php');
 	// require_once HELPERS  .  ('GeoPlugin.php');
-	require_once APP  .  ('singleproduct.php');
+	// require_once APP  .  ('singleproduct.php');
 	// require_once HELPERS  .  ('SingleProduct.php');
 	require_once HELPERS  .  ('FeaturedProducts.php');
 	require_once HELPERS  .  ('Pagination.php');

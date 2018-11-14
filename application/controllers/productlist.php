@@ -7,6 +7,7 @@ class ProductList extends Controller
     protected $m_product_category_id;
     protected $m_tags = array();
     protected $nav;
+    protected $destination;
 
 /*     public function __construct()
 {
@@ -26,8 +27,9 @@ $this->m_all_products = 53;
         $this->m_product_category_name = $product_category;
         $this->m_tags                  = $tags;
         $this->nav                     = new NavigationModel();
+        // $this->destination             = new Product($this->m_tags);
         // $this->m_product_category_id = 1;
-        //  $this->m_debugger = $this->Dumper($this->m_tags);
+        // $this->m_debugger = $this->Dumper($this->m_tags);
         /*$this->m_debugger=$this->Dumper($this->m_product_category_name); */
 
     }
@@ -80,17 +82,15 @@ $this->m_all_products = 53;
 
         $this->m_category_products = $this->m_loaded_model->getAllProducts($this->m_start_record, $this->m_records_per_page, $this->m_product_category_name);
 
-/*         $this->m_category_products = $this->m_loaded_model->GetProductsByCategory($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]); */
-        // $this->m_category_products = $this->m_loaded_model->GetProductsByCategory($this->m_start_record, $this->m_records_per_page, $this->m_product_category);
-
         require_once VIEWS . 'templates/layouts/products-layout.php';
 
         // $this->m_debugger = $this->Dumper($this->m_model);
         // $this->m_debugger = $this->Dumper($a);
 
         // $this->m_debugger = $this->Dumper($this->ModelLoader());
-        /*  $this->m_debugger = $this->Dumper($this->m_product_category);*/
+        //  $this->m_debugger = $this->Dumper($this->m_product_category);
         // $this->m_debugger = $this->Dumper(count($this->m_category_products));
+        // $this->m_debugger=$this->Dumper($this->m_category_products);
 
         return $this->m_content_builder;
     }
@@ -134,6 +134,7 @@ $this->m_all_products = 53;
         $this->m_category_products = $this->m_loaded_model->getProductsByGender($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]);
 
         require_once VIEWS . 'templates/layouts/products-layout.php';
+        // $this->m_debugger=$this->Dumper($this->m_category_products);
 
         return $this->m_content_builder;
 
@@ -228,7 +229,6 @@ $this->m_all_products = 53;
     private function PageContent()
     {
 
-
         $m_available_product_categories = array();
 
         $m_available_product_categories[] = $this->nav->getCategoryMegaMenu();
@@ -258,7 +258,7 @@ $this->m_all_products = 53;
                 $products = $this->getProductsByBikeCategory();
 
             } else {
-                
+
                 echo "page does not exist";
             }
 
@@ -312,9 +312,13 @@ $this->m_all_products = 53;
 
     public function index()
     {
-// phpinfo();
         require_once VIEWS . "templates/core/header.php";
         require_once VIEWS . "products/products-list.php";
         require_once VIEWS . "templates/core/footer.php";
+    }
+
+
+    public function product(Product $product){
+        
     }
 }
