@@ -126,10 +126,13 @@ class SelectQueries
 
     return $this  ->  m_query;
     } */
-    public function SingleProductQuery($m_brand, $m_product_name, $m_product_model, $m_product_gender)
+    public function SingleProductQuery($m_brand, $m_product_name, $m_product_model)
+    // , $m_product_gender
+    // gc.gender_cat_name,
+    // br.brand_cat_name, p.product_name, p.product_model,
     {
         $this->m_query = "SELECT
-		p.product_id, br.brand_cat_name, p.product_name, p.product_model, gc.gender_cat_name, bc.bike_cat_name, p.product_description, m.model_year, pr.product_price_value";
+		p.product_id, bc.bike_cat_name, p.product_description, m.model_year, pr.product_price_value";
         $this->m_query .= " FROM {$this->m_db_product_table} AS p";
         $this->m_query .= " LEFT JOIN {$this->m_db_product_model_year} AS m";
         $this->m_query .= " ON p.model_year_id = m.id";
@@ -137,21 +140,27 @@ class SelectQueries
         $this->m_query .= " ON p.brands_categories_brand_cat_id = br.brand_cat_id";
         $this->m_query .= " LEFT JOIN {$this->m_db_product_bike_category} AS bc";
         $this->m_query .= " ON p.bike_categories_bike_cat_id = bc.bike_cat_id";
-        $this->m_query .= " LEFT JOIN {$this->m_db_product_gender_category} AS gc";
-        $this->m_query .= " ON p.gender_categories_gender_cat_id = gc.gender_cat_id";
         $this->m_query .= " LEFT JOIN {$this->m_db_product_price_table} AS pr";
         $this->m_query .= " ON p.product_price_product_price_id = pr.product_price_id";
-        // $this  ->  m_query  .=  " WHERE br.brand_cat_name = {str_replace  (  "-"  ,  "
-        // "  ,  $m_brand  )}";
-        $this->m_query .= " WHERE br.brand_cat_name = '$m_brand'";
+        $this->m_query .= " WHERE br.brand_cat_name =";
+        if (strpos($m_brand, "-") !== false) {
+            # code...
+            $this->m_query .= "'";
+            $this->m_query .= str_replace(" ", "-", $m_brand);
+            $this->m_query .= "'";
+        } else {
+            # code...
+            $this->m_query .= "'$m_brand'";
+        }
+
         $this->m_query .= " AND p.product_name ='$m_product_name'";
-        $this->m_query .= " AND gc.gender_cat_name ='$m_product_gender'";
+        // $this->m_query .= " AND gc.gender_cat_name ='$m_product_gender'";
         if (!empty($m_product_model)) {
             $this->m_query .= " AND p.product_model ='$m_product_model'";
         } else {
             $this->m_query .= " AND p.product_model IS NULL";
         }
-        // $this  ->  m_debugger  =  $this  ->  m_controller  ->  Dumper  (  $this  ->  m_query  );
+        // $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->m_query, 80));
 
         return $this->m_query;
     }

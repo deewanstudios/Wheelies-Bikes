@@ -205,7 +205,7 @@ class ProductsModel extends MasterModel
         }
     }
 
-    public function GetProductSpecifications($m_product_id)
+    public function getProductSpecification($m_product_id)
     {
         try {
             $this->m_select_statement = $this->ProductDescriptionQuery($m_product_id);

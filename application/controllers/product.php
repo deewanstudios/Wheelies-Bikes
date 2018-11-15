@@ -2,10 +2,10 @@
 
 class Product extends Controller
 {
-    protected $m_product;
+    /* protected $m_product;
     protected $m_product_category_name;
     protected $m_product_category_id;
-    protected $m_tags = array();
+    protected $m_tags = array(); */
 
     private $m_product_id;
     private $m_product_name;
@@ -14,7 +14,7 @@ class Product extends Controller
     private $m_product_images;
     private $m_main_product_image;
     private $m_product_price;
-    public $m_image_directory;
+    protected $m_product_image_directory = PRODUCTIMAGES;
     private $m_product_array;
     private $m_product_brand;
     private $m_product_gender;
@@ -36,7 +36,7 @@ class Product extends Controller
 
         # 1 array element
         /* Frog */
-        $this->m_tags = ("bikes/kids/balance/frog/tadpole");
+        // $this->m_tags = ("bikes/kids/balance/frog/tadpole");
         /* GT */
 
         # 2 array element
@@ -44,7 +44,7 @@ class Product extends Controller
         /* GT */
         // $this->m_tags         = ("bikes/mens/mountain/gt/aggressor-sport");
         /* Frog */
-        // $this->m_tags         = ("bikes/kids/balance/frog/tadpole-mini");
+        // $this->m_tags = ("bikes/kids/balance/frog/tadpole-mini");
         /* SE Racing */
         //    $this->m_tags = ("bikes/unisex/cruiser/se-racing/big-flyer");
 
@@ -120,13 +120,13 @@ class Product extends Controller
 
                     if ($this->m_tags_length === 2) {
                         # code...
-                        $this->m_debugger = $this->Dumper("Product array tags length is : " . $this->m_tags_length);
+                        // $this->m_debugger = $this->Dumper("Product array tags length is : " . $this->m_tags_length);
 
                         $this->m_product_name  = $this->m_product_array[0];
                         $this->m_product_model = $this->m_product_array[1];
                     } elseif ($this->m_tags_length === 3) {
                         # code...
-                        $this->m_debugger = $this->Dumper("Product array tags length is : " . $this->m_tags_length);
+                        // $this->m_debugger = $this->Dumper("Product array tags length is : " . $this->m_tags_length);
 
                         $this->m_product_name = $this->m_product_array[0];
                         $this->m_product_name .= " ";
@@ -134,7 +134,7 @@ class Product extends Controller
                         $this->m_product_model = $this->m_product_array[2];
                     } elseif ($this->m_tags_length === 4) {
                         # code...
-                        $this->m_debugger = $this->Dumper("Product array tags length is : " . $this->m_tags_length);
+                        // $this->m_debugger = $this->Dumper("Product array tags length is : " . $this->m_tags_length);
 
                         $this->m_product_name = $this->m_product_array[0];
                         $this->m_product_name .= " ";
@@ -144,7 +144,7 @@ class Product extends Controller
                         $this->m_product_model = $this->m_product_array[3];
                     } elseif ($this->m_tags_length === 5) {
                         # code...
-                        $this->m_debugger = $this->Dumper("Product array tags length is : " . $this->m_tags_length);
+                        // $this->m_debugger = $this->Dumper("Product array tags length is : " . $this->m_tags_length);
 
                         $this->m_product_name = $this->m_product_array[0];
                         $this->m_product_name .= " ";
@@ -171,10 +171,9 @@ class Product extends Controller
                 # code...
                 # What happens, if length of tags is not equals to 2
                 # Throw an Exception of invalid product parameters
-                
 
-                    // echo "Invalid brand and product entered";
-                
+                // echo "Invalid brand and product entered";
+
                 # This else statement is currently not been reached. Maybe it's not needed.
                 # Since I'm already checking if the number of tags supplied is greater than 3.
             }
@@ -184,27 +183,75 @@ class Product extends Controller
             echo "Invalid URL supplied from this node";
         }
 
+        $this->m_product_array = $this->m_loaded_model->GetSingleProducts(str_replace(" ", "-", $this->m_product_brand), $this->m_product_name, $this->m_product_model, $this->m_product_gender);
+
+        foreach ($this->m_product_array as $this->m_product) {
+
+            $this->m_product_id          = $this->m_product["product_id"];
+            $this->m_product_description = $this->m_product["product_description"];
+            $this->m_product_price       = $this->m_product["product_price_value"];
+
+        }
+
+        $this->m_product_images     = $this->m_loaded_model->AllProductsImages($this->m_product_id);
+        $this->m_main_product_image = $this->m_loaded_model->GetSingleProductImage($this->m_product_id);
+
+        foreach ($this->m_main_product_image as $m_single_image) {
+
+            $image_name    = $m_single_image["image_name"];
+            $image_desc    = $m_single_image["image_description"];
+            $image_caption = $m_single_image["image_caption"];
+            $image_path    = $m_single_image["image_path"];
+        }
+
+        $specs = $this->productSpecification($this->m_product_id);
+
+        // $specification = array_merge($specs_heading, $specs);
+
+        foreach ($specs[0] as $spec_heading => $product_specification) {
+
+            $parts = str_replace("_", " ", $spec_heading);
+
+// $crumbs = explode(" ", $parts);
+
+            // $this->m_debugger = $this->m_controller->Dumper($parts);
+            // $this->m_debugger = $this->m_controller->Dumper(ucwords($parts));
+            // $this->m_debugger = $this->m_controller->Dumper(ucwords($crumbs));
+
+            # code...
+        }
+
+        // $this->m_debugger = $this->Dumper($this->m_product_array);
+        /* $this->m_debugger = $this->Dumper("Product Brand is: " . $this->m_product_brand);
+        $this->m_debugger = $this->Dumper("Product Name is: " . $this->m_product_name);
+        $this->m_debugger = $this->Dumper("Product Model is: " . $this->m_product_model); */
+
         require_once VIEWS . 'templates/layouts/single-product-view-layout.php';
 
         return $this->m_content_builder;
     }
 
-    private function PageContent()
+    private function productSpecification($m_product_id)
+    {
+        return $this->m_loaded_model->getProductSpecification($m_product_id);
+    }
+
+    private function pageContent()
     {
 
         return array($this->getProduct());
     }
 
-    private function MainContentDiv()
+    private function mainContentDiv()
     {
 
-        if (method_exists($this, 'PageContent')) {
+        if (method_exists($this, 'pageContent')) {
             // $this->m_main_content = $this->PageBanners($this->m_page_id);
 
             $this->m_main_content .= "<main class=\"page-content\">";
             $this->m_main_content .= "<section class=\"section-50 section-sm-top-30 text-left\">";
             $this->m_main_content .= "<div class=\"shell\">";
-            foreach ($this->PageContent() as $m_page_element) {
+            foreach ($this->pageContent() as $m_page_element) {
                 $this->m_main_content .= $m_page_element;
             }
 

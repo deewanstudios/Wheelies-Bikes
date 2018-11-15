@@ -5,16 +5,17 @@ $this->m_content_builder = "<div class=\"product product-single\">";
 $this->m_content_builder .= "<div class=\"range\">";
 
 $this->m_content_builder .= "<div class=\"cell-sm-8 cell-md-5\">";
-$this->m_content_builder .= "<div class=\"product-image\"><img class=\"img-responsive product-image-area\" src=\"{$this->m_image_directory}products-images/{$image_path}.jpg\" alt=\"$image_caption\">";
+$this->m_content_builder .= "<div class=\"product-image\"><img class=\"img-responsive product-image-area\" src=\"{$this->m_product_image_directory}{$image_path}.jpg\" alt=\"$image_caption\">";
 // $this->m_content_builder .= "</div>";
 $this->m_content_builder .= "<ul class=\"product-thumbnails\">";
 
 foreach ($this->m_product_images as $m_product_image) {
 
+
     $this->m_content_builder .= "<li class=\"active\"";
-    $this->m_content_builder .= "data-large-image=\"{$this->m_image_directory}products-images/{$m_product_image["image_path"]}.jpg\">";
+    $this->m_content_builder .= "data-large-image=\"{$this->m_product_image_directory}{$m_product_image["image_path"]}.jpg\">";
     $this->m_content_builder .= "<img class=\"img-responsive\" ";
-    $this->m_content_builder .= "src=\"{$this->m_image_directory}products-images/{$m_product_image["image_path"]}.jpg\"";
+    $this->m_content_builder .= "src=\"{$this->m_product_image_directory}{$m_product_image["image_path"]}.jpg\"";
     $this->m_content_builder .= "alt=\"{$m_product_image["image_caption"]}\"";
     $this->m_content_builder .= "width=\"84\" height=\"84\"";
     $this->m_content_builder .= ">";
