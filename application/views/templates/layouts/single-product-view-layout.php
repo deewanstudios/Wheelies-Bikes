@@ -59,7 +59,7 @@ $this->m_content_builder .= "</div>";
 
 $this->m_content_builder .= "<div>";
 
-$this->m_content_builder .= "<div class=\"table-responsive clearfix\">";
+$this->m_content_builder .= "<div class=\"table-responsive-sm clearfix\">";
 $this->m_content_builder .= "<table class=\"table\">";
 
 foreach ($specs[0] as $spec_heading => $product_specification) {
