@@ -9,9 +9,9 @@ $this->m_content_builder .= "<div class=\"range section-66\">";
 foreach ($this->m_category_products as $m_product) {
     $this->m_content_builder .= "<div class=\"cell-xs-6 cell-sm-6 cell-lg-4 section-bottom-98\">";
 
+    /*     new Product();
+        //  $this->m_content_builder .= $this->destination; */
     $this->m_content_builder .= "<a href=\"";
-    
-    //  $this->m_content_builder .= $this->destination;
      $this->m_content_builder .= strtolower($m_product["gender_cat_name"]);
     $this->m_content_builder .= "/";
     if ($m_product["bike_cat_name"] == trim($m_product["bike_cat_name"]) && strpos($m_product["bike_cat_name"], ' ') !== false) {

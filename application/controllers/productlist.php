@@ -9,16 +9,6 @@ class ProductList extends Controller
     protected $nav;
     protected $destination;
 
-/*     public function __construct()
-{
-parent::__construct();
-$this->m_model = 'ProductsModel';
-// $this->m_all_products = $this->m_loaded_model->ProductsCount();
-$this->m_product_category = $product_category;
-$this->m_tags = $tags;
-$this->m_all_products = 53;
-} */
-
     public function __construct($product_category, array $tags)
     {
         parent::__construct();
@@ -26,11 +16,15 @@ $this->m_all_products = 53;
         $this->m_loaded_model          = $this->ModelLoader();
         $this->m_product_category_name = $product_category;
         $this->m_tags                  = $tags;
-        $this->nav                     = new NavigationModel();
-        // $this->destination             = new Product($this->m_tags);
-        // $this->m_product_category_id = 1;
-        // $this->m_debugger = $this->Dumper($this->m_tags);
-        /*$this->m_debugger=$this->Dumper($this->m_product_category_name); */
+        // instance of navigation model, for access to the megamenu methods and functionalities
+        $this->nav = new NavigationModel();
+
+        if (isset($_GET["url"])) {
+            $url = explode("/", $_GET["url"]);
+            if (count($url) > 3) {
+                $this->product($url);
+            }
+        }
 
     }
 
@@ -40,22 +34,10 @@ $this->m_all_products = 53;
         return $m_data;
     }
 
-    /* Retrieve all products from database.
-    Currently not sure if to pass a parameter of product category to this method
-     */
-
-    /*
-
-    This method retrieves all products of the supplied product category name ($this->m_product_category_name)
-    So if product category is bikes, all products with the product category name of bikes will be displayed.
-
-     */
-
     private function getAllProducts()
     {
 
         $this->m_all_products = $this->m_loaded_model->ProductsCount();
-        // $this->m_debugger     = $this->Dumper($this->m_all_products);
 
         /*
         Pagination properties
@@ -66,31 +48,18 @@ $this->m_all_products = 53;
         $this->m_data['total_records']    = ($this->m_all_products["counter"]);
         $this->m_data['records_per_page'] = 6;
         if (!$this->m_tags) {
-            # code...
             $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
         } else {
 
             $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name . "/" . implode('/', $this->m_tags);
         }
 
-        $this->m_pagination = new Pagination($this->m_data);
-
-        $this->m_pager = $this->m_pagination->PaginationDisplay($this->m_data);
-
-        $this->m_start_record     = $this->m_pagination->StartRecord($this->m_data);
-        $this->m_records_per_page = $this->m_data['records_per_page'];
-
+        $this->m_pagination        = new Pagination($this->m_data);
+        $this->m_pager             = $this->m_pagination->PaginationDisplay($this->m_data);
+        $this->m_start_record      = $this->m_pagination->StartRecord($this->m_data);
+        $this->m_records_per_page  = $this->m_data['records_per_page'];
         $this->m_category_products = $this->m_loaded_model->getAllProducts($this->m_start_record, $this->m_records_per_page, $this->m_product_category_name);
-
         require_once VIEWS . 'templates/layouts/products-layout.php';
-
-        // $this->m_debugger = $this->Dumper($this->m_model);
-        // $this->m_debugger = $this->Dumper($a);
-
-        // $this->m_debugger = $this->Dumper($this->ModelLoader());
-        //  $this->m_debugger = $this->Dumper($this->m_product_category);
-        // $this->m_debugger = $this->Dumper(count($this->m_category_products));
-        // $this->m_debugger=$this->Dumper($this->m_category_products);
 
         return $this->m_content_builder;
     }
@@ -105,8 +74,6 @@ $this->m_all_products = 53;
          */
 
         $this->m_all_products = $this->m_loaded_model->countProductsByGenderCategory($this->m_tags[0]);
-        // $this->m_debugger     = $this->Dumper($this->m_all_products);
-        // $this->m_debugger     = $this->Dumper($this->m_tags[0]);
 
         /*
         Pagination properties
@@ -117,7 +84,6 @@ $this->m_all_products = 53;
         $this->m_data['total_records']    = ($this->m_all_products["counter"]);
         $this->m_data['records_per_page'] = 6;
         if (!$this->m_tags) {
-            # code...
             $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
         } else {
 
@@ -134,10 +100,7 @@ $this->m_all_products = 53;
         $this->m_category_products = $this->m_loaded_model->getProductsByGender($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]);
 
         require_once VIEWS . 'templates/layouts/products-layout.php';
-        // $this->m_debugger=$this->Dumper($this->m_category_products);
-
         return $this->m_content_builder;
-
     }
 
     public function getProductsByBrandCategory()
@@ -156,7 +119,6 @@ $this->m_all_products = 53;
         $this->m_data['total_records']    = ($this->m_all_products["counter"]);
         $this->m_data['records_per_page'] = 6;
         if (!$this->m_tags) {
-            # code...
             $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
         } else {
 
@@ -192,7 +154,6 @@ $this->m_all_products = 53;
         $this->m_data['total_records']    = ($this->m_all_products["counter"]);
         $this->m_data['records_per_page'] = 6;
         if (!$this->m_tags) {
-            # code...
             $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
         } else {
 
@@ -241,19 +202,11 @@ $this->m_all_products = 53;
         if (!isset($this->m_tags[0])) {
             $products = $this->getAllProducts();
         } else {
-            # code...
             if (isset($this->m_tags[0]) && in_array($this->m_tags[0], $this->initArray($m_available_product_categories[2]))) {
-                # code...
                 $products = $this->getProductsByGenderCategory();
-                // var_dump($products);
-            }
-            // elseif (isset($this->m_tags[0]) && in_array($this->m_tags[0], $brand_list))
-            elseif (isset($this->m_tags[0]) && in_array($this->m_tags[0], $this->initArray($m_available_product_categories[1]))) {
-                # code...
+            } elseif (isset($this->m_tags[0]) && in_array($this->m_tags[0], $this->initArray($m_available_product_categories[1]))) {
                 $products = $this->getProductsByBrandCategory();
-                // return array($products);
             } elseif (isset($this->m_tags[0]) && in_array($this->m_tags[0], $this->initArray($m_available_product_categories[0]))) {
-# code...
                 // Write method for getting products based on bike category selected.
                 $products = $this->getProductsByBikeCategory();
 
@@ -317,8 +270,9 @@ $this->m_all_products = 53;
         require_once VIEWS . "templates/core/footer.php";
     }
 
-
-    public function product(Product $product){
-        
+    public function product($url)
+    {
+        $product = new Product($url);
+        return $product->index();
     }
 }
