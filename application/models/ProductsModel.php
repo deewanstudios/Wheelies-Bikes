@@ -5,7 +5,7 @@
 class ProductsModel extends MasterModel
 {
 
-    private $m_is_best_seller = true;
+    public $m_is_best_seller = true;
 
     public function __construct()
     {
@@ -34,7 +34,7 @@ class ProductsModel extends MasterModel
     public function AllProductsImages($category_id)
     {
         $this->m_select_statement = $this->ProductsImageQuery($category_id);
-        $this->m_returned_object  = $this->GetDataBySQL($this->m_select_statement);
+        $this->m_returned_object  = $this->getDataBySQL($this->m_select_statement);
         return $this->m_returned_object;
 
     }
@@ -42,7 +42,7 @@ class ProductsModel extends MasterModel
     public function ProductPrice($m_product_id)
     {
         $this->m_select_statement = $this->ProductPriceQuery($m_product_id);
-        $this->m_returned_object  = $this->GetDataBySQL($this->m_select_statement);
+        $this->m_returned_object  = $this->getDataBySQL($this->m_select_statement);
         return $this->m_returned_object;
 
     }
@@ -50,7 +50,7 @@ class ProductsModel extends MasterModel
     public function ProductExists($m_product_id)
     {
         $this->m_select_statement = $this->ProductExistQuery($m_product_id);
-        $this->m_returned_object  = $this->GetDataBySQL($this->m_select_statement);
+        $this->m_returned_object  = $this->getDataBySQL($this->m_select_statement);
         return $this->m_returned_object;
 
     }
@@ -60,7 +60,7 @@ class ProductsModel extends MasterModel
         try
         {
             $this->m_select_statement = $this->MainImagesViewQuery($category_id);
-            $this->m_returned_object  = $this->GetDataBySQL($this->m_select_statement);
+            $this->m_returned_object  = $this->getDataBySQL($this->m_select_statement);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             $error = $e->getCode();
@@ -113,7 +113,7 @@ class ProductsModel extends MasterModel
         {
             $this->m_statement = $this->ProductsQuery($start_record, $records_per_page, $this->m_page_visibility, $category);
 
-            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            $this->m_returned_object = $this->getDataBySQL($this->m_statement);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             echo $e->getMessage();
@@ -125,7 +125,7 @@ class ProductsModel extends MasterModel
         try
         {
             $this->m_statement       = $this->productsQueryByGenderCategory($start_record, $records_per_page, $category, $this->m_page_visibility);
-            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            $this->m_returned_object = $this->getDataBySQL($this->m_statement);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             echo $e->getMessage();
@@ -138,7 +138,7 @@ class ProductsModel extends MasterModel
         {
             $this->m_statement = $this->productsQueryByBrandCategory($start_record, $records_per_page, $category, $this->m_page_visibility);
 
-            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            $this->m_returned_object = $this->getDataBySQL($this->m_statement);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             echo $e->getMessage();
@@ -150,7 +150,7 @@ class ProductsModel extends MasterModel
         try
         {
             $this->m_statement       = $this->productsQueryByBikeCategory($start_record, $records_per_page, $category, $this->m_page_visibility);
-            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            $this->m_returned_object = $this->getDataBySQL($this->m_statement);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             echo $e->getMessage();
@@ -162,7 +162,7 @@ class ProductsModel extends MasterModel
         try
         {
             $this->m_statement       = $this->AllProductsQuery($m_product_id);
-            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            $this->m_returned_object = $this->getDataBySQL($this->m_statement);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             echo $e->getMessage();
@@ -174,7 +174,7 @@ class ProductsModel extends MasterModel
         try
         {
             $this->m_statement       = $this->SingleProductQuery($m_brand, $m_product_name, $m_product_model, $m_product_gender);
-            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            $this->m_returned_object = $this->getDataBySQL($this->m_statement);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             echo $e->getMessage();
@@ -186,19 +186,19 @@ class ProductsModel extends MasterModel
         try
         {
             $this->m_statement       = $this->SingleImageViewQuery($m_product_id);
-            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            $this->m_returned_object = $this->getDataBySQL($this->m_statement);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             echo $e->getMessage();
         }
     }
 
-    public function GetFeaturedProducts()
+    public function getFeaturedProducts()
     {
         try
         {
-            $this->m_statement       = $this->FeaturedProductsQuery();
-            $this->m_returned_object = $this->GetDataBySQL($this->m_statement);
+            $this->m_statement       = $this->featuredProductsQuery($this->m_is_best_seller);
+            $this->m_returned_object = $this->getDataBySQL($this->m_statement);
             return $this->m_returned_object;
         } catch (ErrorException $e) {
             echo $e->getMessage();
@@ -209,7 +209,7 @@ class ProductsModel extends MasterModel
     {
         try {
             $this->m_select_statement = $this->ProductDescriptionQuery($m_product_id);
-            $this->m_returned_object  = $this->GetDataBySQL($this->m_select_statement);
+            $this->m_returned_object  = $this->getDataBySQL($this->m_select_statement);
             return $this->m_returned_object;
         } catch (PDOException $e) {
             echo $e->GetMessage();

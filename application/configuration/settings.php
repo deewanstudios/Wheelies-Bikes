@@ -71,7 +71,7 @@ ini_set  (  "error_reporting"  ,  E_ALL  );
 
 ini_set('xdebug.var_display_max_depth', '10');
 ini_set('xdebug.var_display_max_children', '256');
-ini_set('xdebug.var_display_max_data', '1024');
+ini_set('xdebug.var_display_max_data', '2048');
 
 
 // Other Files Required to set up the application
