@@ -15,15 +15,23 @@
  */
 class FeaturedProducts extends Controller
 {
-    private $_m_product_name;
-    private $_m_product_model_name;
+    public $m_loaded_model;
+
+    private $_m_featured_product_cat_name;
+    private $_m_featured_product_brand_name;
+    private $_m_featured_product_gender_name;
+    private $_m_featured_product_type;
+    private $_m_featured_product_name;
+    private $_m_featured_product_model_name;
+    private $_m_featured_product_model_year;
+    private $_m_featured_product_price;
+    private $_m_featured_product_image;
+
     private $_m_product_info;
-    private $_m_product_image;
-    private $_m_product_price;
-    private $_m_product_model_year;
+    private $_m_product_desc;
+
     private $_m_featured_products;
     private $_m_featured_product_link;
-    public $m_loaded_model;
 
     /**
      * Undocumented function.
@@ -40,12 +48,9 @@ class FeaturedProducts extends Controller
      *
      * @return [type] [return description]
      */
-    private function getFeaturedProduct()
+    private function _getFeaturedProduct()
     {
         $all_featured_products = $this->m_loaded_model->getFeaturedProducts();
-        $this->m_debugger = $this->Dumper($all_featured_products);
-        $this->m_debugger = $this->Dumper($this->_m_featured_product_link);
-
         return $all_featured_products;
     }
 
@@ -54,18 +59,21 @@ class FeaturedProducts extends Controller
      *
      * @return [type] [return description]
      */
-    protected function ModelLoader()
+    protected function modelLoader()
     {
         $m_data = $this->LoadModel($this->m_model);
 
         return $m_data;
     }
-
+    /**
+     * [featuredProductsView description]
+     *
+     * @return [type]  [return description]
+     */
     public function featuredProductsView()
     {
-        $this->m_featured_products = $this->getFeaturedProduct();
-        require_once VIEWS.'templates/layouts/featured-products-layout.php';
-
+        $this->m_featured_products = $this->_getFeaturedProduct();
+        include_once VIEWS . 'templates/layouts/featured-products-layout.php';
         return $this->m_content_builder;
     }
 }
