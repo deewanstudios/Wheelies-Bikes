@@ -126,14 +126,16 @@ class SelectQueries
 
     return $this  ->  m_query;
     } */
-    public function SingleProductQuery($m_brand, $m_product_name, $m_product_model)
+    public function SingleProductQuery($m_brand, $m_product_name, $m_product_model, $m_product_gender)
     // , $m_product_gender
     // gc.gender_cat_name,
     // br.brand_cat_name, p.product_name, p.product_model,
     {
         $this->m_query = "SELECT
-		p.product_id, bc.bike_cat_name, p.product_description, m.model_year, pr.product_price_value";
+		p.product_id, bc.bike_cat_name, p.product_description, m.model_year, g.gender_cat_name, pr.product_price_value";
         $this->m_query .= " FROM {$this->m_db_product_table} AS p";
+        $this->m_query .= " LEFT JOIN {$this->m_db_product_gender_category} AS g";
+        $this->m_query .= " ON p.gender_categories_gender_cat_id = g.gender_cat_id";
         $this->m_query .= " LEFT JOIN {$this->m_db_product_model_year} AS m";
         $this->m_query .= " ON p.model_year_id = m.id";
         $this->m_query .= " LEFT JOIN {$this->m_db_product_brand_category} AS br";
@@ -160,6 +162,7 @@ class SelectQueries
         } else {
             $this->m_query .= " AND p.product_model IS NULL";
         }
+        $this->m_query .= " AND g.gender_cat_name = '$m_product_gender'";
         // $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->m_query, 80));
 
         return $this->m_query;
@@ -247,7 +250,7 @@ class SelectQueries
         $this->m_query .= " ORDER BY pp.product_price_value asc";
         $this->m_query .= " LIMIT $start_record, $records_per_page";
 
-        $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->m_query, 80));
+        // $this->m_debugger = $this->m_controller->Dumper(wordwrap($this->m_query, 80));
         return $this->m_query;
     }
 

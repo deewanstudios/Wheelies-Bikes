@@ -38,8 +38,11 @@ class FeaturedProduct extends Controller
     private $_m_featured_products;
     private $_m_featured_product_link;
 
+
     /**
-     * Undocumented function.
+     * __construct
+     *
+     * @return void
      */
     public function __construct()
     {

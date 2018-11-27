@@ -4,7 +4,7 @@
  *
  * @category Description
  *
- * @author Adedayo Adedapo <deewan0984@gmial.com>
+ * @author  Adedayo Adedapo <deewan0984@gmial.com>
  * @license MIT blah.com
  *
  * @see http://url.com
@@ -33,13 +33,16 @@ class FeaturedProducts extends Controller
     private $_m_featured_products;
     private $_m_featured_product_link;
 
+
     /**
-     * Undocumented function.
+     * __construct
+     *
+     * @return void
      */
     public function __construct()
     {
-        $this->m_model = 'ProductsModel';
-        $this->m_loaded_model = $this->ModelLoader();
+        $this->m_model                  = 'ProductsModel';
+        $this->m_loaded_model           = $this->ModelLoader();
         $this->_m_featured_product_link = 'hello/world';
     }
 

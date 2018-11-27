@@ -2,7 +2,7 @@
 
 // $count =4;
 
-$this->m_content_builder = "<section class=\"section-bottom-98 section-sm-bottom-110\">";
+$this->m_content_builder = "<section class=\"section-bottom-50 section-sm-bottom-66\">";
 // section-98 section-sm-110
 $this->m_content_builder .= "<div class=\"\">";
 

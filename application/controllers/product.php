@@ -41,9 +41,9 @@ class Product extends Controller
     {
 
         if (isset($this->m_tags) && $this->m_tags_length > 3) {
-            $this->m_url_parts   = $this->m_tags   = array_slice($this->m_tags, -2);
-            $this->m_tags_length = count($this->m_url_parts);
-
+            $this->m_product_gender = $this->m_tags[1];
+            $this->m_url_parts      = $this->m_tags      = array_slice($this->m_tags, -2);
+            $this->m_tags_length    = count($this->m_url_parts);
             /*
             Extrapolate required parts of the url to properly set the member variables for the product, i.e brand, name and model etc.
              */
@@ -117,9 +117,11 @@ class Product extends Controller
             echo "Invalid URL supplied from this node";
         }
         $this->m_product_array = $this->m_loaded_model->GetSingleProducts(str_replace(" ", "-", $this->m_product_brand), $this->m_product_name, $this->m_product_model, $this->m_product_gender);
+
         foreach ($this->m_product_array as $this->m_product) {
 
-            $this->m_product_id          = $this->m_product["product_id"];
+            $this->m_product_id = $this->m_product["product_id"];
+            // var_dump($this->m_product_array);
             $this->m_product_description = $this->m_product["product_description"];
             $this->m_product_price       = $this->m_product["product_price_value"];
         }

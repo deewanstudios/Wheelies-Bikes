@@ -1,10 +1,10 @@
 <?php
 
 $this->m_content_builder = '<!--Section tag starts here-->';
-$this->m_content_builder .= '<section class="section-bottom-34 context-light">';
+$this->m_content_builder .= '<section class="section-bottom-66 context-light">';
 
 // Section title starts here
-$this->m_content_builder .= '<div class="range range-center">';
+$this->m_content_builder .= '<div class="range range-center section-bottom-66">';
 $this->m_content_builder .= '<div class="cell-xs-12">';
 $this->m_content_builder .= '<h2 class="text-between">';
 $this->m_content_builder .= 'Featured Products';
