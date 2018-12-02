@@ -21,6 +21,7 @@ class Bikes extends Controller
         $this->m_model                 = 'ProductsModel';
         $this->m_product_category      = 0;
         $this->m_page_id               = 2;
+        $this->m_page_ids               = 20;
         $this->m_bike_product_category = strtolower(get_class($this));
 
     }
@@ -58,9 +59,9 @@ class Bikes extends Controller
         require_once VIEWS . 'templates/layouts/products-layout.php';
 
         
-        $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_category_products  );
+        // $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_category_products  );
         
-        $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_all_products  );
+        // $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_all_products  );
 
         return $this->m_content_builder;
     }

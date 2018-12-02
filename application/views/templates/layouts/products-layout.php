@@ -1,120 +1,177 @@
 <?php
 
-$this->m_content_builder = "<!-- Shop Grid View-->";
-$this->m_content_builder .= "<div class=\"cell-md-9 cell-md-push-1 section-bottom-98\">";
+$this->m_content_builder = '<!-- Shop products Grid View-->';
+$this->m_content_builder .= '<div class="cell-md-9 cell-md-push-1">';
 $this->m_content_builder .= $this->m_pager;
 
-$this->m_content_builder .= "<!-- Shop Grid View-->";
-$this->m_content_builder .= "<!-- Shop Grid View-->";
-$this->m_content_builder .= "<div class=\"range section-66\">";
+$this->m_content_builder .= '<!-- Shop Grid View-->';
+$this->m_content_builder .= '<div class="range section-66">';
 
-foreach ($this->m_category_products as $bike_product) {
-    // $this->m_content_builder .= "<a href=\"{$this->m_bike_product_category}";
-    $this->m_content_builder .= "<a href=\"{$this->m_bike_product_category}/product/";
-    // $this->m_content_builder .= "<a href=\"{$bike_product["gender_cat_name"]}/product/";
-    // $this->m_content_builder .= "<a href=\"product/";
-    // {$this->m_bike_product_category}/
+foreach ($this->m_category_products as $m_product) {
+    $this->m_content_builder .= '<div class="cell-xs-6 cell-sm-6 cell-lg-4 section-bottom-98">';
 
-    $this->m_content_builder .= strtolower(str_replace(" ", "-", $bike_product["brand_cat_name"])) . "-";
-    $this->m_content_builder .= str_replace(" ", "-", $bike_product["gender_cat_name"]) . "-";
-    $this->m_content_builder .= str_replace(" ", "-", $bike_product["product_name"]);
-    "\">";
-
-    if (!empty($bike_product["product_model"])) {
-
-        $this->m_content_builder .= "-";
-        $this->m_content_builder .= str_replace(" ", "-", $bike_product["product_model"]);
-        // $this  ->  m_content_builder  .=  str_replace  (  " "  ,  "-"  ,  $bike_product  [  "product_model"  ]  );
+    $this->m_content_builder .= '<!--Product Grid Item-->';
+    $this->m_content_builder .= '<div class="product product-grid product-grid-type-2">';
+    // Anchor tag starts here
+    $this->m_content_builder .= '<a href="';
+    $this->m_content_builder .= strtolower($m_product['gender_cat_name']);
+    $this->m_content_builder .= '/';
+    if ($m_product['bike_cat_name'] == trim($m_product['bike_cat_name']) && strpos($m_product['bike_cat_name'], ' ') !== false) {
+        // code...
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['bike_cat_name']));
+    } else {
+        // code...
+        $this->m_content_builder .= strtolower($m_product['bike_cat_name']);
+    }
+    // $this->m_content_builder .= strtolower($m_product["bike_cat_name"]);
+    $this->m_content_builder .= '/';
+    if ($m_product['brand_cat_name'] == trim($m_product['brand_cat_name']) && strpos($m_product['brand_cat_name'], ' ') !== false) {
+        // code...
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['brand_cat_name']));
+    } else {
+        // code...
+        $this->m_content_builder .= strtolower($m_product['brand_cat_name']);
+    }
+    $this->m_content_builder .= '/';
+    if ($m_product['product_name'] == trim($m_product['product_name']) && strpos($m_product['product_name'], ' ') !== false) {
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['product_name']));
+    } else {
+        $this->m_content_builder .= strtolower($m_product['product_name']);
     }
 
-    $this->m_content_builder .= "\">";
-    $this->m_content_builder .= "<!--products holder-->";
-    $this->m_content_builder .= "<div class=\"cell-xs-6 cell-sm-6 cell-lg-4 section-bottom-98\">";
-    $this->m_content_builder .= "<!--Product-->";
-    $this->m_content_builder .= "<div class=\"product product-grid product-grid-type-2\">";
-    $this->m_content_builder .= "<!--Product Image-->";
-    $this->m_content_builder .= "<div class=\"product-image\">";
-    $this->m_content_builder .= "<img class=\"img-responsive product-image-area\" src=\"{$this->m_image_directory}products-images/{$bike_product["image_path"]}.jpg\" alt=\"\" width=\"\" height=\"\">";
+    if (!empty($m_product['product_model'])) {
+        $this->m_content_builder .= '-';
 
-    /*
-    Insert ul and li for thumb images here.
-     */
-
-    $this->m_content_builder .= "<!-- Product Label-->";
-
-    $this->m_content_builder .= "</div>";
-    $this->m_content_builder .= "<!-- Product Title-->";
-    $this->m_content_builder .= "<h5 class=\"product-title offset-top-20\">";
-
-/*     $this->m_content_builder .= "<a href=\"{$this->m_bike_product_category}/product/";
-    // $this->m_content_builder .= "<a href=\"product/";
-    // {$this->m_bike_product_category}/
-
-    $this->m_content_builder .= strtolower(str_replace(" ", "-", $bike_product["brand_cat_name"])) . "-";
-    $this->m_content_builder .= str_replace(" ", "-", $bike_product["gender_cat_name"]) . "-";
-    $this->m_content_builder .= str_replace(" ", "-", $bike_product["product_name"]);
-    "\">";
-
-    if (!empty($bike_product["product_model"])) {
-
-        $this->m_content_builder .= "-";
-        $this->m_content_builder .= str_replace(" ", "-", $bike_product["product_model"]);
-        // $this  ->  m_content_builder  .=  str_replace  (  " "  ,  "-"  ,  $bike_product  [  "product_model"  ]  );
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['product_model']));
     }
 
-    $this->m_content_builder .= "\">"; */
+    $this->m_content_builder .= '">';
+    // Anchor opening tag ends here
+    $this->m_content_builder .= '<!--Product Image-->';
+    $this->m_content_builder .= '<div class="product-image">';
+    $this->m_content_builder .= "<img class=\"img-responsive product-image-area\" src=\"{$this->m_image_directory}products-images/{$m_product['image_path']}.jpg\" alt=\"\" width=\"\" height=\"\">";
+    $this->m_content_builder .= '</div>';
+    $this->m_content_builder .= '<!--Product Image Div Ends Here-->';
+    $this->m_content_builder .= '</a>';
+    // Anchor tag closes here
+    $this->m_content_builder .= '<!-- Product Title-->';
+    $this->m_content_builder .= '<h5 class="product-title offset-top-20">';
+    // Product name anchor tag starts here
+    $this->m_content_builder .= '<a href="';
+    $this->m_content_builder .= strtolower($m_product['gender_cat_name']);
+    $this->m_content_builder .= '/';
+    if ($m_product['bike_cat_name'] == trim($m_product['bike_cat_name']) && strpos($m_product['bike_cat_name'], ' ') !== false) {
+        // code...
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['bike_cat_name']));
+    } else {
+        // code...
+        $this->m_content_builder .= strtolower($m_product['bike_cat_name']);
+    }
+    // $this->m_content_builder .= strtolower($m_product["bike_cat_name"]);
+    $this->m_content_builder .= '/';
+    if ($m_product['brand_cat_name'] == trim($m_product['brand_cat_name']) && strpos($m_product['brand_cat_name'], ' ') !== false) {
+        // code...
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['brand_cat_name']));
+    } else {
+        // code...
+        $this->m_content_builder .= strtolower($m_product['brand_cat_name']);
+    }
+    $this->m_content_builder .= '/';
+    if ($m_product['product_name'] == trim($m_product['product_name']) && strpos($m_product['product_name'], ' ') !== false) {
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['product_name']));
+    } else {
+        $this->m_content_builder .= strtolower($m_product['product_name']);
+    }
 
-    $this->m_content_builder .= ucwords($bike_product["brand_cat_name"]) . " " . ucwords($bike_product["product_name"]) . " " . ucwords($bike_product["product_model"]);
+    if (!empty($m_product['product_model'])) {
+        $this->m_content_builder .= '-';
 
-    // $this->m_content_builder .= "</a>";
-    
-    $this->m_content_builder .= "</h5>";
-    $this->m_content_builder .= "<!-- Product Brand-->";
-    $this->m_content_builder .= "<p class=\"product-brand text-italic text-dark\">";
-    // $this  ->  m_content_builder  .=  "Armani Brand";
-    $this->m_content_builder .= ucwords("{$bike_product["gender_cat_name"]} " . "{$bike_product["bike_cat_name"]} bike");
-    $this->m_content_builder .= "</p>";
-    $this->m_content_builder .= "<p class=\"product-brand text-italic text-dark\">";
-    // $this  ->  m_content_builder  .=  "Armani Brand";
-    $this->m_content_builder .= "Model Year: {$bike_product["model_year"]}";
-    $this->m_content_builder .= "</p>";
-    $this->m_content_builder .= "<!-- Product price-->";
-    $this->m_content_builder .= "<div class=\"product-price text-bold\">";
-    
-    $this->m_content_builder .= "<span class=\"product-price-new\">";
-    $this->m_content_builder .= "£{$bike_product["product_price_value"]}";
-    $this->m_content_builder .= "</span>";
-    $this->m_content_builder .= "</div>";
-    $this->m_content_builder .= "<div class=\"product-block-hover\">";
-    $this->m_content_builder .= "<!-- Product Add To cart-->";
-    /* Replace Anchor with Button */
-    $this->m_content_builder .= "<a class=\"btn btn-sm btn-danger btn-view-product btn-icon btn-icon-left product-btn offset-top-20\"" ;
-    /* href=\"{$this->m_bike_product_category}/product/";
-    $this->m_content_builder .= strtolower(str_replace(" ", "-", $bike_product["brand_cat_name"])) . "-";
-    $this->m_content_builder .= str_replace(" ", "-", $bike_product["gender_cat_name"]) . "-";
-    $this->m_content_builder .= str_replace(" ", "-", $bike_product["product_name"]);
-    // $this->m_content_builder .= "\";
-    // >";
-    
-    if (!empty($bike_product["product_model"])) {
-        
-        $this->m_content_builder .= "-";
-        $this->m_content_builder .= str_replace(" ", "-", $bike_product["product_model"]);
-    } */
-    $this->m_content_builder .= "\">";
-    
-    $this->m_content_builder .= "View Product";
-    $this->m_content_builder .= "</a>";
-    $this->m_content_builder .= "</div>";
-    $this->m_content_builder .= "</div>";
-    $this->m_content_builder .= "</div>";
-    $this->m_content_builder .= "</a>";
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['product_model']));
+    }
+
+    $this->m_content_builder .= '">';
+    // Anchor opening tag ends here
+
+    if ($m_product['brand_cat_name'] == trim($m_product['brand_cat_name']) && strpos($m_product['brand_cat_name'], '-') !== false) {
+        // code...
+        $split = (explode('-', $m_product['brand_cat_name']));
+        $this->m_content_builder .= strtoupper($split[0]);
+        $this->m_content_builder .= ' ';
+        $this->m_content_builder .= ucwords($split[1]).' '.ucwords($m_product['product_name']).' '.ucwords($m_product['product_model']);
+    } else {
+        // code...
+        $this->m_content_builder .= ucwords(str_replace('-', ' ', $m_product['brand_cat_name'])).' '.ucwords($m_product['product_name']).' '.ucwords($m_product['product_model']);
+    }
+
+    $this->m_content_builder .= '</a>';
+    // Product name anchor tag ends here
+    $this->m_content_builder .= '</h5>';
+
+    $this->m_content_builder .= '<!-- Product Information-->';
+    $this->m_content_builder .= '<p class="product-brand text-italic text-dark">';
+    $this->m_content_builder .= ucwords("{$m_product['gender_cat_name']} "."{$m_product['brand_cat_name']} bike");
+    $this->m_content_builder .= '</p>';
+    $this->m_content_builder .= '<p class="product-brand text-italic text-dark">';
+    $this->m_content_builder .= "Model Year: {$m_product['model_year']}";
+    $this->m_content_builder .= '</p>';
+
+    $this->m_content_builder .= '<!-- Product price-->';
+    $this->m_content_builder .= '<div class="product-price text-bold">';
+    $this->m_content_builder .= '<span class="product-price text-bold">';
+    $this->m_content_builder .= "£{$m_product['product_price_value']}";
+    $this->m_content_builder .= '</span>';
+    $this->m_content_builder .= '</div>';
+    $this->m_content_builder .= '<!-- Product price div ends-->';
+    $this->m_content_builder .= '<!--Insert Hover component here-->';
+    $this->m_content_builder .= '<div class="product-block-hover">';
+    $this->m_content_builder .= '<!-- Product Add To cart-->';
+    $this->m_content_builder .= '<a ';
+    $this->m_content_builder .= 'class="btn btn-sm btn-danger btn-view-product btn-icon btn-icon-left product-btn offset-top-20"';
+    $this->m_content_builder .= 'href="';
+    $this->m_content_builder .= strtolower($m_product['gender_cat_name']);
+    $this->m_content_builder .= '/';
+    if ($m_product['bike_cat_name'] == trim($m_product['bike_cat_name']) && strpos($m_product['bike_cat_name'], ' ') !== false) {
+        // code...
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['bike_cat_name']));
+    } else {
+        // code...
+        $this->m_content_builder .= strtolower($m_product['bike_cat_name']);
+    }
+    // $this->m_content_builder .= strtolower($m_product["bike_cat_name"]);
+    $this->m_content_builder .= '/';
+    if ($m_product['brand_cat_name'] == trim($m_product['brand_cat_name']) && strpos($m_product['brand_cat_name'], ' ') !== false) {
+        // code...
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['brand_cat_name']));
+    } else {
+        // code...
+        $this->m_content_builder .= strtolower($m_product['brand_cat_name']);
+    }
+    $this->m_content_builder .= '/';
+    if ($m_product['product_name'] == trim($m_product['product_name']) && strpos($m_product['product_name'], ' ') !== false) {
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['product_name']));
+    } else {
+        $this->m_content_builder .= strtolower($m_product['product_name']);
+    }
+
+    if (!empty($m_product['product_model'])) {
+        $this->m_content_builder .= '-';
+
+        $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['product_model']));
+    }
+    $this->m_content_builder .= '"';
+    $this->m_content_builder .= '>';
+    $this->m_content_builder .= '<span class="icon mdi mdi-eye"></span>';
+    $this->m_content_builder .= 'View Product';
+    $this->m_content_builder .= ' </a>';
+    $this->m_content_builder .= '</div>';
+    $this->m_content_builder .= '</div>';
+    $this->m_content_builder .= '<!--Product Grid Item Ends Here-->';
+    $this->m_content_builder .= '</div>';
 }
-
-$this->m_content_builder .= "</div>";
-$this->m_content_builder .= $this->m_pager;
+/* $this->m_content_builder .= "<!--products grid container-->"; */
+$this->m_content_builder .= '</div>';
 /*
 End of shop grid view
  */
-
-$this->m_content_builder .= "</div>";
+$this->m_content_builder .= $this->m_pager;
+$this->m_content_builder .= '</div>';

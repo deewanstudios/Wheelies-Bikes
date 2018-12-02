@@ -45,7 +45,7 @@
 			}
 			else
 			{
-				echo "ERROR: Total records variable does not exist...";
+				// echo "ERROR: Total records variable does not exist...";
 				return FALSE;
 			}
 

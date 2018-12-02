@@ -39,7 +39,16 @@
 
 <link rel="icon" href="<?php echo IMAGES; ?>favicon.ico" type="image/x-icon">
 <!-- Stylesheets-->
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Dancing+Script:700%7CLato:300,300italic,400,700,900%7CWork+Sans:300,400,500,600,700">
+
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Raleway:400,400i,500,500i&amp;subset=latin-ext" rel="stylesheet">
+
+
+<!-- font-family: 'Bree Serif', serif;
+font-family: 'Raleway', sans-serif; -->
+
+<!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Dancing+Script:700%7CLato:300,300italic,400,700,900%7CWork+Sans:300,400,500,600,700">
+ -->
+
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>css/style.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>css/wheelies-bikes-core-style.css">

@@ -103,8 +103,7 @@ class Controller
     protected $m_page_header_banner;
     protected $m_top_banner;
     protected $m_top_banner_page_name;
-    protected $m_geo_plugin;
-
+    protected $m_page_banners;
     /*
     Under Construction variables
      */
@@ -170,24 +169,21 @@ class Controller
 
     }
 
-    public function HeaderContent($header_tag, $header_title, $header_class = 'null')
+    public function headerContent($header_tag, $header_title, $header_class = null)
     {
 
-        $this->m_section_header_builder = "<$header_tag class=\"{$header_class}\">";
-        $this->m_section_header_builder .= ucwords($header_title);
-        $this->m_section_header_builder .= "</$header_tag>";
-        if (($header_class == 'null') || ($header_class !== 'text-between')) {
+        if ($header_class !== null && strpos($header_class, 'text-between') !== false) {
+            # code...
+            $this->m_section_header_builder = "<$header_tag class=\"{$header_class}\">";
+            $this->m_section_header_builder .= ucwords($header_title);
+            $this->m_section_header_builder .= "</$header_tag>";
+        } else {
+            # code...
+            $this->m_section_header_builder = "<$header_tag class=\"{$header_class}\">";
+            $this->m_section_header_builder .= ucwords($header_title);
+            $this->m_section_header_builder .= "</$header_tag>";
             $this->m_section_header_builder .= "<div class=\"divider bg-mantis bg-wheelies\"></div>";
         }
-        /*
-        elseif  (  $header_class  !==  'text-between'  )
-        {
-        $this  ->  m_section_header_builder  .=  "<div class=\"divider
-        bg-mantis bg-wheelies\"></div>";
-        }*/
-
-        // $this  ->  m_section_header_builder  .=  "<div class=\"divider
-        // bg-mantis\"></div>";
         return $this->m_section_header_builder;
 
     }
@@ -259,9 +255,9 @@ class Controller
     public function Dumper($data)
     {
         echo "<pre>";
-        // foreach ($datas as $data) {
+        // foreach ($data as $datum) {
 
-        // var_dump(wordwrap($data, 100));
+        // var_dump(wordwrap($datum, 100));
         var_dump($data);
         // }
         echo "</pre>";
@@ -298,26 +294,29 @@ class Controller
         return $this->m_final_page_meta_data;
     }
 
-    public function PageBanners($page_id)
+    public function pageBanners($page_id)
     {
 
         $this->m_top_banner = $this->m_loaded_model->GetAllPagesById($page_id);
         // $f_sub_page  =  $this  ->  m_loaded_model  ->  GetAllSubPagesById  (
         // $subpage_id  );
-        // $this->m_debugger = $this->Dumper($this->m_top_banner);
+        // $this->m_debugger = $this->Dumper($this->m_page_banners);
 
         $main_page_name = $this->m_top_banner[0]["name"];
         $main_page_url = $this->m_top_banner[0]["url"];
         // $sub_page_name  =  $f_sub_page  [  0  ]  [  "name"  ];
         // $sub_page_url  =  $f_sub_page  [  0  ]  [  "subpage_url"  ];
 
-        $f_breadcrumbs = array(array(
+        $f_breadcrumbs = array(
             "name" => $main_page_name,
             "url" => $main_page_url,
-        ));
+        );
 
-        $purpose = "banner-image";
-        $this->m_top_banner_page_image = $this->m_loaded_model->GetAllImagesByPageIdAndPurpose($page_id, $purpose);
+        // var_dump($f_breadcrumbs);
+
+        $purpose = "banner";
+        $this->m_page_banners = $this->m_loaded_model->GetAllImagesByPageIdAndPurpose($page_id, $purpose);
+        // var_dump($this->m_page_banners[0]["image_path"]);
 
         $i = 1;
 
@@ -333,9 +332,11 @@ class Controller
         return $this->m_page_header_banner;
     }
 
-    public function ParallaxSectionMaker()
+    public function parallaxSectionMaker($page_id)
     {
-        require_once VIEWS . "templates/layouts/about-us-parallax-section-layout.php";
+        $purpose = "banner";
+        $this->m_page_banners = $this->m_loaded_model->GetAllImagesByPageIdAndPurpose($page_id, $purpose);
+        require_once VIEWS . "templates/layouts/parallax-section-layout.php";
         return $this->m_content_builder;
     }
 

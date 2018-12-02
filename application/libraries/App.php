@@ -22,10 +22,6 @@ class App
             $page = new Home();
             $page->index();
 
-            /*  require_once APP . 'home.php';
-        $page = new Home();
-        $page->index(); */
-
         } elseif (file_exists(APP . $this->controller . '.php')) {
             // here we did check for controller: does such a controller exist ?
 
@@ -57,39 +53,20 @@ class App
                 }
 
             }
-        } else
-        // if(file_exists(APP . 'productslist')) {
-        {
+        } elseif (file_exists(APP . 'productlist.php')) {
             require_once APP . 'productlist.php';
+            array_unshift($this->params, $this->method);
+            $this->controller = new ProductList($this->controller, $this->params);
+            // var_dump($this->controller);
+            $this->controller->index();
+        } elseif (file_exists(APP . 'product.php')) {
+            require_once APP . 'product.php';
+            array_unshift($this->params, $this->method, $this->controller);
+            $this->controller = new Product($this->params);
+            // var_dump($this->controller);
+            // $this->controller = new Product($this->controller, $this->params);
+            $this->controller->index();
         }
-
-        array_push($this->params, $this->method);
-        $this->controller = new ProductList($this->controller, $this->params);
-        $this->controller->index();
-
-        /*   if (method_exists($this->controller, $this->method)) {
-        if (!empty($this->params)) {
-        call_user_func_array(array(
-        $this->controller,
-        $this->method,
-        ), $this->params);
-        } else {
-
-        $this->controller->{$this->method}();
-        }
-
-        }else{
-        if(strlen($this->method)==0){ */
-
-        // $this->controller->index();
-        /*     }
-        } */
-        // $this->controller = new $this->controller();
-
-        /* var_dump($this->controller);
-        var_dump($this->method);
-        var_dump($this->params); */
-        // }
 
     }
 
@@ -119,7 +96,7 @@ class App
             // Operators"
             // @see http://davidwalsh.name/php-shorthand-if-else-ternary-operators
             $this->controller = isset($url[0]) ? $url[0] : null;
-            $this->method = isset($url[1]) ? $url[1] : null;
+            $this->method     = isset($url[1]) ? $url[1] : null;
 
 // Remove controller and action from the split URL
             unset($url[0], $url[1]);
@@ -127,7 +104,7 @@ class App
 // Rebase array keys and store the URL params
             $this->params = array_values($url);
 
-// return $url;
+            return $url;
         }
 
     }
