@@ -33088,7 +33088,7 @@ fieldset[disabled] .box-planning-type-4 .pagination-classic>li+li:not(:last-chil
         display: inline-block;
     }
     .product-single .product-btn {
-        margin-left: 20px;
+        /* margin-left: 20px; */
     }
 }
 
