@@ -77,7 +77,7 @@ class MasterModel extends SelectQueries
         }
     }
 
-    public function GetDataBySQL($sql = "")
+    public function getDataBySQL($sql = "")
     {
         try
         {
@@ -354,7 +354,7 @@ WHERE 1=1 AND page_visibility =1 AND id = {$page_id}");
         }
     }
 
-    
+
     public function getGenderCategoryMegaMenu()
     {
         try {
@@ -365,7 +365,7 @@ WHERE 1=1 AND page_visibility =1 AND id = {$page_id}");
             echo $e->GetMessage();
         }
     }
-    
+
     public function getBikesCategoryMegaMenu()
     {
         try {
@@ -376,7 +376,7 @@ WHERE 1=1 AND page_visibility =1 AND id = {$page_id}");
             echo $e->GetMessage();
         }
     }
-    
+
  /*    public function getCategoriesMegaMenu()
     {
         try {
@@ -388,8 +388,8 @@ WHERE 1=1 AND page_visibility =1 AND id = {$page_id}");
         }
     }
   */
- 
- 
+
+
     /*
 public function GetInformation  (  )
 {

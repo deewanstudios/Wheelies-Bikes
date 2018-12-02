@@ -1554,7 +1554,7 @@ a:focus {
 }
 
 figure {
-    margin: 0;
+    /* margin: 0; */
 }
 
 img {
@@ -15147,7 +15147,7 @@ html.lt-ie11 .btn-santos-svg:hover {
 }
 
 .section-bottom-98 {
-    padding-bottom: 98px;
+    /* padding-bottom: 98px; */
 }
 
 .section-bottom-110 {
@@ -33088,7 +33088,7 @@ fieldset[disabled] .box-planning-type-4 .pagination-classic>li+li:not(:last-chil
         display: inline-block;
     }
     .product-single .product-btn {
-        margin-left: 20px;
+        /* margin-left: 20px; */
     }
 }
 
