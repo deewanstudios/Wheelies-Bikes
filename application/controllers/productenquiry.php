@@ -25,6 +25,7 @@
 
 class ProductEnquiry extends Controller
 {
+    private $_product_image_directory = null;
 
     /**
      * __construct
@@ -33,7 +34,8 @@ class ProductEnquiry extends Controller
      */
     public function __construct()
     {
-        $this->m_model = 'AboutModel';
+        $this->m_model                  = 'AboutModel';
+        $this->_product_image_directory = PRODUCTIMAGES;
     }
 
     /**

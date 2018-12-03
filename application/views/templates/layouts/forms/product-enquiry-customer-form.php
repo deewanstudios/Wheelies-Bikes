@@ -10,10 +10,11 @@
  * @link     http://url.com
  */
 
-$this->m_content_builder = '<div class="section-110">';
+$this->m_content_builder = '<section class="section-34">';
 // class="section-110"
-$this->m_content_builder .= '<div class="range range-xs-center">';
-$this->m_content_builder .= '<div class="cell-sm-8">';
+// $this->m_content_builder .= '<section class="range range-xs-center">';
+$this->m_content_builder .= '<div class="shell">';
+// $this->m_content_builder .= '<div class="cell-sm-8">';
 $this->m_content_builder .= '<form data-form-output="form-contact-me" data-form-type="contact" method="post" class="rd-mailform text-left">';
 $this->m_content_builder .= '<div class="range offset-top-0">';
 $this->m_content_builder .= '<div class="cell-sm-6">';
@@ -69,5 +70,5 @@ $this->m_content_builder .= '</a>';
 $this->m_content_builder .= '</div>';
 
 $this->m_content_builder .= '</div>';
-$this->m_content_builder .= '</div>';
-$this->m_content_builder .= '</div>';
+// $this->m_content_builder .= '</div>';
+$this->m_content_builder .= '</section>';

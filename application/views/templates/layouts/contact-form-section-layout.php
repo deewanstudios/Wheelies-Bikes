@@ -38,7 +38,6 @@ $this->m_content_builder .= "<input class=\"form-control bg-white\" id=\"git-3-m
 $this->m_content_builder .= "</div>";
 $this->m_content_builder .= "</div>";
 
-
 $this->m_content_builder .= "<div class=\"cell-sm-12\">";
 $this->m_content_builder .= "<div class=\"form-group offset-sm-top-30\">";
 $this->m_content_builder .= "<label class=\"form-label\" for=\"git-3-mailform-message\">Message</label>";
