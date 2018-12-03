@@ -129,7 +129,7 @@ foreach ($this->m_featured_products as $m_featured_product) {
     $this->m_content_builder .= '<!--Carousel item ends here-->';
 }
 
-$this->m_content_builder .= '</>';
+$this->m_content_builder .= '</div>';
 $this->m_content_builder .= '<!--Carousel wrapper ends-->';
 $this->m_content_builder .= ' </section>';
 $this->m_content_builder .= '<!--End of section tag-->';

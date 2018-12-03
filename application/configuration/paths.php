@@ -1,9 +1,14 @@
-<?
-
-// paths.php
-
-// this file is responsible for including any common paths
-// which will be used...they will be stored as constants
+<?php
+/**
+ * This file is responsible for defining any common paths which will be used in the project. The paths will be defined as constants as constants
+ * PHP version PHP 7.2.1
+ *
+ * @category Website
+ * @package  WheeliesBikes_Product_Enquiry_File
+ * @author   Adedayo Adedapo <ade.adedapo9@gmail.com>
+ * @license  DeewanstudiosLTD deewanstudios.com
+ * @link     http://url.com
+ */
 
 define("DS", DIRECTORY_SEPARATOR);
 
