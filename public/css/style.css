@@ -156,7 +156,7 @@ menu,
 nav,
 section,
 summary {
-    display: block;
+    /* display: block; */
 }
 
 audio,
@@ -8617,7 +8617,7 @@ button.close {
 /** 2.1  Reset */
 
 html *:first-child {
-    margin-top: 0;
+    /* margin-top: 0; */
 }
 
 html *:last-child {

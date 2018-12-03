@@ -334,6 +334,7 @@ p, .p, .list {
     margin-left: 0px !important;
 }
 
-.page-content {
-    height: 100vh;
-}
+/* .page-content {
+    height: 85vh;
+    overflow-y:scroll;
+} */

@@ -37,6 +37,18 @@ class ProductEnquiry extends Controller
     }
 
     /**
+     * _enquirySummary
+     *
+     * @return void
+     */
+    private function _enquirySummary()
+    {
+        $test_content = "Hello from enquiry summary method";
+        include_once VIEWS . 'templates/layouts/product-enquiry-details.php';
+        return $this->m_content_builder;
+    }
+
+    /**
      * _enquiryFormView
      *
      * @return void
@@ -48,7 +60,7 @@ class ProductEnquiry extends Controller
     }
 
     /**
-     * _pageConten_p
+     * _pageContent
      *
      * @return void
      */
@@ -56,6 +68,7 @@ class ProductEnquiry extends Controller
     {
         return (
             array(
+                $this->_enquirySummary(),
                 $this->_enquiryFormView(),
             )
         );
@@ -71,8 +84,6 @@ class ProductEnquiry extends Controller
         if (method_exists($this, '_pageContent')) {
             // $this->m_main_content = $this->PageBanners($this->m_page_id);
             $this->m_main_content .= "<main class=\"page-content\">";
-
-            // $this  ->  m_main_content  .=  $this  ->  AboutPageText  (  );
 
             foreach ($this->_pageContent() as $m_page_element) {
                 $this->m_main_content .= $m_page_element;

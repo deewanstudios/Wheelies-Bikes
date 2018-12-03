@@ -9,3 +9,10 @@
  * @license  DeewanstudiosLTD deewanstudios.com
  * @link     http://url.com
  */
+$this->m_content_builder = '<div class="section-110">';
+$this->m_content_builder .= '<div class="range range-xs-center">';
+$this->m_content_builder .= '<div class="cell-sm-8">';
+$this->m_content_builder .= $test_content;
+$this->m_content_builder .= '</div>';
+$this->m_content_builder .= '</div>';
+$this->m_content_builder .= '</div>';
