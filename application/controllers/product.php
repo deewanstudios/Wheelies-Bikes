@@ -15,6 +15,7 @@ class Product extends Controller
     private $m_product_gender;
     protected $m_tags_length;
     private $m_url_parts;
+    private $_untouched;
 
     public function __construct(array $tags)
     {
@@ -22,16 +23,19 @@ class Product extends Controller
         $this->m_model = 'ProductsModel';
         $this->m_loaded_model = $this->ModelLoader();
         $this->m_tags = $tags;
-
+        $this->_untouched = $tags;
         if (isset($this->m_tags)) {
             $this->m_tags = array_filter($this->m_tags);
             $this->m_tags_length = count($this->m_tags);
         }
 
-        /*   if (issset()) {
-        # code...
+        /* if (isset($this->_untouched) && in_array('enquire', $this->_untouched)) {
+        $this->enquire($this->_untouched);
         } */
-//   $this->_productEnquiry();
+
+        // var_dump($this->_untouched);
+        /*  var_dump($this->m_tags); */
+        // var_dump($this->m_tags_length);
     }
 
     public function ModelLoader()
@@ -43,16 +47,18 @@ class Product extends Controller
 
     private function getProduct()
     {
-        if (isset($this->m_tags) && $this->m_tags_length > 3) {
+        if (isset($this->m_tags) && $this->m_tags_length > 3 && !in_array('enquire', $this->m_tags)) {
+            // var_dump($this->m_tags);
             $this->m_product_gender = $this->m_tags[1];
             $this->m_url_parts = $this->m_tags = array_slice($this->m_tags, -2);
+            // var_dump($this->m_url_parts);
             $this->m_tags_length = count($this->m_url_parts);
             /*
             Extrapolate included parts of the url to properly set the member variables for the product, i.e brand, name and model etc.
              */
             if (2 === $this->m_tags_length) {
                 /* Extracting product model information by setting it to the value of the first indexed element in the url parts array */
-
+                // var_dump($this->m_tags);
                 if (strpos($this->m_url_parts[0], '-') !== false) {
                     // Stripping the value of the product brand of the hyphen character and replacing it with a space.
                     $this->m_product_brand = str_replace('-', ' ', $this->m_url_parts[0]);
@@ -115,7 +121,15 @@ class Product extends Controller
         } else {
             // Throw an Exception of invalid product parameters
             // Change this to a proper exception and load a 404 or something like that.
-            echo 'Invalid URL supplied from this node';
+
+            if (isset($this->_untouched) && in_array('enquire', $this->_untouched)) {
+                // $this->enquire($this->_untouched);
+                $enquire = new ProductEnquiry($this->_untouched);
+
+                return $enquire->index();
+            } else {
+                echo 'Invalid URL supplied from this node';
+            }
         }
         $this->m_product_array = $this->m_loaded_model->GetSingleProducts(str_replace(' ', '-', $this->m_product_brand), $this->m_product_name, $this->m_product_model, $this->m_product_gender);
 
@@ -190,15 +204,29 @@ class Product extends Controller
     /**
      * _productEnquiry.
      */
-    private function _productEnquiry($info)
+    /* private function _productEnquiry()
     {
-        /* if (isset()) {
+    return $enquiry = new ProductEnquiry($this->m_tags);
 
+    // return $enquiry->index();
+    } */
+
+    /**
+     * Enquiry.
+     *
+     * @param mixed $product
+     *
+     * @return mixed $product
+     */
+    /*     public function enquire()
+        {
+            // $productinfo = $this->m_tags;
+            // var_dump('Hello from enquire method');
+            $product = new ProductEnquiry($this->_untouched);
+            // var_dump($this->m_tags);
+
+                // return $product->index();
         } */
-        $enquiry = new ProductEnquiry($info);
-
-        return $enquiry->index();
-    }
 
     /**
      * Index.

@@ -27,20 +27,28 @@
 class ProductEnquiry extends Controller
 {
     private $_product_image_directory = null;
-    protected $m_tags = array();
+    protected $m_tags;
+    protected $m_product_info = array();
 
     /**
      * __construct.
      */
-    public function __construct($product_info, $m_tags = array())
+    public function __construct(array $product_info)
     {
+        // $product_info = array('hello', 'world', 'how', 'are', 'you');
+        // $m_tags = 'this is me'
         parent::__construct();
-        $this->m_model = 'AboutModel';
+        // $this->m_model = 'AboutModel';
         $this->_product_image_directory = PRODUCTIMAGES;
-        $this->m_tags = $m_tags;
 
-        // $this->m_tags = 'hello';
-        var_dump($this->m_tags);
+        // $this->m_tags = 'this product is blah';
+        /*  $this->m_product_info[] = 'hello';
+        $this->m_product_info[] = 'world'; */
+        // $this->m_tags = $m_tags;
+        $this->m_product_info = $product_info;
+
+        var_dump($this->m_product_info);
+        // var_dump($this->m_tags);
     }
 
     /**

@@ -65,12 +65,13 @@ class App
             $this->controller->index();
         } elseif (file_exists(APP.'productenquiry.php')) {
             include_once APP.'productenquiry.php';
-            array_unshift($this->controller, $this->params);
-            $this->controller = new ProductEnquiry($this->controller, $method);
-            var_dump($this->controller);
+            array_unshift($this->params, $this->controller);
+            $this->controller = new ProductEnquiry($this->params);
             // $this->controller = new Product($this->controller, $this->params);
             $this->controller->index();
         }
+        /* var_dump($this->params);
+        var_dump($this->controller); */
     }
 
     /**

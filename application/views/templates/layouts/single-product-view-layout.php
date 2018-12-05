@@ -98,10 +98,15 @@ $this->m_content_builder .= '<div class="offset-top-34">';
 $this->m_content_builder .= "<label class=\"text-dark\">Quantity:</label>";
 $this->m_content_builder .= "<input class=\"form-control input-sm form-control-impressed\" type=\"number\" data-zeros=\"true\" value=\"1\" min=\"1\" max=\"20\">";
 $this->m_content_builder .= "</div>"; */
-$this->m_content_builder .= '<!-- Product Add To cart--><a class="btn btn-sm btn-primary btn-icon btn-icon-left product-btn offset-top-20 offset-xs-top-0 btn-view-product" href="#">
-<span class="icon mdi mdi-shopping"></span>
-Enquire
-</a>';
+$this->m_content_builder .= '<!-- Product Add To cart--><a class="btn btn-sm btn-primary btn-icon btn-icon-left product-btn offset-top-20 offset-xs-top-0 btn-view-product"';
+$this->m_content_builder .= 'href="';
+$this->m_content_builder .= 'enquire';
+// $this->m_content_builder .= $this->enquire();
+$this->m_content_builder .= '"';
+$this->m_content_builder .= '>';
+$this->m_content_builder .= '<spanclass="icon mdi mdi-shopping"></span>';
+$this->m_content_builder .= 'Enquire';
+$this->m_content_builder .= '</a>';
 $this->m_content_builder .= '</div>';
 
 $this->m_content_builder .= '</div>';
