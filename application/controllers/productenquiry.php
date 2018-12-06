@@ -17,14 +17,14 @@
  * Product Enquiry class
  * This class deals with retrieving and setting product enquiry information.
  *
- * @category Wheelies_Product_Enquiry_Class
+ * @category Wheelies_Enquire_Class
  *
  * @author   Adedayo Adedapo <ade.adedapo9@gmail.com>
  * @license  DeewanstudiosLTD deewanstudios.com
  *
  * @see     http://url.com
  */
-class ProductEnquiry extends Controller
+class Enquire extends Controller
 {
     private $_product_image_directory = null;
     protected $m_tags;
@@ -47,7 +47,7 @@ class ProductEnquiry extends Controller
         // $this->m_tags = $m_tags;
         $this->m_product_info = $product_info;
 
-        var_dump($this->m_product_info);
+        // var_dump($this->m_product_info);
         // var_dump($this->m_tags);
     }
 
@@ -88,7 +88,7 @@ class ProductEnquiry extends Controller
     /**
      * _mainContentDiv.
      */
-    private function _mainContentDiv()
+    public function _mainContentDiv()
     {
         if (method_exists($this, '_pageContent')) {
             // $this->m_main_content = $this->PageBanners($this->m_page_id);
@@ -126,8 +126,8 @@ class ProductEnquiry extends Controller
      */
     public function index()
     {
-        include_once '../application/views/templates/core/header.php';
+        // include_once '../application/views/templates/core/header.php';
         include_once '../application/views/enquiry/product-enquiry.php';
-        include_once '../application/views/templates/core/footer.php';
+        // include_once '../application/views/templates/core/footer.php';
     }
 }

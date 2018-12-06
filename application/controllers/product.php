@@ -24,6 +24,7 @@ class Product extends Controller
         $this->m_loaded_model = $this->ModelLoader();
         $this->m_tags = $tags;
         $this->_untouched = $tags;
+
         if (isset($this->m_tags)) {
             $this->m_tags = array_filter($this->m_tags);
             $this->m_tags_length = count($this->m_tags);
@@ -123,8 +124,8 @@ class Product extends Controller
             // Change this to a proper exception and load a 404 or something like that.
 
             if (isset($this->_untouched) && in_array('enquire', $this->_untouched)) {
-                // $this->enquire($this->_untouched);
-                $enquire = new ProductEnquiry($this->_untouched);
+                var_dump($this->_untouched);
+                $enquire = new Enquire($this->_untouched);
 
                 return $enquire->index();
             } else {
@@ -212,21 +213,18 @@ class Product extends Controller
     } */
 
     /**
-     * Enquiry.
+     * Enquire.
      *
      * @param mixed $product
      *
      * @return mixed $product
      */
-    /*     public function enquire()
-        {
-            // $productinfo = $this->m_tags;
-            // var_dump('Hello from enquire method');
-            $product = new ProductEnquiry($this->_untouched);
-            // var_dump($this->m_tags);
+    public function enquire()
+    {
+        $enquire = new ProductEnquiry($this->_untouched);
 
-                // return $product->index();
-        } */
+        return $enquire->mainContentDiv();
+    }
 
     /**
      * Index.

@@ -104,7 +104,7 @@ $this->m_content_builder .= 'enquire';
 // $this->m_content_builder .= $this->enquire();
 $this->m_content_builder .= '"';
 $this->m_content_builder .= '>';
-$this->m_content_builder .= '<spanclass="icon mdi mdi-shopping"></span>';
+$this->m_content_builder .= '<span class="icon mdi mdi-shopping"></span>';
 $this->m_content_builder .= 'Enquire';
 $this->m_content_builder .= '</a>';
 $this->m_content_builder .= '</div>';
