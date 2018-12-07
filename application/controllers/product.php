@@ -35,7 +35,7 @@ class Product extends Controller
         } */
 
         // var_dump($this->_untouched);
-        /*  var_dump($this->m_tags); */
+        // var_dump($this->m_tags);
         // var_dump($this->m_tags_length);
     }
 
@@ -203,27 +203,27 @@ class Product extends Controller
     }
 
     /**
-     * _productEnquiry.
+     * _enquiryLink.
      */
-    /* private function _productEnquiry()
+    private function _enquiryLink()
     {
-    return $enquiry = new ProductEnquiry($this->m_tags);
+        $links = ($this->_untouched);
+        $destination = new Enquire($links);
+        // $controller = strtolower(get_class());
+        $controller2 = strtolower(get_class($destination));
+        $combo = array_unshift($links, $controller2);
+        // explode('/', $this->m_tags);
+        // var_dump($links);
+        foreach ($links as $link) {
+            $l = $link.'/';
+            // code...
+            // var_dump($l);
+        }
 
-    // return $enquiry->index();
-    } */
-
-    /**
-     * Enquire.
-     *
-     * @param mixed $product
-     *
-     * @return mixed $product
-     */
-    public function enquire()
-    {
-        $enquire = new ProductEnquiry($this->_untouched);
-
-        return $enquire->mainContentDiv();
+        return;
+        // return array_reduce($links);
+        // var_dump($controller2);
+        // var_dump($combo);
     }
 
     /**
@@ -233,6 +233,6 @@ class Product extends Controller
     {
         include_once VIEWS.'templates/core/header.php';
         include_once VIEWS.'products/products-list.php';
-        include_once VIEWS.'templates/core/footer.php';
+        // include_once VIEWS.'templates/core/footer.php';
     }
 }

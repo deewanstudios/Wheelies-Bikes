@@ -100,7 +100,8 @@ $this->m_content_builder .= "<input class=\"form-control input-sm form-control-i
 $this->m_content_builder .= "</div>"; */
 $this->m_content_builder .= '<!-- Product Add To cart--><a class="btn btn-sm btn-primary btn-icon btn-icon-left product-btn offset-top-20 offset-xs-top-0 btn-view-product"';
 $this->m_content_builder .= 'href="';
-$this->m_content_builder .= 'enquire';
+// $this->m_content_builder .= 'enquire/bikes/unisex/cruiser/se-racing';
+$this->m_content_builder .= $this->_enquiryLink();
 // $this->m_content_builder .= $this->enquire();
 $this->m_content_builder .= '"';
 $this->m_content_builder .= '>';
