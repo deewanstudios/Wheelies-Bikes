@@ -52,7 +52,7 @@ class SelectQueries
         $items = "";
         foreach ($m_product_id as $item) {
             # code...
-            if ($items != "") {
+            if ("" != $items) {
                 $items .= ",";
             }
             $items .= $item;
@@ -74,7 +74,7 @@ class SelectQueries
         $items = "";
         foreach ($m_product_id as $item) {
             # code...
-            if ($items != "") {
+            if ("" != $items) {
                 $items .= ",";
             }
             $items .= $item;
@@ -132,8 +132,11 @@ class SelectQueries
     // br.brand_cat_name, p.product_name, p.product_model,
     {
         $this->m_query = "SELECT
-		p.product_id, bc.bike_cat_name, p.product_description, m.model_year, g.gender_cat_name, pr.product_price_value";
+        p.product_id, bc.bike_cat_name, pc.product_cat_name, p.product_description, m.model_year, g.gender_cat_name, pr.product_price_value";
+        // pc.product_cat_name,
         $this->m_query .= " FROM {$this->m_db_product_table} AS p";
+        $this->m_query .= " LEFT JOIN {$this->m_db_product_category_table} AS pc";
+        $this->m_query .= " ON p.product_category_product_cat_id = pc.product_cat_id";
         $this->m_query .= " LEFT JOIN {$this->m_db_product_gender_category} AS g";
         $this->m_query .= " ON p.gender_categories_gender_cat_id = g.gender_cat_id";
         $this->m_query .= " LEFT JOIN {$this->m_db_product_model_year} AS m";

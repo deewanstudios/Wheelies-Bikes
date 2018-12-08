@@ -157,9 +157,9 @@ class Home extends Controller
     public function index()
     {
         $this->PageMetaData($this->m_page_id);
-        require_once '../application/views/templates/core/landing-header.php';
+        include_once '../application/views/templates/core/landing-header.php';
         // $this  ->  CallToActionSection  (  );
-        require_once '../application/views/home/index.php';
-        require_once '../application/views/templates/core/footer.php';
+        include_once '../application/views/home/index.php';
+        include_once '../application/views/templates/core/footer.php';
     }
 }

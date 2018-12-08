@@ -124,9 +124,7 @@ class Product extends Controller
             // Change this to a proper exception and load a 404 or something like that.
 
             if (isset($this->_untouched) && in_array('enquire', $this->_untouched)) {
-                var_dump($this->_untouched);
                 $enquire = new Enquire($this->_untouched);
-
                 return $enquire->index();
             } else {
                 echo 'Invalid URL supplied from this node';
@@ -152,7 +150,7 @@ class Product extends Controller
         foreach ($specs[0] as $spec_heading => $product_specification) {
             $parts = str_replace('_', ' ', $spec_heading);
         }
-        include_once VIEWS.'templates/layouts/single-product-view-layout.php';
+        include_once VIEWS . 'templates/layouts/single-product-view-layout.php';
 
         return $this->m_content_builder;
     }
@@ -207,23 +205,23 @@ class Product extends Controller
      */
     private function _enquiryLink()
     {
-        $links = ($this->_untouched);
-        $destination = new Enquire($links);
-        // $controller = strtolower(get_class());
-        $controller2 = strtolower(get_class($destination));
-        $combo = array_unshift($links, $controller2);
-        // explode('/', $this->m_tags);
-        // var_dump($links);
-        foreach ($links as $link) {
-            $l = $link.'/';
-            // code...
-            // var_dump($l);
+        foreach ($this->m_product_array as $product_prop) {
+            $this->m_product_category = $product_prop['product_cat_name'];
+            $this->m_bike_cat = $product_prop['bike_cat_name'];
         }
+        $link_part = $this->m_product_category;
+        $link_part .= '/';
+        $link_part .= $this->m_product_gender;
+        $link_part .= '/';
+        $link_part .= $this->m_bike_cat;
+        $link_part .= '/';
+        $link_part .= $this->m_product_brand;
+        $link_part .= '/';
+        $link_part .= $this->m_product_name;
+        $link_part .= ' ';
+        $link_part .= $this->m_product_model;
+        return $link_part;
 
-        return;
-        // return array_reduce($links);
-        // var_dump($controller2);
-        // var_dump($combo);
     }
 
     /**
@@ -231,8 +229,8 @@ class Product extends Controller
      */
     public function index()
     {
-        include_once VIEWS.'templates/core/header.php';
-        include_once VIEWS.'products/products-list.php';
+        include_once VIEWS . 'templates/core/header.php';
+        include_once VIEWS . 'products/products-list.php';
         // include_once VIEWS.'templates/core/footer.php';
     }
 }

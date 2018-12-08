@@ -47,7 +47,7 @@ class Enquire extends Controller
         // $this->m_tags = $m_tags;
         $this->m_product_info = $product_info;
 
-        // var_dump($this->m_product_info);
+        var_dump($this->m_product_info);
         // var_dump($this->m_tags);
     }
 
