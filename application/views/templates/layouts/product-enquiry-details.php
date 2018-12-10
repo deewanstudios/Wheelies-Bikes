@@ -4,12 +4,12 @@
  * PHP version PHP 7.2.1.
  *
  * @category Website
- * @package  WheeliesBikes_Product_Enquiry_File
+ *
  * @author   Adedayo Adedapo <ade.adedapo9@gmail.com>
  * @license  DeewanstudiosLTD deewanstudios.com
- * @link     http://url.com
+ *
+ * @see     http://url.com
  */
-
 $this->m_content_builder = '<!-- Icon box aside right-->';
 $this->m_content_builder .= '<section>';
 // class="offset-top-98 offset-sm-top-66"
@@ -31,9 +31,6 @@ $this->m_content_builder .= '<div class="cell-sm-9 cell-lg-6 cell-xl-4 offset-sm
 $this->m_content_builder .= '<div class="inset-lg-left-50 inset-xl-left-0">';
 $this->m_content_builder .= '<!-- Icon Box Type 2-->';
 $this->m_content_builder .= '<div class="unit unit-sm unit-sm-horizontal text-sm-left">';
-/* $this->m_content_builder .= '<div class="unit-left">';
-$this->m_content_builder .= '<span class="icon icon-lg icon-circle mdi mdi-emoticon material-icons-tag_faces text-picton-blue offset-sm-top-14"></span>';
-$this->m_content_builder .= '</div>'; */
 $this->m_content_builder .= '<div class="unit-body">';
 $this->m_content_builder .= '<h2 class="">';
 // text-bold text-uppercase offset-sm-top-24
@@ -47,7 +44,8 @@ $this->m_content_builder .= '</div>';
 $this->m_content_builder .= '</section>';
 $this->m_content_builder .= '<div>';
 $this->m_content_builder .= '<h3>';
-$this->m_content_builder .= 'GT AGGRESSOR EXPERT';
+$this->m_content_builder .= $this->getEnquiredProductName();
+// $this->m_content_builder .= 'GT AGGRESSOR EXPERT';
 // $this->m_content_builder .= 'Product Name: GT AGGRESSOR EXPERT';
 $this->m_content_builder .= '</h3>';
 $this->m_content_builder .= '<p class="h5">';
