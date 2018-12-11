@@ -33,9 +33,11 @@ class Enquire extends Controller
     private $_m_enquired_product_gender;
     private $_m_enquired_product_cat_type;
     private $_m_enquired_product_brand;
+    private $_m_enquired_product_id;
     private $_m_enquired_product_name;
     private $_m_enquired_product_model;
     private $_m_enquired_product_price;
+    private $_m_enquired_product_image;
 
     /**
      * __construct.
@@ -43,6 +45,8 @@ class Enquire extends Controller
     public function __construct(array $product_info)
     {
         parent::__construct();
+        $this->m_model = 'ProductsModel';
+        $this->m_loaded_model = $this->modelLoader();
         $this->_product_image_directory = PRODUCTIMAGES;
         $this->m_product_info = $product_info;
         if (isset($this->m_product_info) && !null == ($this->m_product_info)) {
@@ -83,12 +87,24 @@ class Enquire extends Controller
                     if (!null == $convert_to_array[1]) {
                         // code...
                         $this->_m_enquired_product_model = $convert_to_array[1];
+                    } else {
+                        // code...
                     }
                 }
             }
             // $this->_m_enquired_product_name = (explode('-', $this->m_product_info[4])[0]);
             // $this->_m_enquired_product_model = (explode('-', $this->m_product_info[4])[1]);
         }
+    }
+
+    /**
+     * ModelLoader.
+     */
+    public function modelLoader()
+    {
+        $m_data = $this->LoadModel($this->m_model);
+
+        return $m_data;
     }
 
     /**
@@ -132,6 +148,23 @@ class Enquire extends Controller
     }
 
     /**
+     * Get the value of _m_enquired_product_id.
+     *
+     * @return int _m_enquired_product_id
+     */
+    public function getEnquiredProductId()
+    {
+        $this->_m_enquired_product_id = $this->m_loaded_model->getProductId($this->_m_enquired_product_name, $this->_m_enquired_product_model);
+        foreach ($this->_m_enquired_product_id as $value) {
+            // code...
+            $this->_m_enquired_product_id = $value['product_id'];
+        }
+        // var_dump($this->_m_enquired_product_id);
+
+        return $this->_m_enquired_product_id;
+    }
+
+    /**
      * Get the value of _m_enquired_product_name.
      *
      * @return self
@@ -158,7 +191,23 @@ class Enquire extends Controller
      */
     public function getEnquiredProductPrice()
     {
+        $this->_m_enquired_product_price = $this->m_loaded_model->getProductPrice($this->getEnquiredProductId());
+        foreach ($this->_m_enquired_product_price as $value) {
+            // code...
+            $this->_m_enquired_product_price = $value['product_price_value'];
+        }
+
         return $this->_m_enquired_product_price;
+    }
+
+    /**
+     * Get the value of _m_enquired_product_image.
+     */
+    public function getEnquiredProductImage()
+    {
+        $this->_m_enquired_product_image = $this->m_loaded_model->getProductMainImage($this->_m_enquired_product_id);
+
+        return $this->_m_enquired_product_image;
     }
 
     /**
@@ -166,6 +215,45 @@ class Enquire extends Controller
      */
     private function _enquirySummary()
     {
+        // $this->getEnquiredProductId();
+        $brand = $this->getEnquiredProductBrand();
+        $product = $this->getEnquiredProductName();
+        $model = $this->getEnquiredProductModel();
+        $price = $this->getEnquiredProductPrice();
+        $image = $this->getEnquiredProductImage();
+        // var_dump($price);
+
+        foreach ($image as $product_image_prop) {
+            if (!null == $product_image_prop['image_name']) {
+                // code...
+                $image_name = $product_image_prop['image_name'];
+            } else {
+                // code...
+                $image_name = 'image name goes here';
+            }
+            if (!null == $product_image_prop['image_description']) {
+                // code...
+                $image_description = $product_image_prop['image_description'];
+            } else {
+                // code...
+                $image_description = 'image description goes here';
+            }
+            if (!null == $product_image_prop['image_caption']) {
+                // code...
+                $image_caption = $product_image_prop['image_caption'];
+            } else {
+                // code...
+                $image_caption = 'image caption goes here';
+            }
+            if (!null == $product_image_prop['image_path']) {
+                // code...
+                $image_path = $this->_product_image_directory.$product_image_prop['image_path'];
+            } else {
+                // code...
+                $image_path = 'https://via.placeholder.com/570';
+            }
+        }
+
         include_once VIEWS.'templates/layouts/product-enquiry-details.php';
 
         return $this->m_content_builder;
