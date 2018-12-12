@@ -573,8 +573,12 @@ class SelectQueries
         $this->m_query .= ' '.$this->m_db_product_table.' as p';
         $this->m_query .= ' WHERE';
         $this->m_query .= " p.product_name ='$m_product_name'";
-        $this->m_query .= ' AND';
-        $this->m_query .= " p.product_model ='$m_product_model'";
+        if (!empty($m_product_model)) {
+            $this->m_query .= " AND p.product_model ='$m_product_model'";
+        } else {
+            $this->m_query .= ' AND p.product_model IS NULL';
+        }
+        // $this->m_query .= " p.product_model ='$m_product_model'";
 
         return $this->m_query;
     }

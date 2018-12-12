@@ -73,27 +73,13 @@ class Enquire extends Controller
                     $this->_m_enquired_product_name = $convert_to_array[0].' '.$convert_to_array[1];
                     $this->_m_enquired_product_model = $convert_to_array[2];
                 }
+            } elseif (2 === $product_info_counter) {
+                $convert_to_array = explode('-', $this->m_product_info[4]);
+                $this->_m_enquired_product_name = $convert_to_array[0];
+                $this->_m_enquired_product_model = $convert_to_array[1];
             } else {
-                // var_dump(false);
-                if ($product_info_counter < 2) {
-                    // code...
-                    // var_dump(wordwrap('Not enough parameters supplied to make the enquiry. There is currently '.$product_info_counter.' parameter(s) supplied', 55));
-                    // var_dump(wordwrap('The product you are trying to enquire for does not exist on this site', 55));
-                } else {
-                    // code...
-                    $convert_to_array = explode('-', $this->m_product_info[4]);
-                    // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0];
-                    if (!null == $convert_to_array[1]) {
-                        // code...
-                        $this->_m_enquired_product_model = $convert_to_array[1];
-                    } else {
-                        // code...
-                    }
-                }
+                /* Insert Error message here, when no product name and model is not supplied or valid */
             }
-            // $this->_m_enquired_product_name = (explode('-', $this->m_product_info[4])[0]);
-            // $this->_m_enquired_product_model = (explode('-', $this->m_product_info[4])[1]);
         }
     }
 
