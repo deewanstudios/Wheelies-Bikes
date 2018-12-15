@@ -65,15 +65,15 @@ class Enquire extends Controller
                 if (5 === $product_info_counter) {
                     // code...
                     // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0].' '.$convert_to_array[1].' '.$convert_to_array[2];
-                    $this->_m_enquired_product_model = $convert_to_array[3].' '.$convert_to_array[4];
+                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
+                    $this->_m_enquired_product_model = $convert_to_array[3] . ' ' . $convert_to_array[4];
                 } elseif (4 === $product_info_counter) {
                     // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0].' '.$convert_to_array[1].' '.$convert_to_array[2];
+                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
                     $this->_m_enquired_product_model = $convert_to_array[3];
                 } elseif (3 === $product_info_counter) {
                     // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0].' '.$convert_to_array[1];
+                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1];
                     $this->_m_enquired_product_model = $convert_to_array[2];
                 }
             } elseif (2 === $product_info_counter) {
@@ -236,14 +236,14 @@ class Enquire extends Controller
             }
             if (!null == $product_image_prop['image_path']) {
                 // code...
-                $image_path = $this->_product_image_directory.$product_image_prop['image_path'];
+                $image_path = $this->_product_image_directory . $product_image_prop['image_path'];
             } else {
                 // code...
                 $image_path = 'https://via.placeholder.com/570';
             }
         }
 
-        include_once VIEWS.'templates/layouts/product-enquiry-details.php';
+        include_once VIEWS . 'templates/layouts/product-enquiry-details.php';
 
         return $this->m_content_builder;
     }
@@ -254,7 +254,7 @@ class Enquire extends Controller
     private function _enquiryFormView()
     {
         // $this->_enquiryInputProcessor();
-        include_once VIEWS.'templates/layouts/forms/product-enquiry-customer-form.php';
+        include_once VIEWS . 'templates/layouts/forms/product-enquiry-customer-form.php';
 
         return $this->m_content_builder;
     }
@@ -313,87 +313,115 @@ class Enquire extends Controller
      */
     public function index()
     {
-        // ('POST' == $_SERVER['REQUEST_METHOD'])
         if (isset($_POST['enquiry-submit'])) {
             // code...
             $this->_enquiryInputProcessor();
-            // $first_name_error = $this->_error_msg['first_name_error'];
-        // var_dump($first_name_error);
         }
-        // var_dump($this->_error_msg);
-
         include_once '../application/views/enquiry/product-enquiry.php';
     }
 
-    private $_error_msg = array();
-    private $_error = false;
+    /*     private $_error_msg = array();
+    private $_error = false; */
+    // Form fields variable
+    private $_enquiry_form_first_name;
+    private $_enquiry_form_last_name;
+    private $_enquiry_form_phone_number;
+    private $_enquiry_form_email_address;
+    private $_enquiry_form_message;
+    // Form fields error variables
+    private $_enquiry_form_first_name_error;
+    private $_enquiry_form_last_name_error;
+    private $_enquiry_form_phone_number_error;
+    private $_enquiry_form_email_address_error;
+    private $_valid = false;
 
-    /*
+    /**
      * _enquiryFormProcessor.
      *
      * @return self
      */
     private function _enquiryInputProcessor()
     {
-        $first_name = $last_name = $phone_number = $email_address = $message = null;
         if ('POST' == $_SERVER['REQUEST_METHOD']) {
-            //  &&
-            // var_dump('submit button has been pressed');
-            if (!empty($_POST['first-name'])) {
-                $first_name = $_POST['first-name'];
-                $_SESSION['first-name'] = $first_name;
-            // var_dump('Provided first name is: '.$first_name);
-                // code...
+            /**
+             *Check if the server request method is post
+             *If so start validating data from the form
+             */
+            // echo 'Enquiry submit button clicked';
+            // var_dump($this->_valid);
+            if (empty($_POST['first-name'])) {
+                /**
+                 * Check if the first name field is empty
+                 * If so set the enquiry_form_first_name_error variable
+                 */
+                $this->_enquiry_form_first_name_error = '* Please enter your first name';
             } else {
-                $this->_error = true;
-                $this->_error_msg['first_name_error'] = 'Please enter your first name';
-                // var_dump($this->_error_msg);
+                /**
+                 * Otherwise set the _enquiry_form_first_name variable
+                 * to the value of the posted first-name input field
+                 */
+                $this->_enquiry_form_first_name = $_POST['first-name'];
+                $this->_valid = true;
             }
-            if (!empty($_POST['last-name'])) {
-                $last_name = $_POST['last-name'];
-                $_SESSION['last-name'] = $last_name;
-            // var_dump('Provided last name is: '.$last_name);
+            if (empty($_POST['last-name'])) {
+                /**
+                 * Check if the last name field is empty
+                 * If so set the enquiry_form_last_name_error variable
+                 */
+                $this->_enquiry_form_last_name_error = '* Please enter your last name';
             } else {
-                $this->_error = true;
-                $this->_error_msg['last_name_error'] = 'Please enter your last name';
+                /**
+                 * Otherwise set the _enquiry_form_last_name variable
+                 * to the value of the posted last-name input field
+                 */
+                $this->_enquiry_form_last_name = $_POST['last-name'];
+                $this->_valid = true;
             }
-            if (!empty($_POST['phone-number'])) {
-                $phone_number = $_POST['phone-number'];
-                $_SESSION['phone-number'] = $phone_number;
-            // $this->_error = false;
-            // var_dump('Provided phone number is: '.$phone_number);
-                // code...
+            if (empty($_POST['phone-number'])) {
+                /**
+                 * Check if the last name field is empty
+                 * If so set the enquiry_form_phone_number_error variable
+                 */
+                $this->_enquiry_form_phone_number_error = '* Please provide us your telephone number, so that we can have an alternative way of contacting you.';
             } else {
-                // code...
-                $this->_error = true;
-                $this->_error_msg['telephone_number_error'] = 'Please provide us your telephone number, so that we can have an alternative way of contacting you';
+                /**
+                 * Otherwise set the _enquiry_form_phone_number variable
+                 * to the value of the posted phone-number input field
+                 */
+                $this->_enquiry_form_phone_number = $_POST['phone-number'];
+                $this->_valid = true;
             }
-            if (!empty($_POST['email-address'])) {
-                $email_address = $_POST['email-address'];
-                $_SESSION['email-address'] = $email_address;
-            // var_dump('Provided email address is: '.$email_address);
-                // code...
+            if (empty($_POST['email-address'])) {
+                /**
+                 * Check if the last name field is empty
+                 * If so set the enquiry_form_email_address_error variable
+                 */
+                $this->_enquiry_form_email_address_error = '* Please provide your email address, as it\'s required for us to be able to respond to your enquiry.';
             } else {
-                // code...
-                $this->_error = true;
-                $this->_error_msg['email_address_error'] = 'Please provide your email address, as it\'s required for us to be able to respond to your enquiry';
-            }
-            if (!null == ($_POST['additional-message'])) {
-                $message = $_POST['additional-message'];
-                $_SESSION['additional-message'] = $message;
+                /**
+                 * Otherwise set the _enquiry_form_email_address variable
+                 * to the value of the posted email-address input field
+                 */
+                $this->_enquiry_form_email_address = $_POST['email-address'];
+                $this->_valid = true;
 
-                return $message;
+            }
 
-            // var_dump('Content of the forms text area is: '.$message);
+            if (empty($_POST['additional-message'])) {
+                /**
+                 * Check if the additional message is empty
+                 * If empty, set the the _enquiry_form_message variable to an empty string.
+                 */
+                $this->_enquiry_form_message = '';
+
             } else {
-                $message = 'There was no additional information provided';
-
-                return $message;
-                // var_dump($message);
-                // code...
+                /**
+                 * Otherwise set the _enquiry_form_message variable
+                 * to the value of the posted additional-message text area field
+                 */
+                $this->_enquiry_form_message = $_POST['additional-message'];
             }
         }
 
-        // return $this->_error_msg;
     }
 }
