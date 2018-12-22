@@ -54,8 +54,11 @@ class Enquire extends Controller
         $this->m_loaded_model = $this->modelLoader();
         $this->_product_image_directory = PRODUCTIMAGES;
         $this->m_product_info = $product_info;
+        /* if (!empty($_SESSION)) {
+        # code...
         var_dump($_SESSION);
-        var_dump($this->m_product_info);
+        } */
+        // var_dump($this->m_product_info);
         if (isset($this->m_product_info) && !null == ($this->m_product_info)) {
             array_shift($this->m_product_info);
             $this->_m_enquired_product_cat_name = $this->m_product_info[0];
@@ -379,7 +382,6 @@ class Enquire extends Controller
                  * to the value of the posted last-name input field
                  */
                 $this->_enquiry_form_last_name = $_POST['last-name'];
-                $_SESSION['last-name'] = $this->_enquiry_form_last_name;
             }
             if (empty($_POST['phone-number'])) {
                 /*
@@ -393,7 +395,6 @@ class Enquire extends Controller
                  * to the value of the posted phone-number input field
                  */
                 $this->_enquiry_form_phone_number = $_POST['phone-number'];
-                $_SESSION['phone-number'] = $this->_enquiry_form_phone_number;
             }
             if (empty($_POST['email-address'])) {
                 /*
@@ -407,7 +408,6 @@ class Enquire extends Controller
                  * to the value of the posted email-address input field
                  */
                 $this->_enquiry_form_email_address = $_POST['email-address'];
-                $_SESSION['email-address'] = $this->_enquiry_form_email_address;
             }
 
             if (empty($_POST['additional-message'])) {
@@ -422,7 +422,6 @@ class Enquire extends Controller
                  * to the value of the posted additional-message text area field
                  */
                 $this->_enquiry_form_message = $_POST['additional-message'];
-                $_SESSION['message'] = $this->_enquiry_form_message;
             }
 
         }
@@ -440,12 +439,12 @@ class Enquire extends Controller
      * Confirmation
      */
 
-    public function confirmation()
+    /*   public function confirmation()
     {
 
-        var_dump($this->m_product_info);
-        include_once VIEWS . 'templates/layouts/enquiry-confirmation-layout.php';
-    }
+    var_dump($this->m_product_info);
+    include_once VIEWS . 'templates/layouts/enquiry-confirmation-layout.php';
+    } */
 
     /**
      * _success
@@ -455,11 +454,14 @@ class Enquire extends Controller
     private function _success()
     {
         if (($this->_enquiry_form_first_name) && ($this->_enquiry_form_last_name) && ($this->_enquiry_form_phone_number) && ($this->_enquiry_form_email_address)) {
-            // $this->enquiryConfirmation();
+            // Invocation of the insert function to inser the user data into the database.
+            // $this->_insertIntoEnquiryTable($this->_enquiry_form_first_name, $this->_enquiry_form_last_name, $this->_enquiry_form_phone_number, $this->_enquiry_form_email_address, $this->_enquiry_form_message);
+            // Invocation of method to send confirmation email to client.
+            // Invocation of method to send the enquiry details to the business owner.
             header('location: ' . URL . "confirmation");
-            # code...
+            die();
         } else {
-            echo '<strong>HELP!!!</strong>';
+            echo '<strong>HELP!!! Something\'s gone horribly wrong...</strong>';
         }
 
     }

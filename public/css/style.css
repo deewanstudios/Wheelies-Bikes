@@ -8617,7 +8617,7 @@ button.close {
 /** 2.1  Reset */
 
 html *:first-child {
-    /* margin-top: 0; */
+    margin-top: 0;
 }
 
 html *:last-child {
@@ -10786,7 +10786,7 @@ html.lt-ie-10 .range>[class*="cell-lg-preffix-"] {
     left: 0;
     height: 1px;
     width: 40px;
-    background: #f66875;
+    background: #00003e;
 }
 
 @media (min-width: 480px) {
@@ -14616,6 +14616,10 @@ html.lt-ie11 .btn-santos-svg:hover {
 .section-34 {
     padding-top: 34px;
     padding-bottom: 34px;
+}
+.section-40 {
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .section-41 {

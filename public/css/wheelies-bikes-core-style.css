@@ -340,3 +340,6 @@ p, .p, .list {
 } */
 
 
+.page-footer{
+    margin-bottom:unset !important;
+}

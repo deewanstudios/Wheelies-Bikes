@@ -19,17 +19,17 @@ class App
 
         // check for controller: no controller given ? then load start-page
         if (!$this->controller) {
-            include_once APP.'home.php';
+            include_once APP . 'home.php';
             $page = new Home();
             $page->index();
-        } elseif (file_exists(APP.$this->controller.'.php')) {
+        } elseif (file_exists(APP . $this->controller . '.php')) {
             // here we did check for controller: does such a controller exist ?
 
             // if so, then load this file and create this controller
             // example: if controller would be "car", then this line would translate into:
             // $this->car = new car();
-            include_once APP.$this->controller.'.php';
-            $this->controller = new $this->controller();
+            include_once APP . $this->controller . '.php';
+            $this->controller = new $this->controller($param = null);
 
             // check for method: does such a method exist in the controller ?
             if (method_exists($this->controller, $this->method)) {
@@ -50,28 +50,28 @@ class App
                     $this->controller->index();
                 }
             }
-        } elseif (file_exists(APP.'productlist.php')) {
-            include_once APP.'productlist.php';
+        } elseif (file_exists(APP . 'productlist.php')) {
+            include_once APP . 'productlist.php';
             array_unshift($this->params, $this->method);
             $this->controller = new ProductList($this->controller, $this->params);
             // var_dump($this->controller);
             $this->controller->index();
-        } elseif (file_exists(APP.'product.php')) {
-            include_once APP.'product.php';
+        } elseif (file_exists(APP . 'product.php')) {
+            include_once APP . 'product.php';
             array_unshift($this->params, $this->method, $this->controller);
             $this->controller = new Product($this->params);
             // var_dump($this->controller);
             // $this->controller = new Product($this->controller, $this->params);
             $this->controller->index();
-        } elseif (file_exists(APP.'productenquiry.php')) {
-            include_once APP.'productenquiry.php';
+        } elseif (file_exists(APP . 'productenquiry.php')) {
+            include_once APP . 'productenquiry.php';
             array_unshift($this->params, $this->controller);
             $this->controller = new Enquire($this->params);
             // $this->controller = new Product($this->controller, $this->params);
             $this->controller->index();
         }
         /* var_dump($this->params);
-        var_dump($this->controller); */
+    var_dump($this->controller); */
     }
 
     /**
