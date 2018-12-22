@@ -1,19 +1,22 @@
 <?php
 
 /**
+ * Product Enquiry class file.
+ *
  * This is the product enquiry file. This file deals with with all implementations of member variable and methods required for product enquiry by the user to be sent to the owner of the business.
  * PHP version PHP 7.2.1.
  *
  * @category Website
  *
- * @author   Adedayo Adedapo <ade.adedapo9@gmail.com>
- * @license  DeewanstudiosLTD deewanstudios.com
+ * @author  Adedayo Adedapo <ade.adedapo9@gmail.com>
+ * @license DeewanstudiosLTD deewanstudios.com
  *
- * @see     http://url.com
+ * @see http://url.com
  */
 
 // namespace controllers;
 session_start();
+// session_destroy();
 
 /**
  * Product Enquiry class
@@ -51,7 +54,8 @@ class Enquire extends Controller
         $this->m_loaded_model = $this->modelLoader();
         $this->_product_image_directory = PRODUCTIMAGES;
         $this->m_product_info = $product_info;
-        // var_dump($_SESSION);
+        var_dump($_SESSION);
+        var_dump($this->m_product_info);
         if (isset($this->m_product_info) && !null == ($this->m_product_info)) {
             array_shift($this->m_product_info);
             $this->_m_enquired_product_cat_name = $this->m_product_info[0];
@@ -343,84 +347,119 @@ class Enquire extends Controller
     private function _enquiryInputProcessor()
     {
         if ('POST' == $_SERVER['REQUEST_METHOD']) {
-            /**
+            /*
              *Check if the server request method is post
              *If so start validating data from the form
              */
             // echo 'Enquiry submit button clicked';
-            // var_dump($this->_valid);
             if (empty($_POST['first-name'])) {
-                /**
+                /*
                  * Check if the first name field is empty
                  * If so set the enquiry_form_first_name_error variable
                  */
                 $this->_enquiry_form_first_name_error = '* Please enter your first name';
             } else {
-                /**
+                /*
                  * Otherwise set the _enquiry_form_first_name variable
                  * to the value of the posted first-name input field
                  */
                 $this->_enquiry_form_first_name = $_POST['first-name'];
-                $this->_valid = true;
+                $_SESSION['first-name'] = $this->_enquiry_form_first_name;
+
             }
             if (empty($_POST['last-name'])) {
-                /**
+                /*
                  * Check if the last name field is empty
                  * If so set the enquiry_form_last_name_error variable
                  */
                 $this->_enquiry_form_last_name_error = '* Please enter your last name';
             } else {
-                /**
+                /*
                  * Otherwise set the _enquiry_form_last_name variable
                  * to the value of the posted last-name input field
                  */
                 $this->_enquiry_form_last_name = $_POST['last-name'];
-                $this->_valid = true;
+                $_SESSION['last-name'] = $this->_enquiry_form_last_name;
             }
             if (empty($_POST['phone-number'])) {
-                /**
+                /*
                  * Check if the last name field is empty
                  * If so set the enquiry_form_phone_number_error variable
                  */
                 $this->_enquiry_form_phone_number_error = '* Please provide us your telephone number, so that we can have an alternative way of contacting you.';
             } else {
-                /**
+                /*
                  * Otherwise set the _enquiry_form_phone_number variable
                  * to the value of the posted phone-number input field
                  */
                 $this->_enquiry_form_phone_number = $_POST['phone-number'];
-                $this->_valid = true;
+                $_SESSION['phone-number'] = $this->_enquiry_form_phone_number;
             }
             if (empty($_POST['email-address'])) {
-                /**
+                /*
                  * Check if the last name field is empty
                  * If so set the enquiry_form_email_address_error variable
                  */
                 $this->_enquiry_form_email_address_error = '* Please provide your email address, as it\'s required for us to be able to respond to your enquiry.';
             } else {
-                /**
+                /*
                  * Otherwise set the _enquiry_form_email_address variable
                  * to the value of the posted email-address input field
                  */
                 $this->_enquiry_form_email_address = $_POST['email-address'];
-                $this->_valid = true;
-
+                $_SESSION['email-address'] = $this->_enquiry_form_email_address;
             }
 
             if (empty($_POST['additional-message'])) {
-                /**
+                /*
                  * Check if the additional message is empty
                  * If empty, set the the _enquiry_form_message variable to an empty string.
                  */
                 $this->_enquiry_form_message = '';
-
             } else {
-                /**
+                /*
                  * Otherwise set the _enquiry_form_message variable
                  * to the value of the posted additional-message text area field
                  */
                 $this->_enquiry_form_message = $_POST['additional-message'];
+                $_SESSION['message'] = $this->_enquiry_form_message;
             }
+
+        }
+        /* if (($this->_enquiry_form_first_name) && ($this->_enquiry_form_last_name) && ($this->_enquiry_form_phone_number) && ($this->_enquiry_form_email_address)) {
+        // $this->enquiryConfirmation();
+        header('location: ' . URL . "confirmation");
+        # code...
+        } else {
+        echo '<strong>HELP!!!</strong>';
+        } */
+        $this->_success();
+    }
+
+    /**
+     * Confirmation
+     */
+
+    public function confirmation()
+    {
+
+        var_dump($this->m_product_info);
+        include_once VIEWS . 'templates/layouts/enquiry-confirmation-layout.php';
+    }
+
+    /**
+     * _success
+     *
+     * @return void
+     */
+    private function _success()
+    {
+        if (($this->_enquiry_form_first_name) && ($this->_enquiry_form_last_name) && ($this->_enquiry_form_phone_number) && ($this->_enquiry_form_email_address)) {
+            // $this->enquiryConfirmation();
+            header('location: ' . URL . "confirmation");
+            # code...
+        } else {
+            echo '<strong>HELP!!!</strong>';
         }
 
     }

@@ -66,7 +66,7 @@ class App
         } elseif (file_exists(APP.'productenquiry.php')) {
             include_once APP.'productenquiry.php';
             array_unshift($this->params, $this->controller);
-            $this->controller = new ProductEnquiry($this->params);
+            $this->controller = new Enquire($this->params);
             // $this->controller = new Product($this->controller, $this->params);
             $this->controller->index();
         }
