@@ -1,4 +1,6 @@
-@charset "UTF-8"; .rd-navbar-menu-wrap {
+@charset "UTF-8";
+
+.rd-navbar-menu-wrap {
     padding: 0px !important;
     margin: 0px auto !important;
     background: #000000 !important;
@@ -74,7 +76,8 @@
     text-shadow: 1px 1px 1px #aaa;
 }
 
-.btn-lg.btn-icon .icon, .btn-group-lg>.btn-icon.btn .icon {
+.btn-lg.btn-icon .icon,
+.btn-group-lg>.btn-icon.btn .icon {
     font-size: 32px;
     padding-right: 24px;
     padding: 0px !important;
@@ -86,17 +89,25 @@
     padding-bottom: 24px;
 }
 
-.rd-navbar-default.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap, .rd-navbar-sidebar-toggle.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap, .rd-navbar-floated.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap, .rd-navbar-logo-center.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap {
+.rd-navbar-default.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap,
+.rd-navbar-sidebar-toggle.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap,
+.rd-navbar-floated.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap,
+.rd-navbar-logo-center.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav-wrap {
     color: #ffffff;
     background-color: #000000;
 }
 
-.rd-navbar-default.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a, .rd-navbar-sidebar-toggle.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a, .rd-navbar-sidebar-fixed.rd-navbar-light .rd-navbar-nav li:hover>a, .rd-navbar-floated.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a, .rd-navbar-logo-center.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a {
+.rd-navbar-default.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a,
+.rd-navbar-sidebar-toggle.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a,
+.rd-navbar-sidebar-fixed.rd-navbar-light .rd-navbar-nav li:hover>a,
+.rd-navbar-floated.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a,
+.rd-navbar-logo-center.rd-navbar-light.rd-navbar-fixed .rd-navbar-nav li:hover>a {
     color: #fff;
     background: #00003e;
 }
 
-.swiper-pagination-type-2 .swiper-pagination-bullet-active, .swiper-pagination-type-2 .swiper-pagination-bullet:hover {
+.swiper-pagination-type-2 .swiper-pagination-bullet-active,
+.swiper-pagination-type-2 .swiper-pagination-bullet:hover {
     border-color: #00003e;
 }
 
@@ -108,7 +119,8 @@
     background: linear-gradient(90deg, #00003e 0%, #aaaaaa 100%);
 }
 
-.text-between:before, .text-between:after {
+.text-between:before,
+.text-between:after {
     background: #00003e;
 }
 
@@ -118,7 +130,15 @@
     border-color: rgba(0, 0, 62, 0.95);
 }
 
-.btn-view-product:hover, .btn-view-product:active:focus, .btn-view-product:active.focus, .btn-view-product.active:hover, .btn-view-product.active:focus, .btn-view-product.active.focus, .open>.btn-view-product.dropdown-toggle:hover, .open>.btn-view-product.dropdown-toggle:focus, .open>.btn-view-product.dropdown-toggle.focus {
+.btn-view-product:hover,
+.btn-view-product:active:focus,
+.btn-view-product:active.focus,
+.btn-view-product.active:hover,
+.btn-view-product.active:focus,
+.btn-view-product.active.focus,
+.open>.btn-view-product.dropdown-toggle:hover,
+.open>.btn-view-product.dropdown-toggle:focus,
+.open>.btn-view-product.dropdown-toggle.focus {
     color: #fff;
     background-color: rgba(0, 0, 62, 0.95);
     border-color: rgba(0, 0, 62, 0.95);
@@ -130,7 +150,12 @@
     border-color: rgba(0, 0, 62, 0.95);
 }
 
-.btn-wheelies:focus, .btn-wheelies.focus, .btn-wheelies:hover, .btn-wheelies:active, .btn-wheelies.active, .open>.btn-wheelies.dropdown-toggle {
+.btn-wheelies:focus,
+.btn-wheelies.focus,
+.btn-wheelies:hover,
+.btn-wheelies:active,
+.btn-wheelies.active,
+.open>.btn-wheelies.dropdown-toggle {
     background-color: #00003e !important;
     border-color: #00003e !important;
 }
@@ -158,7 +183,16 @@ a:hover {
     color: #ffffff;
 }
 
-.pagination>.active>a, .pagination>.active>a:hover, .pagination>.active>a:focus, .pagination>.active>a:active, .pagination>.active>a:active:focus, .pagination>.active>span, .pagination>.active>span:hover, .pagination>.active>span:focus, .pagination>.active>span:active, .pagination>.active>span:active:focus {
+.pagination>.active>a,
+.pagination>.active>a:hover,
+.pagination>.active>a:focus,
+.pagination>.active>a:active,
+.pagination>.active>a:active:focus,
+.pagination>.active>span,
+.pagination>.active>span:hover,
+.pagination>.active>span:focus,
+.pagination>.active>span:active,
+.pagination>.active>span:active:focus {
     background-color: #00003e !important;
     border-color: #00003e !important;
 }
@@ -202,60 +236,132 @@ a:hover {
 }
 
 /** 1.4  Type */
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
     font-family: "Bree Serif", serif;
     font-weight: 700;
     line-height: 1;
     color: #00003e;
 }
 
-h1 small, h1 .small, h2 small, h2 .small, h3 small, h3 .small, h4 small, h4 .small, h5 small, h5 .small, h6 small, h6 .small, .h1 small, .h1 .small, .h2 small, .h2 .small, .h3 small, .h3 .small, .h4 small, .h4 .small, .h5 small, .h5 .small, .h6 small, .h6 .small {
+h1 small,
+h1 .small,
+h2 small,
+h2 .small,
+h3 small,
+h3 .small,
+h4 small,
+h4 .small,
+h5 small,
+h5 .small,
+h6 small,
+h6 .small,
+.h1 small,
+.h1 .small,
+.h2 small,
+.h2 .small,
+.h3 small,
+.h3 .small,
+.h4 small,
+.h4 .small,
+.h5 small,
+.h5 .small,
+.h6 small,
+.h6 .small {
     font-weight: normal;
     line-height: 1;
     color: #f2f2f2;
 }
 
-h1, .h1, h2, .h2, h3, .h3 {
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
     margin-top: 24px;
     margin-bottom: 36px;
 }
 
-h1 small, h1 .small, .h1 small, .h1 .small, h2 small, h2 .small, .h2 small, .h2 .small, h3 small, h3 .small, .h3 small, .h3 .small {
+h1 small,
+h1 .small,
+.h1 small,
+.h1 .small,
+h2 small,
+h2 .small,
+.h2 small,
+.h2 .small,
+h3 small,
+h3 .small,
+.h3 small,
+.h3 .small {
     font-size: 65%;
 }
 
-h4, .h4, h5, .h5, h6, .h6 {
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
     margin-top: 12px;
     margin-bottom: 12px;
 }
 
-h4 small, h4 .small, .h4 small, .h4 .small, h5 small, h5 .small, .h5 small, .h5 .small, h6 small, h6 .small, .h6 small, .h6 .small {
+h4 small,
+h4 .small,
+.h4 small,
+.h4 .small,
+h5 small,
+h5 .small,
+.h5 small,
+.h5 .small,
+h6 small,
+h6 .small,
+.h6 small,
+.h6 .small {
     font-size: 75%;
 }
 
-h1, .h1 {
+h1,
+.h1 {
     /* font-size: 45px; */
     font-size: 2.8em;
 }
 
-h2, .h2 {
+h2,
+.h2 {
     /*     font-size: 38px; */
     font-size: 2.4em
 }
 
-h3, .h3 {
+h3,
+.h3 {
     font-size: 2em
 }
 
-h4, .h4 {
+h4,
+.h4 {
     font-size: 1.6em;
 }
 
-h5, .h5 {
+h5,
+.h5 {
     font-size: 1.2;
 }
 
-h6, .h6 {
+h6,
+.h6 {
     font-size: 0.8em;
 }
 
@@ -295,17 +401,21 @@ h6, .h6 {
 }
 
 @media only screen and (min-width: 1200px) {
+
     /*     .mega-menu-column-title {
         padding: 10px;
         border-top: solid;
         border-bottom: solid;
         display: block;
-    } */#mega-menu-column-title {
+    } */
+    #mega-menu-column-title {
         border-top: solid !important;
     }
 }
 
-p, .p, .list {
+p,
+.p,
+.list {
     margin-top: 0px !important;
     margin-bottom: 18px;
 }
@@ -340,3 +450,10 @@ p, .p, .list {
 } */
 
 
+.page-footer {
+    margin-bottom: unset !important;
+}
+
+.page-min-height {
+    min-height: 69.3vh;
+}

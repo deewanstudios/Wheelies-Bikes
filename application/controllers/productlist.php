@@ -210,7 +210,7 @@ class ProductList extends Controller
         return array($products);
     }
 
-    private function MainContentDiv()
+    private function _mainContentDiv()
     {
         if (method_exists($this, 'PageContent')) {
             // $this->m_main_content = $this->PageBanners($this->m_page_id);

@@ -29,8 +29,8 @@ $this->m_content_builder .= '<!-- Product Brand-->';
 
 $this->m_content_builder .= '<!-- Product Title-->';
 $this->m_content_builder .= '<h5 class="product-title offset-top-0">';
-$this->m_content_builder .= strtoupper($this->m_product_brand).' ';
-$this->m_content_builder .= strtoupper($this->m_product_name).' ';
+$this->m_content_builder .= strtoupper($this->m_product_brand) . ' ';
+$this->m_content_builder .= strtoupper($this->m_product_name) . ' ';
 if (!empty($this->m_product_model)) {
     $this->m_content_builder .= strtoupper($this->m_product_model);
 }
@@ -93,18 +93,21 @@ $this->m_content_builder .= number_format($this->m_product_price, 2);
 $this->m_content_builder .= '</span>';
 $this->m_content_builder .= '</div>';
 
+// Enquiry Button Section Starts Here
 $this->m_content_builder .= '<div class="offset-top-34">';
-/* $this->m_content_builder .= "<div class=\"form-group product-number\">";
-$this->m_content_builder .= "<label class=\"text-dark\">Quantity:</label>";
-$this->m_content_builder .= "<input class=\"form-control input-sm form-control-impressed\" type=\"number\" data-zeros=\"true\" value=\"1\" min=\"1\" max=\"20\">";
-$this->m_content_builder .= "</div>"; */
-$this->m_content_builder .= '<!-- Product Add To cart--><a class="btn btn-sm btn-primary btn-icon btn-icon-left product-btn offset-top-20 offset-xs-top-0 btn-view-product" href="../product-enquiry">
-<span class="icon mdi mdi-shopping"></span>
-Enquire
-</a>';
-$this->m_content_builder .= '</div>';
+$this->m_content_builder .= '<!--Enquiry Button-->';
+$this->m_content_builder .= '<a href="';
+$this->m_content_builder .= $this->m_base_url;
+$this->m_content_builder .= 'enquire/';
+$this->m_content_builder .= strtolower(preg_replace('/\s/', '-', $this->_enquiryLink()));
 
+$this->m_content_builder .= '"';
+$this->m_content_builder .= 'class="btn btn-sm btn-icon btn-icon-left product-btn offset-top-20 offset-xs-top-0 btn-view-product"';
+$this->m_content_builder .= '>';
+$this->m_content_builder .= '<span class="icon mdi mdi-shopping"></span>';
+$this->m_content_builder .= 'Enquire';
+$this->m_content_builder .= '</a>';
 $this->m_content_builder .= '</div>';
-
+// End of Enquiry Button Section
 $this->m_content_builder .= '</div>';
 $this->m_content_builder .= '</div>';
