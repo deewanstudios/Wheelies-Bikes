@@ -463,6 +463,23 @@ class Enquire extends Controller
     }
 
     /**
+     * _sendMailToSiteOwner
+     *
+     * @return void
+     */
+    private function _sendMailToSiteOwner()
+    {
+        $mailer = new Mailer();
+        $from   = $mailer->setFromAddress($this->_enquiry_form_email_address);
+        $mailer->setMailTo('info@deewanstudios.com');
+        $mailer->setMailSubject('Tester');
+        $mailer->setMailMessage('Lorem Ipsum');
+        $mailer->setMailHeaders($header);
+        $mailer->_sendMessage();
+
+    }
+
+    /**
      * _success
      *
      * @return void
