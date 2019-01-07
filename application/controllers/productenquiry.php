@@ -24,10 +24,10 @@ session_start();
  *
  * @category Wheelies_Enquire_Class
  *
- * @author   Adedayo Adedapo <ade.adedapo9@gmail.com>
- * @license  DeewanstudiosLTD deewanstudios.com
+ * @author  Adedayo Adedapo <ade.adedapo9@gmail.com>
+ * @license DeewanstudiosLTD deewanstudios.com
  *
- * @see     http://url.com
+ * @see http://url.com
  */
 class Enquire extends Controller
 {
@@ -50,10 +50,10 @@ class Enquire extends Controller
     public function __construct(array $product_info)
     {
         parent::__construct();
-        $this->m_model = 'ProductsModel';
-        $this->m_loaded_model = $this->modelLoader();
+        $this->m_model                  = 'ProductsModel';
+        $this->m_loaded_model           = $this->modelLoader();
         $this->_product_image_directory = PRODUCTIMAGES;
-        $this->m_product_info = $product_info;
+        $this->m_product_info           = $product_info;
         /* if (!empty($_SESSION)) {
         # code...
         var_dump($_SESSION);
@@ -62,30 +62,30 @@ class Enquire extends Controller
         if (isset($this->m_product_info) && !null == ($this->m_product_info)) {
             array_shift($this->m_product_info);
             $this->_m_enquired_product_cat_name = $this->m_product_info[0];
-            $this->_m_enquired_product_gender = $this->m_product_info[1];
+            $this->_m_enquired_product_gender   = $this->m_product_info[1];
             $this->_m_enquired_product_cat_type = $this->m_product_info[2];
-            $this->_m_enquired_product_brand = $this->m_product_info[3];
-            $product_info_counter = count(explode('-', $this->m_product_info[4]));
+            $this->_m_enquired_product_brand    = $this->m_product_info[3];
+            $product_info_counter               = count(explode('-', $this->m_product_info[4]));
             if ($product_info_counter > 2) {
                 // var_dump(true);
                 $convert_to_array = explode('-', $this->m_product_info[4]);
                 if (5 === $product_info_counter) {
                     // code...
                     // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
+                    $this->_m_enquired_product_name  = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
                     $this->_m_enquired_product_model = $convert_to_array[3] . ' ' . $convert_to_array[4];
                 } elseif (4 === $product_info_counter) {
                     // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
+                    $this->_m_enquired_product_name  = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
                     $this->_m_enquired_product_model = $convert_to_array[3];
                 } elseif (3 === $product_info_counter) {
                     // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1];
+                    $this->_m_enquired_product_name  = $convert_to_array[0] . ' ' . $convert_to_array[1];
                     $this->_m_enquired_product_model = $convert_to_array[2];
                 }
             } elseif (2 === $product_info_counter) {
-                $convert_to_array = explode('-', $this->m_product_info[4]);
-                $this->_m_enquired_product_name = $convert_to_array[0];
+                $convert_to_array                = explode('-', $this->m_product_info[4]);
+                $this->_m_enquired_product_name  = $convert_to_array[0];
                 $this->_m_enquired_product_model = $convert_to_array[1];
             } else {
                 /* Insert Error message here, when no product name and model is not supplied or valid */
@@ -212,11 +212,11 @@ class Enquire extends Controller
     private function _enquirySummary()
     {
         // $this->getEnquiredProductId();
-        $brand = $this->getEnquiredProductBrand();
+        $brand   = $this->getEnquiredProductBrand();
         $product = $this->getEnquiredProductName();
-        $model = $this->getEnquiredProductModel();
-        $price = $this->getEnquiredProductPrice();
-        $image = $this->getEnquiredProductImage();
+        $model   = $this->getEnquiredProductModel();
+        $price   = $this->getEnquiredProductPrice();
+        $image   = $this->getEnquiredProductImage();
         // var_dump($price);
 
         foreach ($image as $product_image_prop) {
@@ -367,7 +367,7 @@ class Enquire extends Controller
                  * to the value of the posted first-name input field
                  */
                 $this->_enquiry_form_first_name = $_POST['first-name'];
-                $_SESSION['first-name'] = $this->_enquiry_form_first_name;
+                $_SESSION['first-name']         = $this->_enquiry_form_first_name;
 
             }
             if (empty($_POST['last-name'])) {
@@ -447,6 +447,22 @@ class Enquire extends Controller
     } */
 
     /**
+     * _confirmation
+     *
+     * @return void
+     */
+    private function _confirmation()
+    {
+        $type = 'Enquiry';
+
+        $message = 'Thanks for taking the time to contact us.
+        Your enquiry has been sent to the appropriate team.' . BR .
+            'We will get back to you as soon as possible with an update on your product enquiry.';
+        $confirmation = new Confirmation($type, $message);
+        return $confirmation->index();
+    }
+
+    /**
      * _success
      *
      * @return void
@@ -458,8 +474,38 @@ class Enquire extends Controller
             // $this->_insertIntoEnquiryTable($this->_enquiry_form_first_name, $this->_enquiry_form_last_name, $this->_enquiry_form_phone_number, $this->_enquiry_form_email_address, $this->_enquiry_form_message);
             // Invocation of method to send confirmation email to client.
             // Invocation of method to send the enquiry details to the business owner.
-            header('location: ' . URL . "confirmation");
-            die();
+            // try {
+            //code...
+            $insert = $this->m_loaded_model->insertEnquiry(
+                $this->_enquiry_form_first_name . ' ' . $this->_enquiry_form_last_name, $this->_enquiry_form_phone_number,
+                $this->_enquiry_form_email_address, $this->_enquiry_form_message
+            );
+            $email = $this->_sendMailToSiteOwner();
+            /*     if (!$insert) {
+            // code...
+            // throw new Exception(
+            echo "Oops!!! Something has gone terribly wrong. Please try again.
+            If the problem persists, please contact us using the form
+            on the contact page.";
+            // );
+            } */
+            /* else {
+            // code...
+            $this->_confirmation();
+            } */
+            // } catch (Exception $e) {
+            // echo $e->getMessage();
+            // }
+            if (!$insert && !$email) {
+                # code...
+                throw new Exception("Error Processing Request", 1);
+                return false;
+            } else {
+
+                $this->_confirmation();
+                return true;
+            }
+            // die();
         } else {
             echo '<strong>HELP!!! Something\'s gone horribly wrong...</strong>';
         }

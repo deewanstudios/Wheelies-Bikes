@@ -26,18 +26,20 @@
 class Confirmation extends Controller
 {
     private $_confirmation_type;
+    private $_confirmation_message;
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct($confirmation_type)
+    public function __construct($confirmation_type, $confirmation_message)
     {
         parent::__construct();
-        $confirmation_type = 'Enquiry';
+        // $confirmation_type = 'Enquiry';
         $this->m_loaded_model = 'ConfirmationModel';
         $this->m_page_id = 6;
         $this->_confirmation_type = $confirmation_type;
+        $this->_confirmation_message = $confirmation_message;
         // var_dump($this->_confirmation_type);
         // var_dump($this->modelLoader());
         $this->setConfirmationType($confirmation_type);
@@ -71,8 +73,29 @@ class Confirmation extends Controller
     public function setConfirmationType($_confirmation_type)
     {
         $this->_confirmation_type = $_confirmation_type;
-        // var_dump($this->_confirmation_type);
         return $this->_confirmation_type;
+    }
+
+    /**
+     * Get the value of _confirmation_message
+     *
+     * @return _confirmation_message;
+     */
+    public function getConfirmationMessage()
+    {
+        return $this->_confirmation_message;
+    }
+
+    /**
+     * Set the value of _confirmation_message
+     *
+     * @return self
+     */
+    public function setConfirmationMessage($_confirmation_message)
+    {
+        $this->_confirmation_message = $_confirmation_message;
+
+        return $this->_confirmation_message;
     }
 
     /**
@@ -82,6 +105,14 @@ class Confirmation extends Controller
      */
     private function _confirmationView()
     {
+        $redirect = "You will be redirected to the home page in:";
+        $countdown = 10;
+        if (!empty($_SESSION)) {
+            $name = ($_SESSION['first-name']);
+        }
+        /* var_dump($this->_confirmation_type);
+        var_dump($this->_confirmation_message); */
+        // var_dump($this->m_base_url);
         include_once VIEWS . 'templates/layouts/confirmation-view-layout.php';
         return $this->m_content_builder;
 
@@ -107,9 +138,10 @@ class Confirmation extends Controller
         if (method_exists($this, '_pageContent')) {
             // $this->m_main_content = $this->PageBanners($this->m_page_id);
 
-            $this->m_main_content .= '<main class="page-content section-40" style="
-            min-height: 69.3vh;">';
-            // section-40" 
+            $this->m_main_content .= '<main class="page-content page-min-height">';
+            // section-40"
+            // section-10
+            // style="min-height: 69.3vh;"
 
             foreach ($this->_pageContent() as $m_page_element) {
                 $this->m_main_content .= $m_page_element;
@@ -121,7 +153,7 @@ class Confirmation extends Controller
 
             return $this->m_main_content;
         } else {
-            $this->m_main_content = '<main class="page-content">';
+            $this->m_main_content = '<main class="page-content page-min-height">';
 
             $this->m_main_content .= '<section class="section-98 section-sm-110">';
             $this->m_main_content .= '<div class="shell">';
@@ -148,11 +180,7 @@ class Confirmation extends Controller
     {
         // var_dump($this);
         include_once VIEWS . 'templates/core/header.php';
-        // session_destroy();
-        if (!empty($_SESSION)) {
-            var_dump($_SESSION['first-name']);
-        }
-        unset($_SESSION['first-name']);
+        // unset($_SESSION['first-name']);
         include_once VIEWS . 'confirmation/confirmation-view.php';
         include_once VIEWS . 'templates/core/footer.php';
 

@@ -29,7 +29,7 @@ class App
             // example: if controller would be "car", then this line would translate into:
             // $this->car = new car();
             include_once APP . $this->controller . '.php';
-            $this->controller = new $this->controller($param = null);
+            $this->controller = new $this->controller($param = null, $param2 = null);
 
             // check for method: does such a method exist in the controller ?
             if (method_exists($this->controller, $this->method)) {

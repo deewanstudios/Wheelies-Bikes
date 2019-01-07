@@ -14,3 +14,28 @@
  */
 
 echo $m_page_view = $this->_mainContentDiv();
+?>
+
+
+<script type="text/javascript">
+        function countdown  (  )
+        {
+            var i  =  document.getElementById  (  'counter'  );
+            if  (  parseInt  (  i.innerHTML  )  ===  1  )
+            {
+
+                var url = "<?php echo $this->m_base_url ?>";
+                //local
+                location.href  =  url;
+            }
+            i.innerHTML  =  parseInt  (  i.innerHTML  )  -  1;
+
+        }
+
+
+        setInterval  (  function  (  )
+        {
+            countdown  (  );
+        }  ,  1000  );
+
+</script>

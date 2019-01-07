@@ -4,6 +4,11 @@ class ProductsModel extends MasterModel
 {
     public $m_is_best_seller = true;
 
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -19,6 +24,11 @@ class ProductsModel extends MasterModel
         $this->m_db_product_specification_table = 'product_specification';
     }
 
+    /**
+     * ProductsCount
+     *
+     * @return void
+     */
     public function ProductsCount()
     {
         $this->m_select_statement = "{$this->m_db_product_table}";
@@ -29,6 +39,13 @@ class ProductsModel extends MasterModel
         return $this->m_returned_object;
     }
 
+    /**
+     * AllProductsImages
+     *
+     * @param  mixed $category_id
+     *
+     * @return void
+     */
     public function AllProductsImages($category_id)
     {
         $this->m_select_statement = $this->ProductsImageQuery($category_id);
@@ -37,6 +54,13 @@ class ProductsModel extends MasterModel
         return $this->m_returned_object;
     }
 
+    /**
+     * ProductPrice
+     *
+     * @param  mixed $m_product_id
+     *
+     * @return void
+     */
     public function ProductPrice($m_product_id)
     {
         $this->m_select_statement = $this->ProductPriceQuery($m_product_id);
@@ -45,6 +69,13 @@ class ProductsModel extends MasterModel
         return $this->m_returned_object;
     }
 
+    /**
+     * ProductExists
+     *
+     * @param  mixed $m_product_id
+     *
+     * @return void
+     */
     public function ProductExists($m_product_id)
     {
         $this->m_select_statement = $this->ProductExistQuery($m_product_id);
@@ -53,6 +84,13 @@ class ProductsModel extends MasterModel
         return $this->m_returned_object;
     }
 
+    /**
+     * MainProductsImageByProductCategory
+     *
+     * @param  mixed $category_id
+     *
+     * @return void
+     */
     public function MainProductsImageByProductCategory($category_id)
     {
         try {
@@ -273,6 +311,58 @@ class ProductsModel extends MasterModel
             return $this->m_returned_object;
         } catch (PDOException $e) {
             echo $e->getMessage();
+        }
+    }
+
+    /**
+     * InsertEnquiry
+     *
+     * @return void
+     */
+    public function insertEnquiry($name, $phone, $email, $message)
+    {
+        try {
+            //Insert statement.
+            $query = (
+                'INSERT INTO
+                    product_enquiry
+                    (name, phone_number, email, message, time)
+                    VALUES(?,?,?,?,NOW())'
+            );
+            if (!$query) {
+                // throw an exception if the query fails.
+                throw new queryException(
+                    'Oops!!! This error is down to missing vital information,
+                 required fo this task to be completed'
+                );
+            } else {
+                // use database connection to invoke PDO's prepare method.
+                $data = $this->connection->prepare($query);
+                if (!$data) {
+                    // throw an exception if call to PDO's prepare function through the connection fails.
+                    throw new connectionException(
+                        'Oops!!! There is a connection error'
+                    );
+                } else {
+                    // bind the insertEnquiry's method parameters to the insert statement's values. Using the bindParam method through the data variable.
+                    $data->bindParam(1, $name);
+                    $data->bindParam(2, $phone);
+                    $data->bindParam(3, $email);
+                    $data->bindParam(4, $message);
+                    $data->execute();
+                }
+            }
+
+        } catch (queryException $e) {
+            // output exception message
+            echo (
+                'Error (File: ' . getFile() . ', line ' . $e->getLine() . '): ' . $e->getMessage()
+            );
+        } catch (connectionException $e) {
+            // output exception message
+            echo (
+                'Error (File: ' . getFile() . ', line ' . $e->getLine() . '): ' . $e->getMessage()
+            );
         }
     }
 }

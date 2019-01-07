@@ -10,4 +10,8 @@
 
 
 <!-- Java script-->
-<script src="<?php echo URL; ?>js/core.min.js" type="text/javascript"></script><script src="<?php echo URL; ?>js/script.js" type="text/javascript"></script> </body> </html>
+<script src="<?php echo URL; ?>js/core.min.js" type="text/javascript"></script>
+<script src="<?php echo URL; ?>js/script.js" type="text/javascript"></script> 
+<!-- <script src="<?php echo URL; ?>js/count-down.js" type="text/javascript"></script>  -->
+</body> 
+</html>
