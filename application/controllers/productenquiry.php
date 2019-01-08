@@ -424,6 +424,7 @@ class Enquire extends Controller
                 $this->_enquiry_form_message = $_POST['additional-message'];
             }
 
+            $this->_success();
         }
         /* if (($this->_enquiry_form_first_name) && ($this->_enquiry_form_last_name) && ($this->_enquiry_form_phone_number) && ($this->_enquiry_form_email_address)) {
         // $this->enquiryConfirmation();
@@ -432,7 +433,6 @@ class Enquire extends Controller
         } else {
         echo '<strong>HELP!!!</strong>';
         } */
-        $this->_success();
     }
 
     /**
@@ -497,7 +497,7 @@ class Enquire extends Controller
                 $this->_enquiry_form_first_name . ' ' . $this->_enquiry_form_last_name, $this->_enquiry_form_phone_number,
                 $this->_enquiry_form_email_address, $this->_enquiry_form_message
             );
-            $email = $this->_sendMailToSiteOwner();
+            // $email = $this->_sendMailToSiteOwner();
             /*     if (!$insert) {
             // code...
             // throw new Exception(
@@ -513,16 +513,18 @@ class Enquire extends Controller
             // } catch (Exception $e) {
             // echo $e->getMessage();
             // }
-            if (!$insert && !$email) {
+            if (!$insert) {
+                // && !$email
                 # code...
-                throw new Exception("Error Processing Request", 1);
-                return false;
+                // throw new Exception("Error Processing Request", 1);
+                // return false;
             } else {
 
-                $this->_confirmation();
-                return true;
+                // $this->_confirmation();
+                // return true;
             }
             // die();
+            $this->_confirmation();
         } else {
             echo '<strong>HELP!!! Something\'s gone horribly wrong...</strong>';
         }
