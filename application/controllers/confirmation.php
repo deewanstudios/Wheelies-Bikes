@@ -109,8 +109,10 @@ class Confirmation extends Controller
         $countdown = 10;
         if (!empty($_SESSION)) {
             $name = ($_SESSION['first-name']);
+            $this->setConfirmationType($_SESSION['confirmation_type']);
+            $this->setConfirmationMessage($_SESSION['confirmation_message']);
         }
-        /* var_dump($this->_confirmation_type);
+      /*   var_dump($this->_confirmation_type);
         var_dump($this->_confirmation_message); */
         // var_dump($this->m_base_url);
         include_once VIEWS . 'templates/layouts/confirmation-view-layout.php';
