@@ -54,10 +54,10 @@ class Enquire extends Controller
         $this->m_loaded_model = $this->modelLoader();
         $this->_product_image_directory = PRODUCTIMAGES;
         $this->m_product_info = $product_info;
-        /* if (!empty($_SESSION)) {
-        # code...
-        var_dump($_SESSION);
-        } */
+/*         if (!empty($_SESSION)) {
+# code...
+var_dump($_SESSION);
+} */
         // var_dump($this->m_product_info);
         if (isset($this->m_product_info) && !null == ($this->m_product_info)) {
             array_shift($this->m_product_info);
@@ -459,11 +459,8 @@ class Enquire extends Controller
         Your enquiry has been sent to the appropriate team.' . BR .
             'We will get back to you as soon as possible with an update on your product enquiry.';
 
-        $_SESSION['confirmation_type'] = $type;
-        $_SESSION['confirmation_message'] = $message;
-
-        /*    $confirmation = new Confirmation($type, $message);
-    return $confirmation->index(); */
+        $confirmation = new Confirmation($type, $message);
+        return $confirmation->index();
     }
 
     /**
@@ -517,19 +514,20 @@ class Enquire extends Controller
             // } catch (Exception $e) {
             // echo $e->getMessage();
             // }
-            if (!$insert) {
-                // && !$email
-                # code...
-                // throw new Exception("Error Processing Request", 1);
-                // return false;
+            /* if (!$insert) {
+            // && !$email
+            # code...
+            // throw new Exception("Error Processing Request", 1);
+            // return false;
             } else {
 
-                // $this->_confirmation();
-                // return true;
-            }
-            // die();
             // $this->_confirmation();
-            header('location: ' . URL . 'confirmation');
+            // return true;
+            } */
+            // die();
+            $this->_confirmation();
+            exit;
+            // All my problems, was because of the omission of the word above
         } else {
             echo '<strong>HELP!!! Something\'s gone horribly wrong...</strong>';
         }
