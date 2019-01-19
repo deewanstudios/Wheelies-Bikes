@@ -144,11 +144,11 @@ class Mailer
     }
 
     /**
-     * _sendMessage
+     * SendMessage
      *
      * @return void
      */
-    private function _sendMessage()
+    public function sendMessage()
     {
 
         mail($this->_mail_to, $this->_mail_subject, $this->_mail_message, $this->_mail_headers);

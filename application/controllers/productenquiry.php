@@ -401,7 +401,7 @@ var_dump($_SESSION);
                  * Check if the last name field is empty
                  * If so set the enquiry_form_email_address_error variable
                  */
-                $this->_enquiry_form_email_address_error = '* Please provide your email address, as it\'s required for us to be able to respond to your enquiry.';
+                $this->_enquiry_form_email_address_error = '* Please provide us with your telephone number, so that we can have an alternative way of contacting you, in order to provide a response to your enquiry.';
             } else {
                 /*
                  * Otherwise set the _enquiry_form_email_address variable
@@ -470,13 +470,20 @@ var_dump($_SESSION);
      */
     private function _sendMailToSiteOwner()
     {
-        $mailer = new Mailer();
-        $from = $mailer->setFromAddress($this->_enquiry_form_email_address);
-        $mailer->setMailTo('info@deewanstudios.com');
-        $mailer->setMailSubject('Tester');
-        $mailer->setMailMessage('Lorem Ipsum');
-        $mailer->setMailHeaders($header);
-        $mailer->_sendMessage();
+        $from = 'From:noreply@deewanstudios.com';
+        $to = ('info@deewanstudios.com');
+        $subject = ('Tester');
+        $message = ('Lorem Ipsum');
+        $header = ("From:" . $from . "\r\n");
+
+        $mailer = new Mailer($to, $subject, $message, $header);
+        $mailer->sendMessage();
+
+        /*  $mailer->setMailTo('info@deewanstudios.com');
+    $mailer->setMailSubject('Tester');
+    $mailer->setMailMessage('Lorem Ipsum');
+    $mailer->setMailHeaders("From:" . $from . "\r\n");
+    $mailer->_sendMessage(); */
 
     }
 
@@ -499,6 +506,13 @@ var_dump($_SESSION);
                 $this->_enquiry_form_email_address, $this->_enquiry_form_message
             );
             // $email = $this->_sendMailToSiteOwner();
+            // $from = 'From:noreply@deewanstudios.com';
+            $to = ('info@deewanstudios.com');
+            $subject = ('Tester');
+            $message = ('Your true success in life begins only when you make the commitment to become excellent at what you do');
+            // $header = ("From:" . $from . "\r\n");
+            mail($to, $subject, $message);
+
             /*     if (!$insert) {
             // code...
             // throw new Exception(

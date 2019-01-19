@@ -40,3 +40,4 @@ define("THUMBS", IMAGES . "thumbs" . "/");
 define("MODELS", ROOT . "models" . DS);
 define("LIBS", ROOT . "libraries" . DS);
 define("VIEWS", ROOT . "views" . DS);
+define("TEMPLATES", VIEWS . "templates" . DS);
