@@ -29,6 +29,9 @@
 class Contact extends Controller
 {
     private $_sanitiser;
+    private $_confirmation;
+    private $_confirmation_type;
+    private $_confirmation_message;
     /**
      * __construct
      *
@@ -212,15 +215,31 @@ class Contact extends Controller
     }
 
     /**
-     * Confirmation
+     * _confirmation
      *
      * @return void
      */
-    public function confirmation()
+    private function _confirmation()
     {
-        include_once TEMPLATES . 'core/header.php';
+        // Confirmation $confirmation
+
+        // $this->_confirmation = $confirmation;
+        $type = 'Contact';
+        $message = 'thanks for taking the time to contact us.' . BR .
+            'We will get back to you as soon as possible.';
+
+        $this->_confirmation_type = $type;
+        $this->_confirmation_message = $message;
+
+        /*  $this->_confirmation->setConfirmationType($this->_confirmation_type);
+        $this->_confirmation->setConfirmationMessage($this->_confirmation_message); */
+        /*  include_once TEMPLATES . 'core/header.php';
         include_once VIEWS . 'contact/contact-confirmation.php';
-        include_once TEMPLATES . 'core/footer.php';
+        include_once TEMPLATES . 'core/footer.php'; */
+
+        $this->_confirmation = new Confirmation($this->_confirmation_type, $this->_confirmation_message);
+        return $this->_confirmation->index();
+
     }
 
     /**
@@ -230,9 +249,9 @@ class Contact extends Controller
      */
     private function _confirmationPageContent()
     {
-        $fullname = $_SESSION['name'];
+        $name = $_SESSION['firstname'];
         $this->m_section_heading = 'Confirmation Notification';
-        $this->m_section_body = 'Hi ' . $fullname . ', thanks for taking the time to contact us.' . BR . 'We will get back to you as soon as possible.';
+        $this->m_section_body = 'Hi ' . $name . ', thanks for taking the time to contact us.' . BR . 'We will get back to you as soon as possible.';
         $redirect = '<p> You will be redirected to the home page in:</p>';
         $countdown = 10;
         $this->m_section_text = array();
@@ -252,9 +271,10 @@ class Contact extends Controller
     private function _confirmationView()
     {
         $this->m_section_text = $this->_confirmationPageContent();
-        include_once '../application/views/templates/layouts/confirmation-view-layout.php';
+        return $this->m_section_text;
+        // include_once '../application/views/templates/layouts/confirmation-view-layout.php';
 
-        return $this->m_content_builder;
+        // return $this->m_content_builder;
     }
 
     private $_contact_form_first_name;
@@ -345,7 +365,9 @@ class Contact extends Controller
             $message = ('Your true success in life begins only when you make the commitment to become excellent at what you do');
             // $header = ("From:" . $from . "\r\n");
             mail($to, $subject, $message); */
-            $this->confirmation();
+            return $this->_confirmation();
+            // header('Location: ' . URL . 'contact/confirmation');
+            exit;
         } else {
             // code...
             echo '<strong>HELP!!! Something\'s gone horribly wrong...</strong>';
