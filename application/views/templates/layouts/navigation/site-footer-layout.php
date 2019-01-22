@@ -14,10 +14,10 @@ $this->m_footer .= "</ul>";
 $this->m_footer .= "</div>";
 
 $this->m_footer .= "<ul class=\"list-inline list-inline-white offset-top-10 text-darker\">";
-$this->m_footer .= "<li><a href=\"#\" class=\"fa fa-facebook\"></a></li>";
-$this->m_footer .= "<li><a href=\"#\" class=\"fa fa-twitter\"></a></li>";
-$this->m_footer .= "<li><a href=\"#\" class=\"fa fa-youtube\"></a></li>";
-$this->m_footer .= "<li><a href=\"#\" class=\"fa fa-linkedin\"></a></li>";
+$this->m_footer .= "<li><a href=\"https://www.facebook.com/wheelieserith/\" target=\"_blank\" class=\"fa fa-facebook\"></a></li>";
+$this->m_footer .= "<li><a href=\"https://www.instagram.com/wheelies_bikes/\" target=\"_blank\" class=\"fa fa-instagram\"></a></li>";
+/* $this->m_footer .= "<li><a href=\"#\" class=\"fa fa-youtube\"></a></li>";
+$this->m_footer .= "<li><a href=\"#\" class=\"fa fa-linkedin\"></a></li>"; */
 
 $this->m_footer .= "</ul>";
 $this->m_footer .= "</div>";

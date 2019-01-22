@@ -23,19 +23,21 @@ define('DB_PASS', 'root');*/
 Local host connection with user credentials
  */
 
+
 define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'wheeliesbikes');
 define('DB_USER', 'terrence_mathis');
 define('DB_PASS', 'Wheelies2017#!');
 
+
 // Remote host connection with user credentials
 
-//  define  (  'DB_TYPE'  ,  'mysql'  );
-//  define  (  'DB_HOST'  ,  'localhost'  );
-//  define  (  'DB_NAME'  ,  'deewan84_wheeliesbikes'  );
-//  define  (  'DB_USER'  ,  'deewan84_terrenc'  );
-//  define  (  'DB_PASS'  ,  'Wheelies2017#!'  );
+/*  define  (  'DB_TYPE'  ,  'mysql'  );
+ define  (  'DB_HOST'  ,  'localhost'  );
+ define  (  'DB_NAME'  ,  'deewan84_wheeliesbikes'  );
+ define  (  'DB_USER'  ,  'deewan84_terrenc'  );
+ define  (  'DB_PASS'  ,  'Wheelies2017#!'  ); */
 
 // * timezone and date settings
 $timezone_identifier = "Europe/London";

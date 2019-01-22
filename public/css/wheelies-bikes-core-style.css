@@ -384,6 +384,13 @@ h6,
     color: #ffffff;
 }
 
+
+.footer .fa:hover,
+.footer .fa:focus {
+    color: #002182;
+}
+
+
 .rd-navbar-logo-center.rd-navbar-fixed .rd-navbar-submenu.opened>.rd-navbar-megamenu {
     background-color: #ffffff;
 }
