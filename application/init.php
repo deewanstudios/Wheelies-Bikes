@@ -16,6 +16,7 @@ require_once APP.('confirmation.php');
 // require_once HELPERS  .  ('SingleProduct.php');
 require_once HELPERS.('FeaturedProducts.php');
 require_once HELPERS.('Pagination.php');
+require_once HELPERS.('mailer.php');
 require_once LIBS.('FormProcessor.php');
 // require_once LIBS . ('MetaData.php');
 // require_once MODELS  .  ('BikesModel.php');

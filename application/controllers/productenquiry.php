@@ -50,42 +50,42 @@ class Enquire extends Controller
     public function __construct(array $product_info)
     {
         parent::__construct();
-        $this->m_model                  = 'ProductsModel';
-        $this->m_loaded_model           = $this->modelLoader();
+        $this->m_model = 'ProductsModel';
+        $this->m_loaded_model = $this->modelLoader();
         $this->_product_image_directory = PRODUCTIMAGES;
-        $this->m_product_info           = $product_info;
-        /* if (!empty($_SESSION)) {
-        # code...
-        var_dump($_SESSION);
-        } */
+        $this->m_product_info = $product_info;
+/*         if (!empty($_SESSION)) {
+# code...
+var_dump($_SESSION);
+} */
         // var_dump($this->m_product_info);
         if (isset($this->m_product_info) && !null == ($this->m_product_info)) {
             array_shift($this->m_product_info);
             $this->_m_enquired_product_cat_name = $this->m_product_info[0];
-            $this->_m_enquired_product_gender   = $this->m_product_info[1];
+            $this->_m_enquired_product_gender = $this->m_product_info[1];
             $this->_m_enquired_product_cat_type = $this->m_product_info[2];
-            $this->_m_enquired_product_brand    = $this->m_product_info[3];
-            $product_info_counter               = count(explode('-', $this->m_product_info[4]));
+            $this->_m_enquired_product_brand = $this->m_product_info[3];
+            $product_info_counter = count(explode('-', $this->m_product_info[4]));
             if ($product_info_counter > 2) {
                 // var_dump(true);
                 $convert_to_array = explode('-', $this->m_product_info[4]);
                 if (5 === $product_info_counter) {
                     // code...
                     // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name  = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
+                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
                     $this->_m_enquired_product_model = $convert_to_array[3] . ' ' . $convert_to_array[4];
                 } elseif (4 === $product_info_counter) {
                     // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name  = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
+                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
                     $this->_m_enquired_product_model = $convert_to_array[3];
                 } elseif (3 === $product_info_counter) {
                     // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name  = $convert_to_array[0] . ' ' . $convert_to_array[1];
+                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1];
                     $this->_m_enquired_product_model = $convert_to_array[2];
                 }
             } elseif (2 === $product_info_counter) {
-                $convert_to_array                = explode('-', $this->m_product_info[4]);
-                $this->_m_enquired_product_name  = $convert_to_array[0];
+                $convert_to_array = explode('-', $this->m_product_info[4]);
+                $this->_m_enquired_product_name = $convert_to_array[0];
                 $this->_m_enquired_product_model = $convert_to_array[1];
             } else {
                 /* Insert Error message here, when no product name and model is not supplied or valid */
@@ -212,11 +212,11 @@ class Enquire extends Controller
     private function _enquirySummary()
     {
         // $this->getEnquiredProductId();
-        $brand   = $this->getEnquiredProductBrand();
+        $brand = $this->getEnquiredProductBrand();
         $product = $this->getEnquiredProductName();
-        $model   = $this->getEnquiredProductModel();
-        $price   = $this->getEnquiredProductPrice();
-        $image   = $this->getEnquiredProductImage();
+        $model = $this->getEnquiredProductModel();
+        $price = $this->getEnquiredProductPrice();
+        $image = $this->getEnquiredProductImage();
         // var_dump($price);
 
         foreach ($image as $product_image_prop) {
@@ -367,7 +367,7 @@ class Enquire extends Controller
                  * to the value of the posted first-name input field
                  */
                 $this->_enquiry_form_first_name = $_POST['first-name'];
-                $_SESSION['first-name']         = $this->_enquiry_form_first_name;
+                $_SESSION['first-name'] = $this->_enquiry_form_first_name;
 
             }
             if (empty($_POST['last-name'])) {
@@ -401,7 +401,7 @@ class Enquire extends Controller
                  * Check if the last name field is empty
                  * If so set the enquiry_form_email_address_error variable
                  */
-                $this->_enquiry_form_email_address_error = '* Please provide your email address, as it\'s required for us to be able to respond to your enquiry.';
+                $this->_enquiry_form_email_address_error = '* Please provide us with your telephone number, so that we can have an alternative way of contacting you, in order to provide a response to your enquiry.';
             } else {
                 /*
                  * Otherwise set the _enquiry_form_email_address variable
@@ -424,15 +424,15 @@ class Enquire extends Controller
                 $this->_enquiry_form_message = $_POST['additional-message'];
             }
 
+            $this->_success();
         }
         /* if (($this->_enquiry_form_first_name) && ($this->_enquiry_form_last_name) && ($this->_enquiry_form_phone_number) && ($this->_enquiry_form_email_address)) {
-        // $this->enquiryConfirmation();
-        header('location: ' . URL . "confirmation");
-        # code...
-        } else {
-        echo '<strong>HELP!!!</strong>';
-        } */
-        $this->_success();
+    // $this->enquiryConfirmation();
+    header('location: ' . URL . "confirmation");
+    # code...
+    } else {
+    echo '<strong>HELP!!!</strong>';
+    } */
     }
 
     /**
@@ -458,6 +458,7 @@ class Enquire extends Controller
         $message = 'Thanks for taking the time to contact us.
         Your enquiry has been sent to the appropriate team.' . BR .
             'We will get back to you as soon as possible with an update on your product enquiry.';
+
         $confirmation = new Confirmation($type, $message);
         return $confirmation->index();
     }
@@ -469,13 +470,20 @@ class Enquire extends Controller
      */
     private function _sendMailToSiteOwner()
     {
-        $mailer = new Mailer();
-        $from   = $mailer->setFromAddress($this->_enquiry_form_email_address);
-        $mailer->setMailTo('info@deewanstudios.com');
-        $mailer->setMailSubject('Tester');
-        $mailer->setMailMessage('Lorem Ipsum');
-        $mailer->setMailHeaders($header);
-        $mailer->_sendMessage();
+        $from = 'From:noreply@deewanstudios.com';
+        $to = ('info@deewanstudios.com');
+        $subject = ('Tester');
+        $message = ('Lorem Ipsum');
+        $header = ("From:" . $from . "\r\n");
+
+        $mailer = new Mailer($to, $subject, $message, $header);
+        $mailer->sendMessage();
+
+        /*  $mailer->setMailTo('info@deewanstudios.com');
+    $mailer->setMailSubject('Tester');
+    $mailer->setMailMessage('Lorem Ipsum');
+    $mailer->setMailHeaders("From:" . $from . "\r\n");
+    $mailer->_sendMessage(); */
 
     }
 
@@ -497,7 +505,14 @@ class Enquire extends Controller
                 $this->_enquiry_form_first_name . ' ' . $this->_enquiry_form_last_name, $this->_enquiry_form_phone_number,
                 $this->_enquiry_form_email_address, $this->_enquiry_form_message
             );
-            $email = $this->_sendMailToSiteOwner();
+            // $email = $this->_sendMailToSiteOwner();
+            // $from = 'From:noreply@deewanstudios.com';
+            $to = ('info@deewanstudios.com');
+            $subject = ('Tester');
+            $message = ('Your true success in life begins only when you make the commitment to become excellent at what you do');
+            // $header = ("From:" . $from . "\r\n");
+            mail($to, $subject, $message);
+
             /*     if (!$insert) {
             // code...
             // throw new Exception(
@@ -513,16 +528,20 @@ class Enquire extends Controller
             // } catch (Exception $e) {
             // echo $e->getMessage();
             // }
-            if (!$insert && !$email) {
-                # code...
-                throw new Exception("Error Processing Request", 1);
-                return false;
+            /* if (!$insert) {
+            // && !$email
+            # code...
+            // throw new Exception("Error Processing Request", 1);
+            // return false;
             } else {
 
-                $this->_confirmation();
-                return true;
-            }
+            // $this->_confirmation();
+            // return true;
+            } */
             // die();
+            $this->_confirmation();
+            exit;
+            // All my problems, was because of the omission of the word above
         } else {
             echo '<strong>HELP!!! Something\'s gone horribly wrong...</strong>';
         }
