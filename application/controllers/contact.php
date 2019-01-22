@@ -365,7 +365,7 @@ class Contact extends Controller
             $message = ('Your true success in life begins only when you make the commitment to become excellent at what you do');
             // $header = ("From:" . $from . "\r\n");
             mail($to, $subject, $message); */
-            return $this->_confirmation();
+            $this->_confirmation();
             // header('Location: ' . URL . 'contact/confirmation');
             exit;
         } else {
