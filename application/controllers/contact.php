@@ -206,7 +206,6 @@ class Contact extends Controller
         $this->PageMetaData($this->m_page_id);
 
         if (isset($_POST['contact-submit'])) {
-            $this->m_debugger = $this->Dumper($_POST);
             $this->_contactFormProcessor(new FormProcessor());
         }
         include_once TEMPLATES . 'core/header.php';

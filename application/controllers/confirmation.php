@@ -106,13 +106,10 @@ class Confirmation extends Controller
     private function _confirmationView()
     {
         $redirect = "You will be redirected to the home page in:";
-        $countdown = 30;
+        $countdown = 10;
         if (!empty($_SESSION)) {
             $name = ($_SESSION['first-name']);
         }
-        /*   var_dump($this->_confirmation_type);
-        var_dump($this->_confirmation_message); */
-        // var_dump($this->m_base_url);
         include_once VIEWS . 'templates/layouts/confirmation-view-layout.php';
         return $this->m_content_builder;
 
@@ -178,9 +175,7 @@ class Confirmation extends Controller
      */
     public function index()
     {
-        // var_dump($_SESSION);
         include_once VIEWS . 'templates/core/header.php';
-        // unset($_SESSION['first-name']);
         include_once VIEWS . 'confirmation/confirmation-view.php';
         include_once VIEWS . 'templates/core/footer.php';
 
