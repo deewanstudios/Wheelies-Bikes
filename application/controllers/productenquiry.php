@@ -15,8 +15,6 @@
  */
 
 // namespace controllers;
-session_start();
-// session_destroy();
 
 /**
  * Product Enquiry class
@@ -54,11 +52,7 @@ class Enquire extends Controller
         $this->m_loaded_model = $this->modelLoader();
         $this->_product_image_directory = PRODUCTIMAGES;
         $this->m_product_info = $product_info;
-/*         if (!empty($_SESSION)) {
-# code...
-var_dump($_SESSION);
-} */
-        // var_dump($this->m_product_info);
+
         if (isset($this->m_product_info) && !null == ($this->m_product_info)) {
             array_shift($this->m_product_info);
             $this->_m_enquired_product_cat_name = $this->m_product_info[0];
@@ -67,20 +61,21 @@ var_dump($_SESSION);
             $this->_m_enquired_product_brand = $this->m_product_info[3];
             $product_info_counter = count(explode('-', $this->m_product_info[4]));
             if ($product_info_counter > 2) {
-                // var_dump(true);
+
                 $convert_to_array = explode('-', $this->m_product_info[4]);
                 if (5 === $product_info_counter) {
-                    // code...
-                    // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
-                    $this->_m_enquired_product_model = $convert_to_array[3] . ' ' . $convert_to_array[4];
+                    // if statement expressions
+                    $this->_m_enquired_product_name = $convert_to_array[0] . ' '
+                        . $convert_to_array[1] . ' ' . $convert_to_array[2];
+                    $this->_m_enquired_product_model = $convert_to_array[3] . ' '
+                        . $convert_to_array[4];
                 } elseif (4 === $product_info_counter) {
-                    // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1] . ' ' . $convert_to_array[2];
+                    $this->_m_enquired_product_name = $convert_to_array[0] . ' '
+                        . $convert_to_array[1] . ' ' . $convert_to_array[2];
                     $this->_m_enquired_product_model = $convert_to_array[3];
                 } elseif (3 === $product_info_counter) {
-                    // var_dump($convert_to_array);
-                    $this->_m_enquired_product_name = $convert_to_array[0] . ' ' . $convert_to_array[1];
+                    $this->_m_enquired_product_name = $convert_to_array[0] . ' '
+                        . $convert_to_array[1];
                     $this->_m_enquired_product_model = $convert_to_array[2];
                 }
             } elseif (2 === $product_info_counter) {
@@ -152,11 +147,9 @@ var_dump($_SESSION);
     {
         $this->_m_enquired_product_id = $this->m_loaded_model->getProductId($this->_m_enquired_product_name, $this->_m_enquired_product_model);
         foreach ($this->_m_enquired_product_id as $value) {
-            // code...
+            // foreach statement expression
             $this->_m_enquired_product_id = $value['product_id'];
         }
-        // var_dump($this->_m_enquired_product_id);
-
         return $this->_m_enquired_product_id;
     }
 
@@ -189,7 +182,7 @@ var_dump($_SESSION);
     {
         $this->_m_enquired_product_price = $this->m_loaded_model->getProductPrice($this->getEnquiredProductId());
         foreach ($this->_m_enquired_product_price as $value) {
-            // code...
+            // foreach statement expression
             $this->_m_enquired_product_price = $value['product_price_value'];
         }
 
@@ -217,8 +210,6 @@ var_dump($_SESSION);
         $model = $this->getEnquiredProductModel();
         $price = $this->getEnquiredProductPrice();
         $image = $this->getEnquiredProductImage();
-        // var_dump($price);
-
         foreach ($image as $product_image_prop) {
             if (!null == $product_image_prop['image_name']) {
                 // code...
@@ -260,9 +251,7 @@ var_dump($_SESSION);
      */
     private function _enquiryFormView()
     {
-        // $this->_enquiryInputProcessor();
         include_once VIEWS . 'templates/layouts/forms/product-enquiry-customer-form.php';
-
         return $this->m_content_builder;
     }
 
@@ -291,26 +280,18 @@ var_dump($_SESSION);
             foreach ($this->_pageContent() as $m_page_element) {
                 $this->m_main_content .= $m_page_element;
             }
-            /*             $this->m_main_content .= $this->ParallaxSectionMaker($this->m_page_id); */
-
             $this->m_main_content .= '</main>';
-
             return $this->m_main_content;
         } else {
             $this->m_main_content = '<main class="page-content">';
-
             $this->m_main_content .= '<section class="section-98 section-sm-110">';
             $this->m_main_content .= '<div class="shell">';
             $this->m_main_content .= '<div class="range range-xs-center text-extra-big">';
-
             $this->m_main_content .= 'There is currently no body content to display';
-
             $this->m_main_content .= '</div>';
             $this->m_main_content .= '</div>';
             $this->m_main_content .= '</section>';
-
             $this->m_main_content .= '</main>';
-
             return $this->m_main_content;
         }
     }
@@ -327,8 +308,6 @@ var_dump($_SESSION);
         include_once '../application/views/enquiry/product-enquiry.php';
     }
 
-    /*     private $_error_msg = array();
-    private $_error = false; */
     // Form fields variable
     private $_enquiry_form_first_name;
     private $_enquiry_form_last_name;
@@ -354,7 +333,6 @@ var_dump($_SESSION);
              *Check if the server request method is post
              *If so start validating data from the form
              */
-            // echo 'Enquiry submit button clicked';
             if (empty($_POST['first-name'])) {
                 /*
                  * Check if the first name field is empty
@@ -426,25 +404,7 @@ var_dump($_SESSION);
 
             $this->_success();
         }
-        /* if (($this->_enquiry_form_first_name) && ($this->_enquiry_form_last_name) && ($this->_enquiry_form_phone_number) && ($this->_enquiry_form_email_address)) {
-    // $this->enquiryConfirmation();
-    header('location: ' . URL . "confirmation");
-    # code...
-    } else {
-    echo '<strong>HELP!!!</strong>';
-    } */
     }
-
-    /**
-     * Confirmation
-     */
-
-    /*   public function confirmation()
-    {
-
-    var_dump($this->m_product_info);
-    include_once VIEWS . 'templates/layouts/enquiry-confirmation-layout.php';
-    } */
 
     /**
      * _confirmation
@@ -512,33 +472,6 @@ var_dump($_SESSION);
             $message = ('Your true success in life begins only when you make the commitment to become excellent at what you do');
             // $header = ("From:" . $from . "\r\n");
             mail($to, $subject, $message);
-
-            /*     if (!$insert) {
-            // code...
-            // throw new Exception(
-            echo "Oops!!! Something has gone terribly wrong. Please try again.
-            If the problem persists, please contact us using the form
-            on the contact page.";
-            // );
-            } */
-            /* else {
-            // code...
-            $this->_confirmation();
-            } */
-            // } catch (Exception $e) {
-            // echo $e->getMessage();
-            // }
-            /* if (!$insert) {
-            // && !$email
-            # code...
-            // throw new Exception("Error Processing Request", 1);
-            // return false;
-            } else {
-
-            // $this->_confirmation();
-            // return true;
-            } */
-            // die();
             $this->_confirmation();
             exit;
             // All my problems, was because of the omission of the word above

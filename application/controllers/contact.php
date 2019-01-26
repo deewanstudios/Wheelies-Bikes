@@ -14,7 +14,6 @@
  * @see http://url.com
  */
 
-// session_start  (  );
 /**
  * Product Enquiry class
  * This class deals with retrieving and setting product enquiry information.
@@ -41,7 +40,6 @@ class Contact extends Controller
     {
         $this->m_model = 'ContactModel';
         $this->m_page_id = 5;
-        // $this  ->  m_loaded_model  =  $this  ->  ModelLoader  (  );
     }
 
     /**
@@ -79,16 +77,6 @@ class Contact extends Controller
         return $this->m_content_builder;
     }
 
-    /*
-    private function TopSectionView  (  )
-    {
-
-    include_once
-    '../application/views/templates/layouts/contact-us-top-section-layout.php';
-    return $this  ->  m_content_builder;
-
-    }*/
-
     /**
      * FormSection
      *
@@ -96,17 +84,7 @@ class Contact extends Controller
      */
     private function _formSection()
     {
-        // $this->m_loaded_model = $this->ModelLoader();
-        /*
-        $this  ->  m_section_text  =  $this  ->  m_loaded_model  ->  ContextualContent
-        (  );
-        $this  ->  m_section_heading  =  $this  ->  m_section_text  [  0  ]  [
-        "heading_name"  ];
-        $this  ->  m_section_body  =  $this  ->  m_section_text  [  0  ]  [  "context"
-        ];*/
-
         include_once TEMPLATES . 'layouts/contact-form-section-layout.php';
-        // $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_section_text  );
         return array($this->m_content_builder);
     }
 
@@ -118,7 +96,6 @@ class Contact extends Controller
     private function _mapSection()
     {
         include_once VIEWS . 'templates/layouts/map-section-layout.php';
-
         return $this->m_content_builder;
     }
 
@@ -133,17 +110,8 @@ class Contact extends Controller
         $this->m_section_content[] = $this->_formSection();
         $m_section_regions = array_merge($this->m_section_content);
         $views = $this->CenteredSectionViewBuilder($m_section_regions);
-        // $this  ->  m_debugger  =  $this  ->  Dumper  (  $views  );
         return $views;
     }
-
-    /*
-    private function CenteredContents  (  )
-    {
-    $this  ->  m_section_content  =  $this  ->  SectionedContentHolder  (  );
-    return $this  ->  m_section_content;
-
-    }*/
 
     /**
      * PageContent
@@ -173,25 +141,17 @@ class Contact extends Controller
             }
 
             $this->m_main_content .= '</main>';
-
-            // $this  ->  m_main_content  .=  $this  ->  MapSection  (  );
-
             return $this->m_main_content;
         } else {
             $this->m_main_content = '<main class="page-content">';
-
             $this->m_main_content .= '<section class="section-98 section-sm-110">';
             $this->m_main_content .= '<div class="shell">';
             $this->m_main_content .= '<div class="range range-xs-center text-extra-big">';
-
             $this->m_main_content .= 'There is currently no body content to dispay';
-
             $this->m_main_content .= '</div>';
             $this->m_main_content .= '</div>';
             $this->m_main_content .= '</section>';
-
             $this->m_main_content .= '</main>';
-
             return $this->m_main_content;
         }
     }
@@ -220,21 +180,12 @@ class Contact extends Controller
      */
     private function _confirmation()
     {
-        // Confirmation $confirmation
-
-        // $this->_confirmation = $confirmation;
         $type = 'Contact';
         $message = 'thanks for taking the time to contact us.' . BR .
             'We will get back to you as soon as possible.';
 
         $this->_confirmation_type = $type;
         $this->_confirmation_message = $message;
-
-        /*  $this->_confirmation->setConfirmationType($this->_confirmation_type);
-        $this->_confirmation->setConfirmationMessage($this->_confirmation_message); */
-        /*  include_once TEMPLATES . 'core/header.php';
-        include_once VIEWS . 'contact/contact-confirmation.php';
-        include_once TEMPLATES . 'core/footer.php'; */
 
         $this->_confirmation = new Confirmation($this->_confirmation_type, $this->_confirmation_message, $this->_contact_form_first_name);
         return $this->_confirmation->index();
@@ -271,9 +222,6 @@ class Contact extends Controller
     {
         $this->m_section_text = $this->_confirmationPageContent();
         return $this->m_section_text;
-        // include_once '../application/views/templates/layouts/confirmation-view-layout.php';
-
-        // return $this->m_content_builder;
     }
 
     private $_contact_form_first_name;
@@ -286,7 +234,6 @@ class Contact extends Controller
     private $_contact_form_last_name_error;
     private $_contact_form_email_error;
     private $_contact_form_phone_number_error;
-    // private $_contact_form_message_error;
 
     /*
     Contact Form Processing
@@ -306,7 +253,7 @@ class Contact extends Controller
             if (empty($_POST['firstname'])) {
                 $this->_contact_form_first_name_error = '* Pleases enter your first name';
             } else {
-                # code...
+                // code...
                 $this->_contact_form_first_name = $this->_sanitiser->safe_input($_POST['firstname']);
 
                 $_SESSION['firstname'] = $this->_contact_form_first_name;
@@ -315,14 +262,14 @@ class Contact extends Controller
             if (empty($_POST['lastname'])) {
                 $this->_contact_form_last_name_error = '* Please enter your last name';
             } else {
-                # code...
+                // code...
                 $this->_contact_form_last_name = $this->_sanitiser->safe_input($_POST['lastname']);
             }
 
             if (empty($_POST['email'])) {
                 $this->_contact_form_email_error = '* Please enter your email address, as it\'s required for us to be able to respond to your enquiry.';
             } else {
-                # code...
+                // code...
                 $this->_contact_form_email = $this->_sanitiser->safe_input($_POST['email']);
             }
 
@@ -330,14 +277,14 @@ class Contact extends Controller
                 $this->_contact_form_phone_number_error = '* Please provide us with your telephone number, so that we can have an alternative way of contacting you,
                 in order to provide a response to your enquiry.';
             } else {
-                # code...
+                // code...
                 $this->_contact_form_phone_number = $this->_sanitiser->safe_input($_POST['phone']);
             }
 
             if (empty($_POST['message'])) {
                 $this->_contact_form_message = '';
             } else {
-                # code...
+                // code...
                 $this->_contact_form_message = $this->_sanitiser->safe_input($_POST['message']);
             }
 
@@ -355,7 +302,7 @@ class Contact extends Controller
         if ($this->_contact_form_first_name && $this->_contact_form_last_name && $this->_contact_form_email && $this->_contact_form_phone_number) {
 
             $insert = $this->m_loaded_model->insertContactFormDetails($this->_contact_form_first_name, $this->_contact_form_last_name, $this->_contact_form_email, $this->_contact_form_phone_number, $this->_contact_form_message);
-            # code...
+            // code...
 
             $send_mail = $this->_mailSender($this->_contact_form_first_name . ' ' . $this->_contact_form_last_name, $this->_contact_form_email, $this->_contact_form_message);
 

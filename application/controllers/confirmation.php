@@ -39,12 +39,11 @@ class Confirmation extends Controller
         $confirmation_name
     ) {
         parent::__construct();
-        // $confirmation_type = 'Enquiry';
         $this->m_loaded_model = 'ConfirmationModel';
         $this->_confirmation_type = $confirmation_type;
         $this->_confirmation_message = $confirmation_message;
         $this->_confirmation_name = $confirmation_name;
-        // $this->setConfirmationType($confirmation_type);
+
     }
 
     /**
@@ -96,7 +95,6 @@ class Confirmation extends Controller
     public function setConfirmationMessage($_confirmation_message)
     {
         $this->_confirmation_message = $_confirmation_message;
-
         return $this->_confirmation_message;
     }
 
@@ -133,12 +131,8 @@ class Confirmation extends Controller
     {
         $redirect = "You will be redirected to the home page in:";
         $countdown = 10;
-        /* if (!empty($_SESSION)) {
-            $name = ($_SESSION['first-name']);
-        } */
         include_once VIEWS . 'templates/layouts/confirmation-view-layout.php';
         return $this->m_content_builder;
-
     }
 
     /**
@@ -159,20 +153,13 @@ class Confirmation extends Controller
     private function _mainContentDiv()
     {
         if (method_exists($this, '_pageContent')) {
-            // $this->m_main_content = $this->PageBanners($this->m_page_id);
-
             $this->m_main_content .= '<main class="page-content page-min-height">';
-            // section-40"
-            // section-10
-            // style="min-height: 69.3vh;"
 
             foreach ($this->_pageContent() as $m_page_element) {
                 $this->m_main_content .= $m_page_element;
             }
 
             $this->m_main_content .= '</main>';
-
-            // $this  ->  m_main_content  .=  $this  ->  MapSection  (  );
 
             return $this->m_main_content;
         } else {
