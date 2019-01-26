@@ -459,7 +459,7 @@ var_dump($_SESSION);
         Your enquiry has been sent to the appropriate team.' . BR .
             'We will get back to you as soon as possible with an update on your product enquiry.';
 
-        $confirmation = new Confirmation($type, $message);
+        $confirmation = new Confirmation($type, $message, $this->_enquiry_form_first_name);
         return $confirmation->index();
     }
 

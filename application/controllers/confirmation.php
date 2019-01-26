@@ -27,22 +27,24 @@ class Confirmation extends Controller
 {
     private $_confirmation_type;
     private $_confirmation_message;
+    private $_confirmation_name;
+
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct($confirmation_type, $confirmation_message)
-    {
+    public function __construct(
+        $confirmation_type, $confirmation_message,
+        $confirmation_name
+    ) {
         parent::__construct();
         // $confirmation_type = 'Enquiry';
         $this->m_loaded_model = 'ConfirmationModel';
-        $this->m_page_id = 6;
         $this->_confirmation_type = $confirmation_type;
         $this->_confirmation_message = $confirmation_message;
-        // var_dump($this->_confirmation_type);
-        // var_dump($this->modelLoader());
-        $this->setConfirmationType($confirmation_type);
+        $this->_confirmation_name = $confirmation_name;
+        // $this->setConfirmationType($confirmation_type);
     }
 
     /**
@@ -99,6 +101,30 @@ class Confirmation extends Controller
     }
 
     /**
+     * Get the value of _confirmation_name
+     */
+    /**
+     * GetConfirmationName
+     *
+     * @return void
+     */
+    public function getConfirmationName()
+    {
+        return $this->_confirmation_name;
+    }
+
+    /**
+     * Set the value of _confirmation_name
+     *
+     * @return _confirmation_name
+     */
+    public function setConfirmationName($_confirmation_name)
+    {
+        $this->_confirmation_name = $_confirmation_name;
+        return $this->_confirmation_name;
+    }
+
+    /**
      * _confirmationView
      *
      * @return void
@@ -107,9 +133,9 @@ class Confirmation extends Controller
     {
         $redirect = "You will be redirected to the home page in:";
         $countdown = 10;
-        if (!empty($_SESSION)) {
+        /* if (!empty($_SESSION)) {
             $name = ($_SESSION['first-name']);
-        }
+        } */
         include_once VIEWS . 'templates/layouts/confirmation-view-layout.php';
         return $this->m_content_builder;
 

@@ -236,7 +236,7 @@ class Contact extends Controller
         include_once VIEWS . 'contact/contact-confirmation.php';
         include_once TEMPLATES . 'core/footer.php'; */
 
-        $this->_confirmation = new Confirmation($this->_confirmation_type, $this->_confirmation_message);
+        $this->_confirmation = new Confirmation($this->_confirmation_type, $this->_confirmation_message, $this->_contact_form_first_name);
         return $this->_confirmation->index();
 
     }

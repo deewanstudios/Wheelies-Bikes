@@ -26,7 +26,7 @@ $this->m_content_builder .= '<div class="range range-xs-center">';
 $this->m_content_builder .= '<div class="cell-xs-10">';
 $this->m_content_builder .= '<!--Bootstrap jumbotron-->';
 $this->m_content_builder .= '<div class="jumbotron shadow-drop-lg context-dark text-left">';
-$this->m_content_builder .= ' <h2><span class="big">Hello, ' . $name . '!</span></h2>';
+$this->m_content_builder .= ' <h2><span class="big">Hello, ' . $this->_confirmation_name . '!</span></h2>';
 $this->m_content_builder .= '<p>';
 $this->m_content_builder .= $this->_confirmation_message;
 $this->m_content_builder .= '</p>';
