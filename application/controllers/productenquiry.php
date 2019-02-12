@@ -438,12 +438,7 @@ class Enquire extends Controller
 
         $mailer = new Mailer($to, $subject, $message, $header);
         $mailer->sendMessage();
-
-        /*  $mailer->setMailTo('info@deewanstudios.com');
-    $mailer->setMailSubject('Tester');
-    $mailer->setMailMessage('Lorem Ipsum');
-    $mailer->setMailHeaders("From:" . $from . "\r\n");
-    $mailer->_sendMessage(); */
+        // return $mailer;
 
     }
 
@@ -465,13 +460,13 @@ class Enquire extends Controller
                 $this->_enquiry_form_first_name . ' ' . $this->_enquiry_form_last_name, $this->_enquiry_form_phone_number,
                 $this->_enquiry_form_email_address, $this->_enquiry_form_message
             );
-            // $email = $this->_sendMailToSiteOwner();
+            $email = $this->_sendMailToSiteOwner();
             // $from = 'From:noreply@deewanstudios.com';
-            $to = ('info@deewanstudios.com');
+            /* $to = ('info@deewanstudios.com');
             $subject = ('Tester');
-            $message = ('Your true success in life begins only when you make the commitment to become excellent at what you do');
+            $message = ('Your true success in life begins only when you make the commitment to become excellent at what you do'); */
             // $header = ("From:" . $from . "\r\n");
-            mail($to, $subject, $message);
+            // mail($to, $subject, $message);
             $this->_confirmation();
             exit;
             // All my problems, was because of the omission of the word above
