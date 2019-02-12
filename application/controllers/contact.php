@@ -339,19 +339,20 @@ class Contact extends Controller
 
         $trimmedMessage = (($message));
         $wrapped = wordwrap($trimmedMessage, 70);
-        $body = <<<EOD
+        /* $body = <<<EOD
 
-			Contact Information:<br>
+        Contact Information:<br>
 
-			Full Name: $fullname <br>
+        Full Name: $fullname <br>
 
-			Email Address: $email<br>
+        Email Address: $email<br>
 
-			<br><hr><br>
-			<p>$wrapped</p>
+        <br><hr><br>
+        <p>$wrapped</p>
 
+        EOD; */
 
-EOD;
+         include TEMPLATES . 'layouts/email/email-layout.php';
 
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
