@@ -130,7 +130,7 @@ class Confirmation extends Controller
     private function _confirmationView()
     {
         $redirect = "You will be redirected to the home page in:";
-        $countdown = 10;
+        $countdown = 100;
         include_once VIEWS . 'templates/layouts/confirmation-view-layout.php';
         return $this->m_content_builder;
     }

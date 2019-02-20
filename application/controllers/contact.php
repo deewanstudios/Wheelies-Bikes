@@ -203,7 +203,7 @@ class Contact extends Controller
         $this->m_section_heading = 'Confirmation Notification';
         $this->m_section_body = 'Hi ' . $name . ', thanks for taking the time to contact us.' . BR . 'We will get back to you as soon as possible.';
         $redirect = '<p> You will be redirected to the home page in:</p>';
-        $countdown = 10;
+        $countdown = 100;
         $this->m_section_text = array();
         $this->m_section_text[] = $this->m_section_heading;
         $this->m_section_text[] = $this->m_section_body;
@@ -352,7 +352,7 @@ class Contact extends Controller
 
         EOD; */
 
-         include TEMPLATES . 'layouts/email/email-layout.php';
+         include 'email/email-layout.php';
 
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -360,6 +360,6 @@ class Contact extends Controller
         /*  $headers .= 'Bcc: info@deewanstudios.com' . "\r\n"; */
 
         // Mail it
-        mail($to, $emailSubject, $body, $headers);
+        mail($to, $emailSubject, $message, $headers);
     }
 }
