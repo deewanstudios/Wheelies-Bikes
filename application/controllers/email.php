@@ -11,8 +11,9 @@ class email extends controller
     public function index()
     {
         include_once TEMPLATES . 'core/header.php';
-        include_once TEMPLATES . 'layouts/email/email-layout.html';
+        include_once TEMPLATES . 'layouts/email/email-layout.php';
         include_once TEMPLATES . 'core/footer.php';
+        return $body;
 
     }
 }
