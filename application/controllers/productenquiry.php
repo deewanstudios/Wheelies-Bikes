@@ -275,7 +275,7 @@ class Enquire extends Controller
     {
         if (method_exists($this, '_pageContent')) {
             // $this->m_main_content = $this->PageBanners($this->m_page_id);
-            $this->m_main_content .= '<main class="page-content">';
+            $this->m_main_content = '<main class="page-content">';
 
             foreach ($this->_pageContent() as $m_page_element) {
                 $this->m_main_content .= $m_page_element;
@@ -430,16 +430,55 @@ class Enquire extends Controller
      */
     private function _sendMailToSiteOwner()
     {
-        $from = 'From:noreply@deewanstudios.com';
+        $brand = $this->getEnquiredProductBrand();
+        $product = $this->getEnquiredProductName();
+        $model = $this->getEnquiredProductModel();
+        $price = $this->getEnquiredProductPrice();
+        $image = $this->getEnquiredProductImage();
+        foreach ($image as $product_image_prop) {
+            if (!null == $product_image_prop['image_name']) {
+                // code...
+                $image_name = $product_image_prop['image_name'];
+            } else {
+                // code...
+                $image_name = 'image name goes here';
+            }
+            if (!null == $product_image_prop['image_description']) {
+                // code...
+                $image_description = $product_image_prop['image_description'];
+            } else {
+                // code...
+                $image_description = 'image description goes here';
+            }
+            if (!null == $product_image_prop['image_caption']) {
+                // code...
+                $image_caption = $product_image_prop['image_caption'];
+            } else {
+                // code...
+                $image_caption = 'image caption goes here';
+            }
+            if (!null == $product_image_prop['image_path']) {
+                // code...
+                $image_path = $this->_product_image_directory . $product_image_prop['image_path'];
+            } else {
+                // code...
+                $image_path = 'https://via.placeholder.com/570';
+            }
+        }
+
+        $from = 'noreply@deewanstudios.com';
         $to = ('info@deewanstudios.com');
-        $subject = ('Tester');
-        $message = ('Lorem Ipsum');
-        $header = ("From:" . $from . "\r\n");
+        $subject = ('Product Enquiry');
+        // $message = ('Lorem Ipsum');
+        include 'email/email-layout.php';
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= ('From: Wheelies Bikes ' . $from . "\r\n");
 
-        $mailer = new Mailer($to, $subject, $message, $header);
-        $mailer->sendMessage();
+        // $mailer = new Mailer($to, $subject, $message, $header);
+        // $mailer->sendMessage();
         // return $mailer;
-
+        mail($to, $subject, $message, $headers);
     }
 
     /**

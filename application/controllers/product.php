@@ -172,7 +172,8 @@ class Product extends Controller
     {
         if (method_exists($this, 'pageContent')) {
             // $this->m_main_content = $this->PageBanners($this->m_page_id);
-            $this->m_main_content .= '<main class="page-content page-min-height">';
+            $this->m_main_content = '<main class="page-content">';
+            // page-min-height
             $this->m_main_content .= '<section class="section-50 section-sm-top-30 text-left">';
             $this->m_main_content .= '<div class="shell">';
             foreach ($this->pageContent() as $m_page_element) {
@@ -185,7 +186,7 @@ class Product extends Controller
             return $this->m_main_content;
         } else {
             // $this->m_main_content = $this->PageBanners($this->m_page_id);
-            $this->m_main_content .= '<main class="page-content page-min-height">';
+            $this->m_main_content = '<main class="page-content page-min-height">';
 
             $this->m_main_content .= '<section class="section-50 section-sm-top-30 section-sm-bottom-98 text-left">';
             $this->m_main_content .= '<div class="shell text-center text-ubold text-size-2 text-italic section-50">';
