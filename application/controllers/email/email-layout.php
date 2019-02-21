@@ -232,8 +232,7 @@ $message .= "</table>";
 $message .= "<!--Like what we offer?-->";
 $message .= "<table width=\"100%\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
 $message .= "<tr>";
-$message .= "<td align=\"center\" valign=\"top\" style=\"background: #ffcc22;\">";
-// 65abe1
+$message .= "<td align=\"center\" valign=\"top\" style=\"background: #65abe1;\">";
 $message .= "<table width=\"100%\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
 $message .= "<tr>";
 $message .= "<td align=\"center\" valign=\"top\" style=\"padding: 0 20px; background-image: url({$this->m_image_directory}slider-01.jpg); background-repeat: no-repeat; background-position: 50% 50%;\" background=\"{$this->m_image_directory}slider-01.jpg\">";
@@ -338,7 +337,7 @@ $message .= "<tr>";
 $message .= "<td align=\"center\" valign=\"top\" style=\"background: #000000;\">";
 $message .= "<table width=\"100%\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
 $message .= "<tr>";
-$message .= "<td align=\"center\" valign=\"top\" style=\"background-image: url({$this->m_image_directory}slider-01.jpg); background-repeat: no-repeat; background-size:cover; background-position: 50% 0;\" background=\"{$this->m_image_directory}slider-01.jpg\">";
+$message .= "<td align=\"center\" valign=\"top\" style=\"background-image: url({$this->m_image_directory}about-page-top-banner.jpg); background-repeat: no-repeat; background-size:cover; background-position: 50% 0;\" background=\"{$this->m_image_directory}about-page-top-banner.jpg\">";
 $message .= "<table width=\"100%\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
 $message .= "<tr>";
 $message .= "<td align=\"center\" valign=\"top\" style=\"padding: 0 20px;\">";
