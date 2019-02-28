@@ -275,7 +275,7 @@ class Enquire extends Controller
     {
         if (method_exists($this, '_pageContent')) {
             // $this->m_main_content = $this->PageBanners($this->m_page_id);
-            $this->m_main_content .= '<main class="page-content">';
+            $this->m_main_content = '<main class="page-content">';
 
             foreach ($this->_pageContent() as $m_page_element) {
                 $this->m_main_content .= $m_page_element;
@@ -419,7 +419,9 @@ class Enquire extends Controller
         Your enquiry has been sent to the appropriate team.' . BR .
             'We will get back to you as soon as possible with an update on your product enquiry.';
 
-        $confirmation = new Confirmation($type, $message, $this->_enquiry_form_first_name);
+        $confirmation = new Confirmation(
+            $type, $message, $this->_enquiry_form_first_name
+        );
         return $confirmation->index();
     }
 
@@ -430,21 +432,109 @@ class Enquire extends Controller
      */
     private function _sendMailToSiteOwner()
     {
-        $from = 'From:noreply@deewanstudios.com';
-        $to = ('info@deewanstudios.com');
-        $subject = ('Tester');
-        $message = ('Lorem Ipsum');
-        $header = ("From:" . $from . "\r\n");
+        $brand = $this->getEnquiredProductBrand();
+        $product = $this->getEnquiredProductName();
+        $model = $this->getEnquiredProductModel();
+        $price = $this->getEnquiredProductPrice();
+        $image = $this->getEnquiredProductImage();
 
-        $mailer = new Mailer($to, $subject, $message, $header);
-        $mailer->sendMessage();
+        foreach ($image as $product_image_prop) {
+            if (!null == $product_image_prop['image_name']) {
+                // code...
+                $image_name = $product_image_prop['image_name'];
+            } else {
+                // code...
+                $image_name = 'image name goes here';
+            }
+            if (!null == $product_image_prop['image_description']) {
+                // code...
+                $image_description = $product_image_prop['image_description'];
+            } else {
+                // code...
+                $image_description = 'image description goes here';
+            }
+            if (!null == $product_image_prop['image_caption']) {
+                // code...
+                $image_caption = $product_image_prop['image_caption'];
+            } else {
+                // code...
+                $image_caption = 'image caption goes here';
+            }
+            if (!null == $product_image_prop['image_path']) {
+                // code...
+                $image_path = $this->_product_image_directory
+                    . $product_image_prop['image_path'];
+            } else {
+                // code...
+                $image_path = 'https://via.placeholder.com/570';
+            }
+        }
 
-        /*  $mailer->setMailTo('info@deewanstudios.com');
-    $mailer->setMailSubject('Tester');
-    $mailer->setMailMessage('Lorem Ipsum');
-    $mailer->setMailHeaders("From:" . $from . "\r\n");
-    $mailer->_sendMessage(); */
+        $from = '<' . $this->_enquiry_form_email_address . '>';
+        // $to = $this->_enquiry_form_email_address;
+        $to = 'info@deewanstudios.com';
+        $subject = ('New Product Enquiry');
+        include 'email/admin-email-layout.php';
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= ("From: $this->_enquiry_form_first_name $this->_enquiry_form_last_name"
+            . $from . "\r\n");
+        mail($to, $subject, $message, $headers);
+    }
 
+    /**
+     * _sendMailToCustomer
+     *
+     * @return void
+     */
+    private function _sendMailToCustomer()
+    {
+        $brand = $this->getEnquiredProductBrand();
+        $product = $this->getEnquiredProductName();
+        $model = $this->getEnquiredProductModel();
+        $price = $this->getEnquiredProductPrice();
+        $image = $this->getEnquiredProductImage();
+
+        foreach ($image as $product_image_prop) {
+            if (!null == $product_image_prop['image_name']) {
+                // code...
+                $image_name = $product_image_prop['image_name'];
+            } else {
+                // code...
+                $image_name = 'image name goes here';
+            }
+            if (!null == $product_image_prop['image_description']) {
+                // code...
+                $image_description = $product_image_prop['image_description'];
+            } else {
+                // code...
+                $image_description = 'image description goes here';
+            }
+            if (!null == $product_image_prop['image_caption']) {
+                // code...
+                $image_caption = $product_image_prop['image_caption'];
+            } else {
+                // code...
+                $image_caption = 'image caption goes here';
+            }
+            if (!null == $product_image_prop['image_path']) {
+                // code...
+                $image_path = $this->_product_image_directory .
+                    $product_image_prop['image_path'];
+            } else {
+                // code...
+                $image_path = 'https://via.placeholder.com/570';
+            }
+        }
+
+        $from = '<noreply@deewanstudios.com>';
+        $to = $this->_enquiry_form_email_address;
+        $subject = ('Product Enquiry Confirmation');
+        include 'email/email-layout.php';
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= ("From: Wheelies Bikes" . $from . "\r\n");
+        mail($to, $subject, $message, $headers);
     }
 
     /**
@@ -455,23 +545,14 @@ class Enquire extends Controller
     private function _success()
     {
         if (($this->_enquiry_form_first_name) && ($this->_enquiry_form_last_name) && ($this->_enquiry_form_phone_number) && ($this->_enquiry_form_email_address)) {
-            // Invocation of the insert function to inser the user data into the database.
-            // $this->_insertIntoEnquiryTable($this->_enquiry_form_first_name, $this->_enquiry_form_last_name, $this->_enquiry_form_phone_number, $this->_enquiry_form_email_address, $this->_enquiry_form_message);
-            // Invocation of method to send confirmation email to client.
-            // Invocation of method to send the enquiry details to the business owner.
-            // try {
-            //code...
+
             $insert = $this->m_loaded_model->insertEnquiry(
                 $this->_enquiry_form_first_name . ' ' . $this->_enquiry_form_last_name, $this->_enquiry_form_phone_number,
                 $this->_enquiry_form_email_address, $this->_enquiry_form_message
             );
-            // $email = $this->_sendMailToSiteOwner();
-            // $from = 'From:noreply@deewanstudios.com';
-            $to = ('info@deewanstudios.com');
-            $subject = ('Tester');
-            $message = ('Your true success in life begins only when you make the commitment to become excellent at what you do');
-            // $header = ("From:" . $from . "\r\n");
-            mail($to, $subject, $message);
+            $admin_email = $this->_sendMailToSiteOwner();
+            $customer_email = $this->_sendMailToCustomer();
+
             $this->_confirmation();
             exit;
             // All my problems, was because of the omission of the word above

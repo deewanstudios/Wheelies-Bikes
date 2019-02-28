@@ -203,7 +203,7 @@ class Contact extends Controller
         $this->m_section_heading = 'Confirmation Notification';
         $this->m_section_body = 'Hi ' . $name . ', thanks for taking the time to contact us.' . BR . 'We will get back to you as soon as possible.';
         $redirect = '<p> You will be redirected to the home page in:</p>';
-        $countdown = 10;
+        $countdown = 100;
         $this->m_section_text = array();
         $this->m_section_text[] = $this->m_section_heading;
         $this->m_section_text[] = $this->m_section_body;
@@ -333,32 +333,20 @@ class Contact extends Controller
     private function _mailSender($fullname, $email, $message)
     {
         $to = 'info@deewanstudios.com';
-        // note the comma
+        $from = '<' . $email . '>';
 
         $emailSubject = 'A message from your site visitor';
 
         $trimmedMessage = (($message));
         $wrapped = wordwrap($trimmedMessage, 70);
-        $body = <<<EOD
 
-			Contact Information:<br>
-
-			Full Name: $fullname <br>
-
-			Email Address: $email<br>
-
-			<br><hr><br>
-			<p>$wrapped</p>
-
-
-EOD;
+        include 'email/contact-email-layout.php';
 
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: Contact Form <noreply@deewanstudios.com/>' . "\r\n";
-        /*  $headers .= 'Bcc: info@deewanstudios.com' . "\r\n"; */
+        $headers .= "From: $fullname" . $from . "\r\n";
 
         // Mail it
-        mail($to, $emailSubject, $body, $headers);
+        mail($to, $emailSubject, $message, $headers);
     }
 }
