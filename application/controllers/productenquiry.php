@@ -435,6 +435,7 @@ class Enquire extends Controller
         $model = $this->getEnquiredProductModel();
         $price = $this->getEnquiredProductPrice();
         $image = $this->getEnquiredProductImage();
+        
         foreach ($image as $product_image_prop) {
             if (!null == $product_image_prop['image_name']) {
                 // code...
@@ -466,18 +467,13 @@ class Enquire extends Controller
             }
         }
 
-        $from = 'noreply@deewanstudios.com';
-        $to = ('info@deewanstudios.com');
-        $subject = ('Product Enquiry');
-        // $message = ('Lorem Ipsum');
+        $from = '<noreply@deewanstudios.com>';
+        $to = $this->_enquiry_form_email_address;
+        $subject = ('Product Enquiry Confirmation');
         include 'email/email-layout.php';
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= ('From: Wheelies Bikes ' . $from . "\r\n");
-
-        // $mailer = new Mailer($to, $subject, $message, $header);
-        // $mailer->sendMessage();
-        // return $mailer;
+        $headers .= ('From: Wheelies Bikes' . $from . "\r\n");
         mail($to, $subject, $message, $headers);
     }
 

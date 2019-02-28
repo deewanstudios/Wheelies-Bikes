@@ -5,7 +5,7 @@ $message .= "<head>";
 $message .= "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />";
 $message .= "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />";
 $message .= "<meta name=\"format-detection\" content=\"telephone=no\" />";
-$message .= "<title>Responsive E-mail Template</title>";
+$message .= "<title>Product Enquiry Confirmation </title>";
 $message .= "<style type=\"text/css\">
 body {
 width: 100% !important;
@@ -141,7 +141,7 @@ $message .= "<tr>";
 $message .= "<td align=\"center\" valign=\"top\"";
 $message .= "style=\"color: #434345; font-family: \"Trebuchet MS\", Helvetica, sans-serif, \"Lato\", sans-serif; font-size: 30px; ";
 $message .= "mso-line-height-rule: exactly; line-height: 36px; font-weight: 700;\">";
-$message .= "Hello $fullname,";
+$message .= "Hello $this->_enquiry_form_first_name,";
 $message .= "</td>";
 $message .= "</tr>";
 $message .= "<tr>";
@@ -212,7 +212,7 @@ $message .= "</tr>";
 $message .= "<tr>";
 $message .= "<td align=\"center\" valign=\"top\"";
 $message .= "style=\"color: #ffffff; font-family: Arial, sans-serif; font-size: 35px; mso-line-height-rule: exactly; line-height: 42px; font-weight: 400;\">";
-$message .= "Product Price:£ ";
+$message .= "Product Price: £";
 $message .= $this->getEnquiredProductPrice();
 $message .= "</td>";
 $message .= "</tr>";
