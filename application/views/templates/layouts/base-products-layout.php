@@ -14,20 +14,18 @@ foreach ($this->m_category_products as $m_product) {
     $this->m_content_builder .= '<div class="product product-grid product-grid-type-2">';
     // Anchor tag starts here
     $this->m_content_builder .= '<a href="';
-    $this->m_content_builder .= strtolower($m_product['product_cat_name']);
-    $this->m_content_builder .= '/';
+    $this->m_content_builder .= $this->m_data['pagination_url'];
     $this->m_content_builder .= strtolower($m_product['gender_cat_name']);
     $this->m_content_builder .= '/';
-    if ($m_product['bike_cat_name'] == trim($m_product['bike_cat_name']) && strpos($m_product['bike_cat_name'], ' ') !== false) {
+    if (trim($m_product['bike_cat_name']) == $m_product['bike_cat_name'] && strpos($m_product['bike_cat_name'], ' ') !== false) {
         // code...
         $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['bike_cat_name']));
     } else {
         // code...
         $this->m_content_builder .= strtolower($m_product['bike_cat_name']);
     }
-    // $this->m_content_builder .= strtolower($m_product["bike_cat_name"]);
     $this->m_content_builder .= '/';
-    if ($m_product['brand_cat_name'] == trim($m_product['brand_cat_name']) && strpos($m_product['brand_cat_name'], ' ') !== false) {
+    if (trim($m_product['brand_cat_name']) == $m_product['brand_cat_name'] && strpos($m_product['brand_cat_name'], ' ') !== false) {
         // code...
         $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['brand_cat_name']));
     } else {
@@ -35,7 +33,7 @@ foreach ($this->m_category_products as $m_product) {
         $this->m_content_builder .= strtolower($m_product['brand_cat_name']);
     }
     $this->m_content_builder .= '/';
-    if ($m_product['product_name'] == trim($m_product['product_name']) && strpos($m_product['product_name'], ' ') !== false) {
+    if (trim($m_product['product_name']) == $m_product['product_name'] && strpos($m_product['product_name'], ' ') !== false) {
         $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['product_name']));
     } else {
         $this->m_content_builder .= strtolower($m_product['product_name']);
@@ -64,7 +62,7 @@ foreach ($this->m_category_products as $m_product) {
     $this->m_content_builder .= '/';
     $this->m_content_builder .= strtolower($m_product['gender_cat_name']);
     $this->m_content_builder .= '/';
-    if ($m_product['bike_cat_name'] == trim($m_product['bike_cat_name']) && strpos($m_product['bike_cat_name'], ' ') !== false) {
+    if (trim($m_product['bike_cat_name']) == $m_product['bike_cat_name'] && strpos($m_product['bike_cat_name'], ' ') !== false) {
         // code...
         $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['bike_cat_name']));
     } else {
@@ -73,7 +71,7 @@ foreach ($this->m_category_products as $m_product) {
     }
     // $this->m_content_builder .= strtolower($m_product["bike_cat_name"]);
     $this->m_content_builder .= '/';
-    if ($m_product['brand_cat_name'] == trim($m_product['brand_cat_name']) && strpos($m_product['brand_cat_name'], ' ') !== false) {
+    if (trim($m_product['brand_cat_name']) == $m_product['brand_cat_name'] && strpos($m_product['brand_cat_name'], ' ') !== false) {
         // code...
         $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['brand_cat_name']));
     } else {
@@ -81,7 +79,7 @@ foreach ($this->m_category_products as $m_product) {
         $this->m_content_builder .= strtolower($m_product['brand_cat_name']);
     }
     $this->m_content_builder .= '/';
-    if ($m_product['product_name'] == trim($m_product['product_name']) && strpos($m_product['product_name'], ' ') !== false) {
+    if (trim($m_product['product_name']) == $m_product['product_name'] && strpos($m_product['product_name'], ' ') !== false) {
         $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['product_name']));
     } else {
         $this->m_content_builder .= strtolower($m_product['product_name']);
@@ -96,15 +94,15 @@ foreach ($this->m_category_products as $m_product) {
     $this->m_content_builder .= '">';
     // Anchor opening tag ends here
 
-    if ($m_product['brand_cat_name'] == trim($m_product['brand_cat_name']) && strpos($m_product['brand_cat_name'], '-') !== false) {
+    if (trim($m_product['brand_cat_name']) == $m_product['brand_cat_name'] && strpos($m_product['brand_cat_name'], '-') !== false) {
         // code...
         $split = (explode('-', $m_product['brand_cat_name']));
         $this->m_content_builder .= strtoupper($split[0]);
         $this->m_content_builder .= ' ';
-        $this->m_content_builder .= ucwords($split[1]).' '.ucwords($m_product['product_name']).' '.ucwords($m_product['product_model']);
+        $this->m_content_builder .= ucwords($split[1]) . ' ' . ucwords($m_product['product_name']) . ' ' . ucwords($m_product['product_model']);
     } else {
         // code...
-        $this->m_content_builder .= ucwords(str_replace('-', ' ', $m_product['brand_cat_name'])).' '.ucwords($m_product['product_name']).' '.ucwords($m_product['product_model']);
+        $this->m_content_builder .= ucwords(str_replace('-', ' ', $m_product['brand_cat_name'])) . ' ' . ucwords($m_product['product_name']) . ' ' . ucwords($m_product['product_model']);
     }
 
     $this->m_content_builder .= '</a>';
@@ -113,7 +111,7 @@ foreach ($this->m_category_products as $m_product) {
 
     $this->m_content_builder .= '<!-- Product Information-->';
     $this->m_content_builder .= '<p class="product-brand text-italic text-dark">';
-    $this->m_content_builder .= ucwords("{$m_product['gender_cat_name']} "."{$m_product['brand_cat_name']} bike");
+    $this->m_content_builder .= ucwords("{$m_product['gender_cat_name']} " . "{$m_product['brand_cat_name']} bike");
     $this->m_content_builder .= '</p>';
     $this->m_content_builder .= '<p class="product-brand text-italic text-dark">';
     $this->m_content_builder .= "Model Year: {$m_product['model_year']}";
@@ -136,7 +134,7 @@ foreach ($this->m_category_products as $m_product) {
     $this->m_content_builder .= '/';
     $this->m_content_builder .= strtolower($m_product['gender_cat_name']);
     $this->m_content_builder .= '/';
-    if ($m_product['bike_cat_name'] == trim($m_product['bike_cat_name']) && strpos($m_product['bike_cat_name'], ' ') !== false) {
+    if (trim($m_product['bike_cat_name']) == $m_product['bike_cat_name'] && strpos($m_product['bike_cat_name'], ' ') !== false) {
         // code...
         $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['bike_cat_name']));
     } else {
@@ -145,7 +143,7 @@ foreach ($this->m_category_products as $m_product) {
     }
     // $this->m_content_builder .= strtolower($m_product["bike_cat_name"]);
     $this->m_content_builder .= '/';
-    if ($m_product['brand_cat_name'] == trim($m_product['brand_cat_name']) && strpos($m_product['brand_cat_name'], ' ') !== false) {
+    if (trim($m_product['brand_cat_name']) == $m_product['brand_cat_name'] && strpos($m_product['brand_cat_name'], ' ') !== false) {
         // code...
         $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['brand_cat_name']));
     } else {
@@ -153,7 +151,7 @@ foreach ($this->m_category_products as $m_product) {
         $this->m_content_builder .= strtolower($m_product['brand_cat_name']);
     }
     $this->m_content_builder .= '/';
-    if ($m_product['product_name'] == trim($m_product['product_name']) && strpos($m_product['product_name'], ' ') !== false) {
+    if (trim($m_product['product_name']) == $m_product['product_name'] && strpos($m_product['product_name'], ' ') !== false) {
         $this->m_content_builder .= str_replace(' ', '-', strtolower($m_product['product_name']));
     } else {
         $this->m_content_builder .= strtolower($m_product['product_name']);

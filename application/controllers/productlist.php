@@ -12,10 +12,10 @@ class ProductList extends Controller
     public function __construct($product_category, array $tags)
     {
         parent::__construct();
-        $this->m_model = 'ProductsModel';
-        $this->m_loaded_model = $this->ModelLoader();
+        $this->m_model                 = 'ProductsModel';
+        $this->m_loaded_model          = $this->ModelLoader();
         $this->m_product_category_name = $product_category;
-        $this->m_tags = $tags;
+        $this->m_tags                  = $tags;
         // instance of navigation model, for access to the megamenu methods and functionalities
         $this->nav = new NavigationModel();
 
@@ -44,20 +44,20 @@ class ProductList extends Controller
          * $this->m_data['records_per_page'] (Number of items to be displayed per page)
          * $this->m_data['pagination_url'] (URL to the current page.)
          */
-        $this->m_data['total_records'] = ($this->m_all_products['counter']);
+        $this->m_data['total_records']    = ($this->m_all_products['counter']);
         $this->m_data['records_per_page'] = 6;
         if (!$this->m_tags) {
-            $this->m_data['pagination_url'] = $this->m_base_url.$this->m_product_category_name;
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
         } else {
-            $this->m_data['pagination_url'] = $this->m_base_url.$this->m_product_category_name.'/'.implode('/', $this->m_tags);
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name . '/' . implode('/', $this->m_tags);
         }
 
-        $this->m_pagination = new Pagination($this->m_data);
-        $this->m_pager = $this->m_pagination->PaginationDisplay($this->m_data);
-        $this->m_start_record = $this->m_pagination->StartRecord($this->m_data);
-        $this->m_records_per_page = $this->m_data['records_per_page'];
+        $this->m_pagination        = new Pagination($this->m_data);
+        $this->m_pager             = $this->m_pagination->PaginationDisplay($this->m_data);
+        $this->m_start_record      = $this->m_pagination->StartRecord($this->m_data);
+        $this->m_records_per_page  = $this->m_data['records_per_page'];
         $this->m_category_products = $this->m_loaded_model->getAllProducts($this->m_start_record, $this->m_records_per_page, $this->m_product_category_name);
-        require_once VIEWS.'templates/layouts/base-products-layout.php';
+        include_once VIEWS . 'templates/layouts/base-products-layout.php';
 
         return $this->m_content_builder;
     }
@@ -79,24 +79,24 @@ class ProductList extends Controller
          * $this->m_data['records_per_page'] (Number of items to be displayed per page)
          * $this->m_data['pagination_url'] (URL to the current page.)
          */
-        $this->m_data['total_records'] = ($this->m_all_products['counter']);
+        $this->m_data['total_records']    = ($this->m_all_products['counter']);
         $this->m_data['records_per_page'] = 6;
         if (!$this->m_tags) {
-            $this->m_data['pagination_url'] = $this->m_base_url.$this->m_product_category_name;
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
         } else {
-            $this->m_data['pagination_url'] = $this->m_base_url.$this->m_product_category_name.'/'.implode('/', $this->m_tags);
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name . '/' . implode('/', $this->m_tags);
         }
 
         $this->m_pagination = new Pagination($this->m_data);
 
         $this->m_pager = $this->m_pagination->PaginationDisplay($this->m_data);
 
-        $this->m_start_record = $this->m_pagination->StartRecord($this->m_data);
+        $this->m_start_record     = $this->m_pagination->StartRecord($this->m_data);
         $this->m_records_per_page = $this->m_data['records_per_page'];
 
         $this->m_category_products = $this->m_loaded_model->getProductsByGender($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]);
 
-        require_once VIEWS.'templates/layouts/products-layout.php';
+        include_once VIEWS . 'templates/layouts/products-layout.php';
 
         return $this->m_content_builder;
     }
@@ -114,24 +114,24 @@ class ProductList extends Controller
          * $this->m_data['pagination_url'] (URL to the current page.)
          */
 
-        $this->m_data['total_records'] = ($this->m_all_products['counter']);
+        $this->m_data['total_records']    = ($this->m_all_products['counter']);
         $this->m_data['records_per_page'] = 6;
         if (!$this->m_tags) {
-            $this->m_data['pagination_url'] = $this->m_base_url.$this->m_product_category_name;
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
         } else {
-            $this->m_data['pagination_url'] = $this->m_base_url.$this->m_product_category_name.'/'.implode('/', $this->m_tags);
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name . '/' . implode('/', $this->m_tags);
         }
 
         $this->m_pagination = new Pagination($this->m_data);
 
         $this->m_pager = $this->m_pagination->PaginationDisplay($this->m_data);
 
-        $this->m_start_record = $this->m_pagination->StartRecord($this->m_data);
+        $this->m_start_record     = $this->m_pagination->StartRecord($this->m_data);
         $this->m_records_per_page = $this->m_data['records_per_page'];
 
         $this->m_category_products = $this->m_loaded_model->getProductsByBrand($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]);
 
-        require_once VIEWS.'templates/layouts/products-layout.php';
+        include_once VIEWS . 'templates/layouts/products-layout.php';
 
         return $this->m_content_builder;
     }
@@ -147,26 +147,24 @@ class ProductList extends Controller
          * $this->m_data['pagination_url'] (URL to the current page.)
          */
 
-        $this->m_data['total_records'] = ($this->m_all_products['counter']);
+        $this->m_data['total_records']    = ($this->m_all_products['counter']);
         $this->m_data['records_per_page'] = 6;
         if (!$this->m_tags) {
-            $this->m_data['pagination_url'] = $this->m_base_url.$this->m_product_category_name;
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name;
         } else {
-            $this->m_data['pagination_url'] = $this->m_base_url.$this->m_product_category_name.'/'.implode('/', $this->m_tags);
+            $this->m_data['pagination_url'] = $this->m_base_url . $this->m_product_category_name . '/' . implode('/', $this->m_tags);
         }
 
         $this->m_pagination = new Pagination($this->m_data);
 
         $this->m_pager = $this->m_pagination->PaginationDisplay($this->m_data);
 
-        $this->m_start_record = $this->m_pagination->StartRecord($this->m_data);
+        $this->m_start_record     = $this->m_pagination->StartRecord($this->m_data);
         $this->m_records_per_page = $this->m_data['records_per_page'];
-
-        /* $this->m_category_products = $this->m_loaded_model->getProductsByBikeCategory($this->m_start_record, $this->m_records_per_page, $this->m_tags[0]); */
 
         $this->m_category_products = $this->m_loaded_model->getProductsByBikeCategory($this->m_start_record, $this->m_records_per_page, ($this->m_tags[0]));
 
-        require_once VIEWS.'templates/layouts/products-layout.php';
+        include_once VIEWS . 'templates/layouts/products-layout.php';
 
         return $this->m_content_builder;
     }
@@ -188,9 +186,9 @@ class ProductList extends Controller
         $m_available_product_categories[] = $this->nav->getCategoryMegaMenu();
         $m_available_product_categories[] = $this->nav->getBrandMegaMenu();
         $m_available_product_categories[] = $this->nav->getGenderMegaMenu();
-        $gender_list = [];
-        $brand_list = [];
-        $bike_category_list = [];
+        $gender_list                      = [];
+        $brand_list                       = [];
+        $bike_category_list               = [];
 
         if (!isset($this->m_tags[0])) {
             $products = $this->getAllProducts();
@@ -250,9 +248,9 @@ class ProductList extends Controller
 
     public function index()
     {
-        require_once VIEWS.'templates/core/header.php';
-        require_once VIEWS.'products/products-list.php';
-        require_once VIEWS.'templates/core/footer.php';
+        include_once VIEWS . 'templates/core/header.php';
+        include_once VIEWS . 'products/products-list.php';
+        include_once VIEWS . 'templates/core/footer.php';
     }
 
     public function product($url)
