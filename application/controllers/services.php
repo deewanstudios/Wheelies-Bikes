@@ -59,7 +59,11 @@ class Services extends Controller
     {
 
         $this->m_section_heading = $this->HeaderContent("h2", "Workshop", "text-between");
-        $this->m_section_body    = "Lorem ipsum dolor sit amet, sit at alii praesent, nam falli habemus feugait ne, ne dolore laboramus ius. Ne ius nonumes instructior. Viderer perfecto vituperata mel ne, case timeam vis ne. Ut omnis fastidii pri, vix ea purto theophrastus. Et sit vocent voluptatum conclusionemque. Apeirian detraxit efficiendi his ad, sea in postea audire percipit.";
+        $this->m_section_body    = "We handle all bicycle repairs from simple puncture fixes through to complex builds and repairs in our fully equipped workshop. Our mechanics are well trained in all forms of  bicycle repairs.
+
+        Close ties between us and our suppliers ensure up to date product servicing knowledge and streamlined parts availability.
+
+        Most repairs are carried out same day.";
         $para                    = $this->SingleParagraph($this->m_section_body);
         return array(
             $this->m_section_heading,
