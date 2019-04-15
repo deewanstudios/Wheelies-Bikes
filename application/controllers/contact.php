@@ -332,7 +332,7 @@ class Contact extends Controller
      */
     private function _mailSender($fullname, $email, $message)
     {
-        $to = 'info@deewanstudios.com';
+        $to = 'info@wheeliesbikes.co.uk';
         $from = '<' . $email . '>';
 
         $emailSubject = 'A message from your site visitor';

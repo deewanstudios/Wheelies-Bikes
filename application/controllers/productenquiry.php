@@ -472,7 +472,7 @@ class Enquire extends Controller
 
         $from = '<' . $this->_enquiry_form_email_address . '>';
         // $to = $this->_enquiry_form_email_address;
-        $to = 'info@deewanstudios.com';
+        $to = 'info@wheeliesbikes.co.uk';
         $subject = ('New Product Enquiry');
         include 'email/admin-email-layout.php';
         $headers = 'MIME-Version: 1.0' . "\r\n";
@@ -527,7 +527,7 @@ class Enquire extends Controller
             }
         }
 
-        $from = '<noreply@deewanstudios.com>';
+        $from = '<info@wheeliesbike.co.uk>';
         $to = $this->_enquiry_form_email_address;
         $subject = ('Product Enquiry Confirmation');
         include 'email/email-layout.php';
