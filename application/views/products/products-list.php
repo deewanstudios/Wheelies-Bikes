@@ -1,3 +1,3 @@
 <?php
-	echo $m_view = $this  ->  MainContentDiv  (  );
+	echo $m_view = $this  ->  _mainContentDiv  (  );
 ?>

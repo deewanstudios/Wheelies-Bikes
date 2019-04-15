@@ -2,7 +2,7 @@
 	<section class="section-50 section-sm-top-30 section-sm-bottom-98 text-left">
 		<div class="shell">
 
-			<?php echo $m_confirmation_content_view  =  $this  ->  ConfirmationView  (  ); ?>
+			<?php echo $m_confirmation_content_view = $this->_confirmationView(); ?>
 		</div>
 
 

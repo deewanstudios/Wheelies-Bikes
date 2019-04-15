@@ -18,7 +18,7 @@ class MasterModel extends SelectQueries
 
     protected $m_content_puller;
 
-    protected $m_page_visibility = 1;
+    protected $m_page_visibility = true;
     protected $m_order_by;
 
     public function __construct()
@@ -77,7 +77,7 @@ class MasterModel extends SelectQueries
         }
     }
 
-    public function GetDataBySQL($sql = "")
+    public function getDataBySQL($sql = "")
     {
         try
         {
@@ -342,6 +342,52 @@ WHERE 1=1 AND page_visibility =1 AND id = {$page_id}");
         }
 
     }
+
+    public function getBrandsCategoryMegaMenu()
+    {
+        try {
+            $this->m_select_statement = $this->brandCategoryListQuery();
+            $this->m_returned_object  = $this->GetDataBySQL($this->m_select_statement);
+            return $this->m_returned_object;
+        } catch (PDOException $e) {
+            echo $e->GetMessage();
+        }
+    }
+
+
+    public function getGenderCategoryMegaMenu()
+    {
+        try {
+            $this->m_select_statement = $this->genderCategoryListQuery();
+            $this->m_returned_object  = $this->GetDataBySQL($this->m_select_statement);
+            return $this->m_returned_object;
+        } catch (PDOException $e) {
+            echo $e->GetMessage();
+        }
+    }
+
+    public function getBikesCategoryMegaMenu()
+    {
+        try {
+            $this->m_select_statement = $this->bikeCategoryListQuery();
+            $this->m_returned_object  = $this->GetDataBySQL($this->m_select_statement);
+            return $this->m_returned_object;
+        } catch (PDOException $e) {
+            echo $e->GetMessage();
+        }
+    }
+
+ /*    public function getCategoriesMegaMenu()
+    {
+        try {
+            $this->m_select_statement = $this->brandCategoryListQuery();
+            $this->m_returned_object  = $this->GetDataBySQL($this->m_select_statement);
+            return $this->m_returned_object;
+        } catch (PDOException $e) {
+            echo $e->GetMessage();
+        }
+    }
+  */
 
 
     /*

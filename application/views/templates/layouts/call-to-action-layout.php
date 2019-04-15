@@ -2,14 +2,14 @@
 
 // $count =4;
 
-$this->m_content_builder = "<section class=\"section-bottom-98 section-sm-bottom-110\">";
+$this->m_content_builder = "<section class=\"section-bottom-50 section-sm-bottom-66\">";
 // section-98 section-sm-110
 $this->m_content_builder .= "<div class=\"\">";
 
 $this->m_content_builder .= "<div class=\"range range-xs-center range-sm-center range-md-center\">";
 
 foreach ($this->m_call_to_action_tabs as $m_call_to_action_tab) {
-    $this->m_content_builder .= "<div class=\"cell-xs-12 cell-sm-10 cell-md-6 padding-none\">";
+    $this->m_content_builder .= "<div class=\"cell-xs-12 cell-sm-12 cell-md-12 cell-lg-6 padding-none\">";
 
     // $this->m_debugger = $this->Dumper($m_call_to_action_tab);
 
@@ -18,7 +18,7 @@ foreach ($this->m_call_to_action_tabs as $m_call_to_action_tab) {
         $this->m_content_builder .= "<a href=\"";
         $this->m_content_builder .= "bikes";
         $this->m_content_builder .= "/";
-        $this->m_content_builder .= str_replace(" ", "", $m_call_to_action_link["featured_categories"]);
+        $this->m_content_builder .= str_replace(" ", "-", $m_call_to_action_link["featured_categories"]);
         $this->m_content_builder .= "\"";
         $this->m_content_builder .= "class=\"reveal-block\">";
         $this->m_content_builder .= "<!-- Post Boxed-->";
