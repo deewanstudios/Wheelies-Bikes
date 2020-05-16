@@ -65,14 +65,14 @@ class Home extends Controller
     $this  ->  m_param_id  =  7;
     $this  ->  m_link_name  =  $this  ->  m_loaded_model  ->  GetFeaturedCategories  (  $this  ->  m_cat_id  );
     $this  ->  m_section_image  =  $this  ->  m_loaded_model  ->  GetCallToActionImages  (  $this  ->  m_param_id  );
-    
+
     $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_link_name  );
-    
+
     return array  (
     $this  ->  m_link_name  ,
     $this  ->  m_section_image
     );
-    
+
     } */
     private function SERacingTab()
     {
@@ -107,7 +107,7 @@ class Home extends Controller
         // "Hello World";
         // $this  ->  m_loaded_model  ->  GetCallToActionImages  (  );
 
-        include VIEWS.'templates/layouts/call-to-action-layout.php';
+        include VIEWS . 'templates/layouts/call-to-action-layout.php';
 
         return $this->m_content_builder;
     }

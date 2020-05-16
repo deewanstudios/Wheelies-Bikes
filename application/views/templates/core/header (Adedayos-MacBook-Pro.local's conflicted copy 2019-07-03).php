@@ -1,9 +1,9 @@
  <?php
-ob_start();
-$m_navigation_class = new Navigation();
-$m_controller_class = new Controller();
-// $m_crumbs  =  $m_controller_class  ->  PageBanners  (  $page_id  );
-$m_header = $m_navigation_class->PageHeader();
+	ob_start  (  );
+	$m_navigation_class  =  new Navigation  (  );
+	$m_controller_class  =  new Controller  (  );
+	// $m_crumbs  =  $m_controller_class  ->  PageBanners  (  $page_id  );
+	$m_header  =  $m_navigation_class  ->  PageHeader  (  );
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ $m_header = $m_navigation_class->PageHeader();
 
 <!-- Site Title-->
 <title>
-<?php echo $this->m_page_title; ?>
+<?php echo $this  ->  m_page_title; ?>
 </title>
 
 
@@ -22,20 +22,19 @@ $m_header = $m_navigation_class->PageHeader();
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
 
-<meta name="description" content="<?php echo $this->m_page_description; ?>">
-<meta name="keywords" content="<?php echo $this->m_page_keywords; ?>">
-<meta name="author" content="<?php echo $this->m_page_author; ?>">
-<link rel="canonical" href="<?php echo $this->m_page_url; ?>" />
-<meta property="og:title" content="<?php echo $this->m_open_graph_title; ?>">
-<meta property="og:description" content="<?php echo $this->m_open_graph_description; ?>">
-<meta property="og:keywords" content="<?php echo $this->m_open_graph_keywords; ?>">
-<meta property="og:type" content="<?php echo $this->m_open_graph_type; ?>">
-<meta property="og:url" content="<?php echo $this->m_open_graph_url; ?>">
-<meta property="og:site_name" content="<?php echo $this->m_open_graph_site_name; ?>">
-<meta property="og:image" content="<?php echo IMAGES; ?>wheelies-bikes-open-graph-image.jpg">
+<meta name="description" content="<?php echo $this  ->  m_page_description; ?>">
+<meta name="keywords" content="<?php echo $this  ->  m_page_keywords; ?>">
+<meta name="author" content="<?php echo $this  ->  m_page_author; ?>">
+<link rel="canonical" href="<?php echo $this  ->  m_page_url; ?>" />
+<meta property="og:title" content="<?php echo $this  ->  m_open_graph_title; ?>">
+<meta property="og:description" content="<?php echo $this  ->  m_open_graph_description; ?>">
+<meta property="og:keywords" content="<?php echo $this  ->  m_open_graph_keywords; ?>">
+<meta property="og:type" content="<?php echo $this  ->  m_open_graph_type; ?>">
+<meta property="og:url" content="<?php echo $this  ->  m_open_graph_url; ?>">
+<meta property="og:site_name" content="<?php echo $this  ->  m_open_graph_site_name; ?>">
 
-<meta name="website developed by" content="<?php echo $this->m_page_developed_by; ?>">
-<meta name="developer website" content="<?php echo $this->m_page_developer_website; ?>">
+<meta name="website developed by" content="<?php echo $this  ->  m_page_developed_by; ?>">
+<meta name="developer website" content="<?php echo $this  ->  m_page_developer_website; ?>">
 
 
 <link rel="icon" href="<?php echo IMAGES; ?>favicon.ico" type="image/x-icon">
@@ -73,6 +72,6 @@ upgrade for free today."></a></div>
 
 <?php
 
-echo $m_header;
-// echo $m_crumbs;
- ?>
+	echo $m_header;
+	// echo $m_crumbs;
+?>
