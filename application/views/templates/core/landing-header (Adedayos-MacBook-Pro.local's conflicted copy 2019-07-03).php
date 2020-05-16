@@ -33,9 +33,6 @@ $m_page_loader      = $m_navigation_class->PageLoader();
 		<meta property="og:type" content="<?php echo $this->m_open_graph_type; ?>">
 		<meta property="og:url" content="<?php echo $this->m_open_graph_url; ?>">
 		<meta property="og:site_name" content="<?php echo $this->m_open_graph_site_name; ?>">
-		<meta property="og:image" content="<?php echo IMAGES; ?>wheelies-bikes-open-graph-image.jpg">
-
-
 
 		<meta name="website developed by" content="<?php echo $this->m_page_developed_by; ?>">
 		<meta name="developer website" content="<?php echo $this->m_page_developer_website; ?>">

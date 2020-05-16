@@ -1,0 +1,30 @@
+{
+    "remotePath": "./",
+    "host": "ftp.perfectcode.co.uk",
+    "username": "terrence_wheelies@perfectcode.co.uk",
+    "password": "Wheelies2017#!",
+    "port": 21,
+    "secure": false,
+    "protocol": "ftp",
+    "uploadOnSave": false,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "agent": null,
+    "allow": [],
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\.DS_Store",
+        "\\.project"
+        // ,
+        // "\\application\settings.php"
+    ],
+    "generatedFiles": {
+        "extensionsToInclude": [
+            ""
+        ],
+        "path": ""
+    }
+}

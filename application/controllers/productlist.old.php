@@ -65,6 +65,7 @@ class ProductList extends Controller
     private function PageContent()
     {
         return array($this->AllProducts());
+
     }
 
     private function MainContentDiv()

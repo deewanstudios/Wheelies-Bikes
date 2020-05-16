@@ -1,14 +1,9 @@
-<?php
-/**
- * This file is responsible for defining any common paths which will be used in the project. The paths will be defined as constants as constants
- * PHP version PHP 7.2.1
- *
- * @category Website
- * @package  WheeliesBikes_Product_Enquiry_File
- * @author   Adedayo Adedapo <ade.adedapo9@gmail.com>
- * @license  DeewanstudiosLTD deewanstudios.com
- * @link     http://url.com
- */
+<?
+
+// paths.php
+
+// this file is responsible for including any common paths
+// which will be used...they will be stored as constants
 
 define("DS", DIRECTORY_SEPARATOR);
 
@@ -40,4 +35,3 @@ define("THUMBS", IMAGES . "thumbs" . "/");
 define("MODELS", ROOT . "models" . DS);
 define("LIBS", ROOT . "libraries" . DS);
 define("VIEWS", ROOT . "views" . DS);
-define("TEMPLATES", VIEWS . "templates" . DS);

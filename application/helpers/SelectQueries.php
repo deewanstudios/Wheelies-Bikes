@@ -356,6 +356,8 @@ class SelectQueries
         $this->m_query .= 'p.product_id = mpi.bike_products_product_id';
         $this->m_query .= ' WHERE ';
         $this->m_query .= "p.is_best_seller = {$best_seller}";
+        $this->m_query .= ' AND ';
+        $this->m_query .= "p.product_visibility = {$best_seller}";
         $this->m_query .= ' ORDER BY Rand() ASC';
         $this->m_query .= ' LIMIT 0, 8';
 
@@ -570,7 +572,7 @@ class SelectQueries
         $this->m_query = 'SELECT';
         $this->m_query .= ' p.product_id';
         $this->m_query .= ' FROM';
-        $this->m_query .= ' '.$this->m_db_product_table.' as p';
+        $this->m_query .= ' ' . $this->m_db_product_table . ' as p';
         $this->m_query .= ' WHERE';
         $this->m_query .= " p.product_name ='$m_product_name'";
         if (!empty($m_product_model)) {
@@ -593,9 +595,9 @@ class SelectQueries
         $this->m_query = 'SELECT';
         $this->m_query .= ' pr.product_price_value';
         $this->m_query .= ' FROM';
-        $this->m_query .= ' '.$this->m_db_product_table.' as p';
+        $this->m_query .= ' ' . $this->m_db_product_table . ' as p';
         $this->m_query .= ' LEFT JOIN';
-        $this->m_query .= ' '.$this->m_db_product_price_table.' as pr';
+        $this->m_query .= ' ' . $this->m_db_product_price_table . ' as pr';
         $this->m_query .= ' ON';
         $this->m_query .= ' p.product_price_product_price_id = pr.product_price_id ';
         $this->m_query .= ' WHERE';
@@ -614,10 +616,10 @@ class SelectQueries
         $this->m_query = 'SELECT';
         $this->m_query .= ' image_name, image_description, image_caption, image_path';
         $this->m_query .= ' FROM';
-        $this->m_query .= ' '.$this->m_db_product_main_image_view.' AS mpi';
+        $this->m_query .= ' ' . $this->m_db_product_main_image_view . ' AS mpi';
         $this->m_query .= ' WHERE';
-        $this->m_query .= ' mpi.bike_products_product_id ='.$product_id;
-        $this->m_query .= ' AND mpi.image_visibility ='.$visibility;
+        $this->m_query .= ' mpi.bike_products_product_id =' . $product_id;
+        $this->m_query .= ' AND mpi.image_visibility =' . $visibility;
 
         return $this->m_query;
     }

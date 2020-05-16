@@ -13,31 +13,30 @@ Local with default credentials
  */
 
 /*
-define('DB_TYPE', 'mysql');
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'test');
-define('DB_USER', 'root');
-define('DB_PASS', 'root');*/
-
-/*
 Local host connection with user credentials
  */
 
-
-define('DB_TYPE', 'mysql');
+/* define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'wheeliesbikes');
 define('DB_USER', 'terrence_mathis');
-define('DB_PASS', 'Wheelies2017#!');
+define('DB_PASS', 'Wheelies2017#!'); */
 
+// Testing_server host connection with user credentials
 
-// Remote host connection with user credentials
+/* define  (  'DB_TYPE'  ,  'mysql'  );
+define  (  'DB_HOST'  ,  'localhost'  );
+define  (  'DB_NAME'  ,  'deewan84_wheeliesbikes'  );
+define  (  'DB_USER'  ,  'deewan84_terrenc'  );
+define  (  'DB_PASS'  ,  'Wheelies2017#!'  ); */
 
-/*  define  (  'DB_TYPE'  ,  'mysql'  );
- define  (  'DB_HOST'  ,  'localhost'  );
- define  (  'DB_NAME'  ,  'deewan84_wheeliesbikes'  );
- define  (  'DB_USER'  ,  'deewan84_terrenc'  );
- define  (  'DB_PASS'  ,  'Wheelies2017#!'  ); */
+// Live server host connection with user credentials
+
+define('DB_TYPE', 'mysql');
+define('DB_HOST', '10.169.0.244');
+define('DB_NAME', 'wheelies1_bikes_production');
+define('DB_USER', 'wheelies1_admin');
+define('DB_PASS', 'PiZGZ0y$XizR');
 
 // * timezone and date settings
 $timezone_identifier = "Europe/London";

@@ -11,138 +11,91 @@ class Services extends Controller
 
     public function __construct()
     {
-        $this->m_model = 'ServicesModel';
+        $this->m_model   = 'ServicesModel';
         $this->m_page_id = 3;
 
     }
 
-    /**
-     * ModelLoader
-     *
-     * @return void
-     */
-    protected function modelLoader()
+    protected function ModelLoader()
     {
         $m_data = $this->LoadModel($this->m_model);
         return $m_data;
     }
 
     /**
-     * _pricingClarification
      *
-     * @return void
+     * Description for function
+     *
+     *
+     * @return      type
+     *
      */
-    private function _pricingClarification()
+    private function pricingClarification()
     {
-        $this->m_section_body = "Please note, these prices do not include parts and are listed only as a guide, costs will be confirmed on an individual basis.";
-        $para = $this->SingleParagraph($this->m_section_body);
+        $this->m_section_body = "Please note, these prices do not include parts and are listed only as a guide, costs will be confirmed on an individual basis. ";
+        $para                 = $this->SingleParagraph($this->m_section_body);
         return array($para);
     }
 
-    /**
-     * _priceList
-     *
-     * @return void
-     */
-    private function _priceList()
+    private function PriceList()
     {
 
-        $this->m_prices = $this->m_loaded_model->GetAllServices();
-        $this->m_section_text = $this->m_loaded_model->PageText();
+        $this->m_prices          = $this->m_loaded_model->GetAllServices();
+        $this->m_section_text    = $this->m_loaded_model->PageText();
         $this->m_section_heading = $this->headerContent("h1", "workshop price list", "text-between text-wheelies-blue");
+        // $this->m_section_heading = $this->headerContent("h2", "workshop price list", "text-between text-wheelies-blue");
 
         include VIEWS . "templates/layouts/workshop-price-list-section-layout.php";
+
+        // $this  ->  m_debugger  =  $this  ->  Dumper  (  $para  );
+        //  $this  ->  m_debugger  =  $this  ->  Dumper  (  $this  ->  m_prices  );
         return array(
             $this->m_section_heading,
             $this->m_content_builder,
         );
     }
 
-    /**
-     * _workshopSection
-     *
-     * @return void
-     */
-    private function _workshopSection()
+    private function WorkshopSection()
     {
 
         $this->m_section_heading = $this->HeaderContent("h2", "Workshop", "text-between");
-        $this->m_section_body = "We handle all bicycle repairs from simple puncture fixes through to complex builds and repairs in our fully equipped workshop. Our mechanics are well trained in all forms of  bicycle repairs.
-
-        Close ties between us and our suppliers ensure up to date product servicing knowledge and streamlined parts availability.
-
-        Most repairs are carried out same day.";
-        $para = $this->SingleParagraph($this->m_section_body);
+        $this->m_section_body    = "Lorem ipsum dolor sit amet, sit at alii praesent, nam falli habemus feugait ne, ne dolore laboramus ius. Ne ius nonumes instructior. Viderer perfecto vituperata mel ne, case timeam vis ne. Ut omnis fastidii pri, vix ea purto theophrastus. Et sit vocent voluptatum conclusionemque. Apeirian detraxit efficiendi his ad, sea in postea audire percipit.";
+        $para                    = $this->SingleParagraph($this->m_section_body);
         return array(
             $this->m_section_heading,
             $para,
         );
     }
 
-    /**
-     * _whyUs
-     *
-     * @return void
-     */
-    private function _whyUs()
+    private function SectionedContentHolder()
     {
-
-        $this->m_section_heading = $this->HeaderContent("h2", "Why Wheelies Bikes?", "text-between");
-        return array(
-            $this->m_section_heading,
-        );
-    }
-
-    /**
-     * _sectionedContentHolder
-     *
-     * @return void
-     */
-    private function _sectionedContentHolder()
-    {
-        $this->m_section_content = array();
-        $this->m_section_content[] = $this->_workshopSection();
-        $this->m_section_content[] = $this->_priceList();
-        $this->m_section_content[] = $this->_whyUs();
+        $this->m_section_content   = array();
+        $this->m_section_content[] = $this->PriceList();
+        $this->m_section_content[] = $this->WorkshopSection();
         // $m_section_regions = array_merge($this->m_section_content);
 
-        $views = $this->centeredSectionViewBuilder($this->m_section_content);
+        $views = $this->CenteredSectionViewBuilder($this->m_section_content);
 
         // $this  ->  m_debugger  =  $this  ->  Dumper  (  $views  );
 
         return $views;
     }
 
-    /**
-     * _centeredContents
-     *
-     * @return void
-     */
-    private function _centeredContents()
+    private function CenteredContents()
     {
-        $this->m_section_content = $this->_sectionedContentHolder();
+        $this->m_section_content = $this->SectionedContentHolder();
         return $this->m_section_content;
 
     }
 
-    /**
-     * PageContent
-     *
-     * @return void
-     */
-    public function pageContent()
+    public function PageContent()
     {
 
-        return array($this->_centeredContents());
+        return array($this->CenteredContents());
 
     }
 
-    /**
-     * _mainContentDiv
-     *
-     * @return void
-     */
-    private function _mainContentDiv()
+    private function MainContentDiv()
     {
         if (method_exists($this, 'PageContent')) {
             $this->m_main_content = $this->PageBanners($this->m_page_id);
@@ -176,17 +129,12 @@ class Services extends Controller
 
     }
 
-    /**
-     * Index
-     *
-     * @return void
-     */
     public function index()
     {
         $this->PageMetaData($this->m_page_id);
-        include_once '../application/views/templates/core/header.php';
-        include_once '../application/views/services/services.php';
-        include_once '../application/views/templates/core/footer.php';
+        require_once '../application/views/templates/core/header.php';
+        require_once '../application/views/services/services.php';
+        require_once '../application/views/templates/core/footer.php';
 
     }
 

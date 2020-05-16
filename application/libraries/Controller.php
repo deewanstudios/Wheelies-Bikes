@@ -132,14 +132,7 @@ class Controller
 
     }
 
-    /**
-     * centeredSectionViewBuilder
-     *
-     * @param  mixed $sections
-     *
-     * @return void
-     */
-    public function centeredSectionViewBuilder($sections)
+    public function CenteredSectionViewBuilder($sections)
     {
 
         include VIEWS . "templates/layouts/centered-content-section-wrapper.php";
